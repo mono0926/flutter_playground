@@ -7,8 +7,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
+  mono_kit:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic_mono:
 flutter:
   uses-material-design: true
