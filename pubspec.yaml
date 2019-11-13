@@ -8,6 +8,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   mono_kit:
+  intl:
+  provider:
 dev_dependencies:
   flutter_test:
     sdk: flutter
