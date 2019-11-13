@@ -46,6 +46,8 @@ class _Body extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         final data = dataList[index];
+        // 通常はkeyも指定する(`key: ValueKey(index)`など)が、
+        // このサンプルでは順序不変なためkey指定する理由がないため省略
         return ChangeNotifierProxyProvider<DataListNotifier, TileNotifier>(
           initialBuilder: (context) => TileNotifier(data),
           builder: (context, dataListNotifier, previous) =>
