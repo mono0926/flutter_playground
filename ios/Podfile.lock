@@ -21,7 +21,7 @@ DEPENDENCIES:
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 SPEC REPOS:
-  https://cdn.cocoapods.org/:
+  trunk:
     - FMDB
 
 EXTERNAL SOURCES:
