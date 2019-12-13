@@ -43,6 +43,15 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            decoration: BoxDecoration(
+              border: Border(
+                // staticメソッドも公開されている
+                bottom: Divider.createBorderSide(context),
+              ),
+            ),
+          ),
         ],
       ),
     );
