@@ -24,8 +24,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Divider Page'),
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
+          SizedBox(height: 0.5 / MediaQuery.of(context).devicePixelRatio),
           const Divider(), // 1 pixel
           const Divider(thickness: 0), // 1 pixel
           Divider(
