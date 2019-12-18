@@ -98,6 +98,7 @@ class __BodyState extends State<_Body> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         controller: _horizontalScrollSender,
+        physics: const NeverScrollableScrollPhysics(),
         children: List.generate(
           colCount,
           (i) => const Placeholder(
@@ -115,6 +116,7 @@ class __BodyState extends State<_Body> {
       child: ListView(
         scrollDirection: Axis.vertical,
         controller: _verticalScrollSender,
+        physics: const NeverScrollableScrollPhysics(),
         children: List.generate(
           rowCount,
           (i) => const Placeholder(
