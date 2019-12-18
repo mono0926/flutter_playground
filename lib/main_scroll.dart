@@ -6,24 +6,16 @@ class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: const HomePage(),
-      theme: ThemeData(
-        dividerColor: Colors.red,
-      ),
-    );
+    return const MaterialApp(home: HomePage());
   }
 }
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Bidirectional Scroll Page'),
-      ),
+      appBar: AppBar(title: const Text('Bidirectional Scroll Page')),
       body: const _Body(),
     );
   }
@@ -31,7 +23,6 @@ class HomePage extends StatelessWidget {
 
 class _Body extends StatefulWidget {
   const _Body({Key key}) : super(key: key);
-
   @override
   __BodyState createState() => __BodyState();
 }
@@ -39,14 +30,12 @@ class _Body extends StatefulWidget {
 class __BodyState extends State<_Body> {
   final _verticalScrollReceiver = ScrollController();
   final _verticalScrollSender = ScrollController();
-
   final _horizontalScrollReceiver = ScrollController();
   final _horizontalScrollSender = ScrollController();
 
   @override
   void initState() {
     super.initState();
-
     _verticalScrollReceiver.addListener(_updateAxisVerticalOffset);
     _horizontalScrollReceiver.addListener(_updateAxisHorizontalOffset);
   }
