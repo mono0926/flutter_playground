@@ -78,7 +78,9 @@ class __BodyState extends State<_Body> {
           child: Row(
             children: <Widget>[
               _buildYLabels(),
-              _buildGrid(),
+              Expanded(
+                child: _buildGrid(),
+              ),
             ],
           ),
         )
@@ -129,26 +131,24 @@ class __BodyState extends State<_Body> {
   }
 
   Widget _buildGrid() {
-    return Expanded(
-      child: SingleChildScrollView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        controller: _verticalScrollReceiver,
-        child: SizedBox(
-          height: cellHeight * rowCount,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            controller: _horizontalScrollReceiver,
-            physics: const AlwaysScrollableScrollPhysics(),
-            children: List.generate(
-              colCount,
-              (i) => SizedBox(
-                width: cellWidth,
-                child: Column(
-                  children: List.generate(
-                    rowCount,
-                    (i) => const Placeholder(
-                      fallbackHeight: cellHeight,
-                    ),
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
+      controller: _verticalScrollReceiver,
+      child: SizedBox(
+        height: cellHeight * rowCount,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          controller: _horizontalScrollReceiver,
+          physics: const AlwaysScrollableScrollPhysics(),
+          children: List.generate(
+            colCount,
+            (i) => SizedBox(
+              width: cellWidth,
+              child: Column(
+                children: List.generate(
+                  rowCount,
+                  (i) => const Placeholder(
+                    fallbackHeight: cellHeight,
                   ),
                 ),
               ),
