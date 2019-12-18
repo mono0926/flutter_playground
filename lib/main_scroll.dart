@@ -33,11 +33,11 @@ class __BodyState extends State<_Body> {
   final _horizontalScrollReceiver = ScrollController();
   final _horizontalScrollSender = ScrollController();
 
-  static const cellWidth = 80.0;
-  static const cellHeight = 60.0;
-  static const axisWidth = 40.0;
-  static const colCount = 20;
-  static const rowCount = 40;
+  static const _cellWidth = 80.0;
+  static const _cellHeight = 60.0;
+  static const _axisWidth = 40.0;
+  static const _colCount = 20;
+  static const _rowCount = 40;
 
   @override
   void initState() {
@@ -66,7 +66,7 @@ class __BodyState extends State<_Body> {
     return Column(
       children: <Widget>[
         SizedBox(
-          height: axisWidth,
+          height: _axisWidth,
           child: Row(
             children: <Widget>[
               _buildCorner(),
@@ -90,7 +90,7 @@ class __BodyState extends State<_Body> {
 
   Widget _buildCorner() {
     return Container(
-      width: axisWidth,
+      width: _axisWidth,
       color: Colors.grey,
     );
   }
@@ -102,9 +102,9 @@ class __BodyState extends State<_Body> {
         controller: _horizontalScrollSender,
         physics: const NeverScrollableScrollPhysics(),
         children: List.generate(
-          colCount,
+          _colCount,
           (i) => const Placeholder(
-            fallbackWidth: cellWidth,
+            fallbackWidth: _cellWidth,
             color: Colors.red,
           ),
         ),
@@ -114,15 +114,15 @@ class __BodyState extends State<_Body> {
 
   Widget _buildYLabels() {
     return SizedBox(
-      width: axisWidth,
+      width: _axisWidth,
       child: ListView(
         scrollDirection: Axis.vertical,
         controller: _verticalScrollSender,
         physics: const NeverScrollableScrollPhysics(),
         children: List.generate(
-          rowCount,
+          _rowCount,
           (i) => const Placeholder(
-            fallbackHeight: cellHeight,
+            fallbackHeight: _cellHeight,
             color: Colors.blue,
           ),
         ),
@@ -135,20 +135,20 @@ class __BodyState extends State<_Body> {
       physics: const AlwaysScrollableScrollPhysics(),
       controller: _verticalScrollReceiver,
       child: SizedBox(
-        height: cellHeight * rowCount,
+        height: _cellHeight * _rowCount,
         child: ListView(
           scrollDirection: Axis.horizontal,
           controller: _horizontalScrollReceiver,
           physics: const AlwaysScrollableScrollPhysics(),
           children: List.generate(
-            colCount,
+            _colCount,
             (i) => SizedBox(
-              width: cellWidth,
+              width: _cellWidth,
               child: Column(
                 children: List.generate(
-                  rowCount,
+                  _rowCount,
                   (i) => const Placeholder(
-                    fallbackHeight: cellHeight,
+                    fallbackHeight: _cellHeight,
                   ),
                 ),
               ),
