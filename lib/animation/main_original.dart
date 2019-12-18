@@ -10,13 +10,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -39,22 +39,22 @@ class _MyHomePageState extends State<MyHomePage>
   ///because the visibility changes asynchronously when the animation finishes,
   ///which we want to trigger the rebuild of [ValueListenableBuilder] That
   ///listens to this value
-  ValueNotifier<bool> _isVisibleValueNotifier = ValueNotifier(true);
+  final _isVisibleValueNotifier = ValueNotifier(true);
 
   @override
   void initState() {
     _slideAnimationController = AnimationController(
       vsync: this,
       //whatever duration you want
-      duration: Duration(milliseconds: 400),
+      duration: const Duration(milliseconds: 400),
     );
     _heightFactorAnimation = CurvedAnimation(
         parent: _slideAnimationController.drive(
           //a Tween from 1.0 to 0.0 is what makes the slide effect by shrinking
           // the container using the [Align.heightFactor] parameter
           Tween<double>(
-            begin: 1.0,
-            end: 0.0,
+            begin: 1,
+            end: 0,
           ),
         ),
         curve: Curves.ease);
@@ -80,7 +80,7 @@ class _MyHomePageState extends State<MyHomePage>
             },
             child: AnimatedBuilder(
               animation: _slideAnimationController,
-              builder: (BuildContext context, Widget child) {
+              builder: (context, child) {
                 return ClipRect(
                   child: Align(
                     alignment: Alignment.bottomCenter,
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage>
               //we wrap our content in the child param as it is not affected by
               // the animation itself
               child: MaterialBanner(
-                content: Text('This is a banner. Dismiss me'),
+                content: const Text('This is a banner. Dismiss me'),
                 actions: <Widget>[
                   FlatButton(
                     onPressed: () async {
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage>
                       await _slideAnimationController.forward();
                       _isVisibleValueNotifier.value = false;
                     },
-                    child: Text('DISMISS'),
+                    child: const Text('DISMISS'),
                   ),
                 ],
               ),
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage>
             height: 200,
             alignment: Alignment.center,
             color: Colors.blue,
-            child: Text('A Container'),
+            child: const Text('A Container'),
           ),
         ],
       ),

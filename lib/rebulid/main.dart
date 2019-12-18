@@ -14,7 +14,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: ChangeNotifierProvider(
-        builder: (context) => DataListNotifier(),
+        create: (context) => DataListNotifier(),
         child: const HomePage(),
       ),
     );
@@ -49,8 +49,8 @@ class _Body extends StatelessWidget {
         // 通常はkeyも指定する(`key: ValueKey(index)`など)が、
         // このサンプルでは順序不変なためkey指定する理由がないため省略
         return ChangeNotifierProxyProvider<DataListNotifier, TileNotifier>(
-          initialBuilder: (context) => TileNotifier(data),
-          builder: (context, dataListNotifier, previous) =>
+          create: (context) => TileNotifier(data),
+          update: (context, dataListNotifier, previous) =>
               previous..value = dataListNotifier.value[previous.value.index],
           child: const Tile(),
         );
