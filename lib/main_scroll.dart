@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// TODO(mono): 遅延ロード
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -102,31 +101,27 @@ class __BodyState extends State<_Body> {
   }
 
   Widget _buildXLabels() {
-    return ListView(
+    return ListView.builder(
       scrollDirection: Axis.horizontal,
       controller: _horizontalScrollSender,
       physics: const NeverScrollableScrollPhysics(),
-      children: List.generate(
-        _colCount,
-        (i) => const Placeholder(
-          fallbackWidth: _cellWidth,
-          color: Colors.red,
-        ),
+      itemCount: _colCount,
+      itemBuilder: (context, index) => const Placeholder(
+        fallbackWidth: _cellWidth,
+        color: Colors.red,
       ),
     );
   }
 
   Widget _buildYLabels() {
-    return ListView(
+    return ListView.builder(
       scrollDirection: Axis.vertical,
       controller: _verticalScrollSender,
       physics: const NeverScrollableScrollPhysics(),
-      children: List.generate(
-        _rowCount,
-        (i) => const Placeholder(
-          fallbackHeight: _cellHeight,
-          color: Colors.blue,
-        ),
+      itemCount: _rowCount,
+      itemBuilder: (context, index) => const Placeholder(
+        fallbackHeight: _cellHeight,
+        color: Colors.blue,
       ),
     );
   }
@@ -137,22 +132,19 @@ class __BodyState extends State<_Body> {
       controller: _verticalScrollReceiver,
       child: SizedBox(
         height: _cellHeight * _rowCount,
-        child: ListView(
+        child: ListView.builder(
           scrollDirection: Axis.horizontal,
           controller: _horizontalScrollReceiver,
           physics: const AlwaysScrollableScrollPhysics(),
-          children: List.generate(
-            _colCount,
-            (i) => SizedBox(
-              width: _cellWidth,
-              child: ListView(
-                physics: const NeverScrollableScrollPhysics(),
-                children: List.generate(
-                  _rowCount,
-                  (i) => const Placeholder(
-                    fallbackHeight: _cellHeight,
-                  ),
-                ),
+          itemCount: _colCount,
+          itemBuilder: (context, index) => SizedBox(
+            width: _cellWidth,
+            // TODO(mono): Not lazy loaded
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: _rowCount,
+              itemBuilder: (context, index) => const Placeholder(
+                fallbackHeight: _cellHeight,
               ),
             ),
           ),
