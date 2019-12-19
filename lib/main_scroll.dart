@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// TODO(mono): 遅延ロード
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -144,7 +145,8 @@ class __BodyState extends State<_Body> {
             _colCount,
             (i) => SizedBox(
               width: _cellWidth,
-              child: Column(
+              child: ListView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: List.generate(
                   _rowCount,
                   (i) => const Placeholder(
