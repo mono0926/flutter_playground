@@ -70,14 +70,19 @@ class __BodyState extends State<_Body> {
           child: Row(
             children: <Widget>[
               _buildCorner(),
-              _buildXLabels(),
+              Expanded(
+                child: _buildXLabels(),
+              ),
             ],
           ),
         ),
         Expanded(
           child: Row(
             children: <Widget>[
-              _buildYLabels(),
+              SizedBox(
+                child: _buildYLabels(),
+                width: _axisWidth,
+              ),
               Expanded(
                 child: _buildGrid(),
               ),
@@ -96,35 +101,30 @@ class __BodyState extends State<_Body> {
   }
 
   Widget _buildXLabels() {
-    return Expanded(
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        controller: _horizontalScrollSender,
-        physics: const NeverScrollableScrollPhysics(),
-        children: List.generate(
-          _colCount,
-          (i) => const Placeholder(
-            fallbackWidth: _cellWidth,
-            color: Colors.red,
-          ),
+    return ListView(
+      scrollDirection: Axis.horizontal,
+      controller: _horizontalScrollSender,
+      physics: const NeverScrollableScrollPhysics(),
+      children: List.generate(
+        _colCount,
+        (i) => const Placeholder(
+          fallbackWidth: _cellWidth,
+          color: Colors.red,
         ),
       ),
     );
   }
 
   Widget _buildYLabels() {
-    return SizedBox(
-      width: _axisWidth,
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        controller: _verticalScrollSender,
-        physics: const NeverScrollableScrollPhysics(),
-        children: List.generate(
-          _rowCount,
-          (i) => const Placeholder(
-            fallbackHeight: _cellHeight,
-            color: Colors.blue,
-          ),
+    return ListView(
+      scrollDirection: Axis.vertical,
+      controller: _verticalScrollSender,
+      physics: const NeverScrollableScrollPhysics(),
+      children: List.generate(
+        _rowCount,
+        (i) => const Placeholder(
+          fallbackHeight: _cellHeight,
+          color: Colors.blue,
         ),
       ),
     );
