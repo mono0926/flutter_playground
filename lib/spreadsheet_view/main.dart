@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Bidirectional Scroll Page')),
+      appBar: AppBar(title: const Text('Spreadsheet View')),
       body: SpreadsheetView(
         columnHeaderHeight: 40,
         rowHeaderWidth: 50,
@@ -56,6 +56,41 @@ class HomePage extends StatelessWidget {
             ),
             child: Text('$row-$column'),
           );
+        },
+        contentBuilder: (context, columnIndex, cellHeight, rowCount) {
+          if (columnIndex == 0) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  height: cellHeight * 1.5,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  height: cellHeight * 1.5,
+                  color: Colors.amberAccent[200],
+                  child: const Text('Hello'),
+                ),
+              ],
+            );
+          }
+          if (columnIndex == 2) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                SizedBox(
+                  height: cellHeight * 4,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  height: cellHeight * 3,
+                  color: Colors.blue[200],
+                  child: const Text('Flutter'),
+                ),
+              ],
+            );
+          }
+          return const SizedBox();
         },
       ),
     );

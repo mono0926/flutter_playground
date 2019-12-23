@@ -8,6 +8,12 @@ typedef CellBuilder = Widget Function(
   int row,
   int column,
 );
+typedef ContentBuilder = Widget Function(
+  BuildContext context,
+  int columnIndex,
+  double cellHeight,
+  int rowCount,
+);
 
 class SpreadsheetView extends StatefulWidget {
   const SpreadsheetView({
@@ -16,6 +22,7 @@ class SpreadsheetView extends StatefulWidget {
     @required this.columnHeaderBuilder,
     @required this.rowHeaderBuilder,
     @required this.cellBuilder,
+    @required this.contentBuilder,
     @required this.columnHeaderHeight,
     @required this.rowHeaderWidth,
     @required this.cellWidth,
@@ -28,6 +35,7 @@ class SpreadsheetView extends StatefulWidget {
   final HeaderBuilder columnHeaderBuilder;
   final HeaderBuilder rowHeaderBuilder;
   final CellBuilder cellBuilder;
+  final ContentBuilder contentBuilder;
   final double columnHeaderHeight;
   final double rowHeaderWidth;
   final double cellWidth;
@@ -145,14 +153,24 @@ class _SpreadsheetViewState extends State<SpreadsheetView> {
           itemCount: widget.columnCount,
           itemBuilder: (context, column) => SizedBox(
             width: widget.cellWidth,
-            child: Column(
-              children: List.generate(
-                widget.rowCount,
-                (row) => SizedBox(
-                  height: widget.cellHeight,
-                  child: widget.cellBuilder(context, row, column),
+            child: Stack(
+              children: <Widget>[
+                Column(
+                  children: List.generate(
+                    widget.rowCount,
+                    (row) => SizedBox(
+                      height: widget.cellHeight,
+                      child: widget.cellBuilder(context, row, column),
+                    ),
+                  ),
                 ),
-              ),
+                widget.contentBuilder(
+                  context,
+                  column,
+                  widget.cellHeight,
+                  widget.rowCount,
+                ),
+              ],
             ),
           ),
         ),
