@@ -5,3 +5,4 @@ analyzer:
 #    - non-nullable
   exclude:
     - lib/*_original.dart
+    - lib/generated_*.dart
