@@ -94,7 +94,7 @@ class _SpreadsheetViewState extends State<SpreadsheetView> {
           child: Row(
             children: <Widget>[
               SizedBox(
-                child: _buildYLabels(),
+                child: _buildRowLabels(),
                 width: widget.rowHeaderWidth,
               ),
               Expanded(
@@ -127,7 +127,7 @@ class _SpreadsheetViewState extends State<SpreadsheetView> {
     );
   }
 
-  Widget _buildYLabels() {
+  Widget _buildRowLabels() {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       controller: _verticalScrollSender,
