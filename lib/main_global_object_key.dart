@@ -25,13 +25,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(),
 //        body: MyWidget(),
       body: ListView(
-        children: const [
+        // 通常はconstにするがそれだとリビルドが伝播せず今回の説明に不都合なので無指定
+        children: [
           // GlobalKey()なのでsetState後に初期化される
           Key1(),
           // GlobalObjectKey(context)なのでリビルド前後で同一だと見なされてStateは保持
           Key2(),
           // indexとruntimeTypeが同じなのでStateは保持
-          Counter(),
+          Counter(label: 'Counter'),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -48,7 +49,10 @@ class Key1 extends StatelessWidget {
   const Key1({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Counter(key: GlobalKey());
+    return Counter(
+      key: GlobalKey(),
+      label: 'GlobalKey',
+    );
   }
 }
 
@@ -56,12 +60,21 @@ class Key2 extends StatelessWidget {
   const Key2({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Counter(key: GlobalObjectKey(context));
+    return Counter(
+      key: GlobalObjectKey(context),
+      label: 'GlobalObjectKey(context)',
+    );
   }
 }
 
 class Counter extends StatefulWidget {
-  const Counter({Key key}) : super(key: key);
+  const Counter({
+    Key key,
+    @required this.label,
+  }) : super(key: key);
+
+  final String label;
+
   @override
   _CounterState createState() => _CounterState();
 }
@@ -73,6 +86,7 @@ class _CounterState extends State<Counter> {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text('$_count'),
+      subtitle: Text(widget.label),
       onTap: () {
         setState(() {
           _count++;
