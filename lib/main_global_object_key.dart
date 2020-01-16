@@ -28,9 +28,9 @@ class _HomePageState extends State<HomePage> {
         // 通常はconstにするがそれだとリビルドが伝播せず今回の説明に不都合なので無指定
         children: [
           // リビルドごとGlobalKey()が毎回再生成され前後のkey不合致になり、Stateごと再生成される
-          Key1(),
+          GlobalKeyWidget(),
           // GlobalObjectKey(context)なのでリビルド前後でkeyが同一だと見なされてStateは維持
-          Key2(),
+          GlobalObjectKeyWidget(),
           // indexとruntimeTypeが同じなのでStateは維持
           Counter(label: 'Counter'),
         ],
@@ -45,8 +45,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class Key1 extends StatelessWidget {
-  const Key1({Key key}) : super(key: key);
+class GlobalKeyWidget extends StatelessWidget {
+  const GlobalKeyWidget({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Counter(
@@ -56,8 +56,8 @@ class Key1 extends StatelessWidget {
   }
 }
 
-class Key2 extends StatelessWidget {
-  const Key2({Key key}) : super(key: key);
+class GlobalObjectKeyWidget extends StatelessWidget {
+  const GlobalObjectKeyWidget({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Counter(
