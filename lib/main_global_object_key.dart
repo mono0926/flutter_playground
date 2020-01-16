@@ -27,11 +27,11 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         // 通常はconstにするがそれだとリビルドが伝播せず今回の説明に不都合なので無指定
         children: [
-          // GlobalKey()なのでsetState後に初期化される
+          // リビルドごとGlobalKey()が毎回再生成され前後のkey不合致になり、Stateごと再生成される
           Key1(),
-          // GlobalObjectKey(context)なのでリビルド前後で同一だと見なされてStateは保持
+          // GlobalObjectKey(context)なのでリビルド前後でkeyが同一だと見なされてStateは維持
           Key2(),
-          // indexとruntimeTypeが同じなのでStateは保持
+          // indexとruntimeTypeが同じなのでStateは維持
           Counter(label: 'Counter'),
         ],
       ),
