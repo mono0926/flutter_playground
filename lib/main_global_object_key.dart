@@ -23,7 +23,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-//        body: MyWidget(),
       body: ListView(
         // 通常はconstにするがそれだとリビルドが伝播せず今回の説明に不都合なので無指定
         children: [
