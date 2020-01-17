@@ -32,6 +32,11 @@ class _HomePageState extends State<HomePage> {
           GlobalObjectKeyWidget(),
           // indexとruntimeTypeが同じなのでStateは維持
           Counter(label: 'Counter'),
+          // keyが同じなのでStateは維持
+          Counter(
+            key: ValueKey('counter'),
+            label: 'Counter',
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
