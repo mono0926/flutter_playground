@@ -64,16 +64,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
-<<<<<<< Updated upstream
-  disposable_provider:
-    dependency: transitive
-    description:
-      name: disposable_provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
-=======
->>>>>>> Stashed changes
   flutter:
     dependency: "direct main"
     description: flutter
@@ -109,7 +99,7 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.0+2"
+    version: "0.12.0+4"
   http_parser:
     dependency: transitive
     description:
@@ -130,7 +120,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.0"
+    version: "0.16.1"
   matcher:
     dependency: transitive
     description:
@@ -151,9 +141,6 @@ packages:
       name: mono_kit
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< Updated upstream
-    version: "0.11.1"
-=======
     version: "0.1.1+2"
   nested:
     dependency: transitive
@@ -162,7 +149,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4"
->>>>>>> Stashed changes
   path:
     dependency: transitive
     description:
@@ -176,11 +162,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< Updated upstream
-    version: "1.5.1"
-=======
     version: "0.5.0+1"
->>>>>>> Stashed changes
   pedantic:
     dependency: transitive
     description:
@@ -194,7 +176,7 @@ packages:
       name: pedantic_mono
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.1"
+    version: "1.7.0"
   petitparser:
     dependency: transitive
     description:
@@ -215,24 +197,16 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< Updated upstream
-    version: "2.2.1"
-  plugin_platform_interface:
-    dependency: transitive
-    description:
-      name: plugin_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-=======
->>>>>>> Stashed changes
     version: "1.0.1"
   provider:
     dependency: "direct main"
     description:
-      name: provider
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.0"
+      path: "."
+      ref: extensions
+      resolved-ref: "94dcfb1f409eea76db364c5b5054b2a155b4297c"
+      url: "https://github.com/rrousselGit/provider.git"
+    source: git
+    version: "4.1.0"
   quiver:
     dependency: transitive
     description:
@@ -246,18 +220,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< Updated upstream
-    version: "0.23.1"
-  simple_logger:
-    dependency: transitive
-    description:
-      name: simple_logger
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.5.1+1"
-=======
     version: "0.22.6"
->>>>>>> Stashed changes
   sky_engine:
     dependency: transitive
     description: flutter
@@ -298,16 +261,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-<<<<<<< Updated upstream
-  subscription_holder:
-    dependency: transitive
-    description:
-      name: subscription_holder
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.0"
-=======
->>>>>>> Stashed changes
   synchronized:
     dependency: transitive
     description:

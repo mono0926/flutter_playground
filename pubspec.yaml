@@ -4,12 +4,15 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.6.0 <3.0.0"
 dependencies:
+  provider:
+    git:
+      url: https://github.com/rrousselGit/provider.git
+      ref: extensions
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
   mono_kit:
   intl:
-  provider:
   flutter_hooks:
   tinycolor:
 dev_dependencies:
