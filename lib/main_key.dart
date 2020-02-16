@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: context.read(),
       home: ChangeNotifierProvider(
         create: (context) => Model(
-          navigatorKey: context.read(),
+          locator: context.read,
         ),
         child: const Home(),
       ),
@@ -56,14 +56,13 @@ class Home extends StatelessWidget {
 
 class Model with ChangeNotifier {
   Model({
-    @required this.navigatorKey,
+    @required this.locator,
   });
-
-  final GlobalKey<NavigatorState> navigatorKey;
+  final Locator locator;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
+  GlobalKey<NavigatorState> get _navigatorKey => locator();
   void push() {
-    navigatorKey.currentState.push<void>(
+    _navigatorKey.currentState.push<void>(
       MaterialPageRoute(
         builder: (context) => Scaffold(
           appBar: AppBar(
