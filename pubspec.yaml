@@ -5,9 +5,6 @@ environment:
   sdk: ">=2.6.0 <3.0.0"
 dependencies:
   provider:
-    git:
-      url: https://github.com/rrousselGit/provider.git
-      ref: extensions
   flutter:
     sdk: flutter
   freezed_annotation:
@@ -24,8 +21,6 @@ dev_dependencies:
   pedantic_mono:
   build_runner:
   freezed:
-dependency_overrides:
-  provider: ^4.1.0-dev
 flutter:
   uses-material-design: true
   assets:
