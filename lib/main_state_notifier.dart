@@ -30,9 +30,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // エラーが出るのでとりあえず.of()にしてる
-    // Failed assertion: line 427 pos 12: '!debugDoingBuild && !_debugIsInInheritedProviderUpdate': is not true.
-    final controller = Provider.of<_Controller>(context, listen: false);
+    final controller = context.read<_Controller>();
     return Scaffold(
       body: Center(
         child: Text('${context.select((Counter c) => c.count)}'),
