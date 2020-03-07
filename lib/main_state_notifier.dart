@@ -8,9 +8,7 @@ import 'package:state_notifier/state_notifier.dart';
 
 part 'main_state_notifier.freezed.dart';
 
-void main() {
-  runApp(const App());
-}
+void main() => runApp(const App());
 
 class App extends StatelessWidget {
   const App({Key key}) : super(key: key);
