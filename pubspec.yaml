@@ -10,15 +10,22 @@ dependencies:
       ref: extensions
   flutter:
     sdk: flutter
+  freezed_annotation:
   cupertino_icons: ^0.1.2
   mono_kit:
   intl:
   flutter_hooks:
+  state_notifier:
+  flutter_state_notifier:
   tinycolor:
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic_mono:
+  build_runner:
+  freezed:
+dependency_overrides:
+  provider: ^4.1.0-dev
 flutter:
   uses-material-design: true
   assets:
