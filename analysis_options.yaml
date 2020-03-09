@@ -7,3 +7,5 @@ analyzer:
     - lib/*_original.dart
     - lib/generated_*.dart
     - lib/main_global_object_key.dart
+    - lib/**/*.g.dart
+    - lib/**/*.freezed.dart
