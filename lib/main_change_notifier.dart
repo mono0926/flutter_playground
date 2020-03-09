@@ -1,10 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
-import 'package:state_notifier/state_notifier.dart';
 
 void main() => runApp(const App());
 
