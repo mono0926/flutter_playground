@@ -201,7 +201,7 @@ packages:
       name: flutter_state_notifier
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -456,7 +456,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0-dev"
+    version: "4.1.0-dev+1"
   pub_semver:
     dependency: transitive
     description:
@@ -545,7 +545,7 @@ packages:
       name: state_notifier
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.0+1"
+    version: "0.3.0"
   stream_channel:
     dependency: transitive
     description:
@@ -688,4 +688,4 @@ packages:
     version: "2.2.0"
 sdks:
   dart: ">=2.7.0 <3.0.0"
-  flutter: ">=1.12.13 <2.0.0"
+  flutter: ">=1.15.17-pre.5 <2.0.0"

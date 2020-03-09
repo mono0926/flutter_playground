@@ -30,14 +30,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<_Controller>();
     return Scaffold(
       body: Center(
-        child: Text('${context.select((Counter c) => c.count)}'),
+        child: Text(
+          '${context.select((Counter c) => c.count)}',
+          style: Theme.of(context).textTheme.headline4,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: controller.increment,
+        onPressed: context.watch<_Controller>().increment,
       ),
     );
   }

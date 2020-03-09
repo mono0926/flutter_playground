@@ -4,9 +4,9 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.6.0 <3.0.0"
 dependencies:
-  provider:
   flutter:
     sdk: flutter
+  provider: ^4.1.0-dev
   freezed_annotation:
   cupertino_icons: ^0.1.2
   mono_kit:
