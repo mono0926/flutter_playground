@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: context.watch<_Controller2>().increment,
+        onPressed: () => context.read<_Controller2>().increment(),
       ),
     );
   }
