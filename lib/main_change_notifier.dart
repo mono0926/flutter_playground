@@ -6,8 +6,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:state_notifier/state_notifier.dart';
 
-part 'main_state_notifier.freezed.dart';
-
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
@@ -15,8 +13,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: StateNotifierProvider<_Controller, Counter>(
-        create: (context) => _Controller(),
+      home: ChangeNotifierProvider(
+        create: (context) => _Notifier(),
         child: const HomePage(),
       ),
     );
@@ -31,27 +29,27 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Text(
-          '${context.select((Counter c) => c.count)}',
+          '${context.select((_Notifier n) => n.count)}',
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: context.watch<_Controller>().increment,
+        onPressed: context.watch<_Notifier>().increment,
       ),
     );
   }
 }
 
-class _Controller extends StateNotifier<Counter> {
-  _Controller() : super(const Counter(count: 0));
+class _Notifier extends ChangeNotifier {
+  _Notifier();
 
-  void increment() => state = state.copyWith(
-        count: state.count + 1,
-      );
-}
+  var _count = 0;
 
-@freezed
-abstract class Counter with _$Counter {
-  const factory Counter({@required int count}) = _Counter;
+  int get count => _count;
+
+  void increment() {
+    _count++;
+    notifyListeners();
+  }
 }
