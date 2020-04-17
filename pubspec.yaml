@@ -9,6 +9,10 @@ dependencies:
   provider: ^4.1.0-dev
   freezed_annotation:
   cupertino_icons: ^0.1.2
+  extended_image:
+    git:
+      url: https://github.com/fluttercandies/extended_image.git
+      ref: dev
   mono_kit:
   intl:
   flutter_hooks:
