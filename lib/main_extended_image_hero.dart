@@ -75,9 +75,9 @@ class ImageDetailPage extends StatelessWidget {
               fromHeroContext,
               toHeroContext,
             ) {
-              final hero = flightDirection == HeroFlightDirection.pop
-                  ? fromHeroContext.widget as Hero
-                  : toHeroContext.widget as Hero;
+              final hero = (flightDirection == HeroFlightDirection.pop
+                  ? fromHeroContext.widget
+                  : toHeroContext.widget) as Hero;
               return hero.child;
             },
           ),
