@@ -23,6 +23,7 @@
 # Flutter/Dart/Pub related
 **/doc/api/
 .dart_tool/
+**/ios/Flutter/.last_build_id
 .flutter-plugins
 .packages
 .pub-cache/
