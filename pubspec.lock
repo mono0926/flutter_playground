@@ -200,19 +200,17 @@ packages:
   extended_image:
     dependency: "direct main"
     description:
-      path: "."
-      ref: dev
-      resolved-ref: "59a03ff9f633994c8392dcb3179e64fc06e575d1"
-      url: "https://github.com/fluttercandies/extended_image.git"
-    source: git
-    version: "0.7.3-dev"
+      name: extended_image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.3+1"
   extended_image_library:
     dependency: transitive
     description:
       name: extended_image_library
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   fake_async:
     dependency: transitive
     description:
@@ -444,7 +442,7 @@ packages:
       name: node_io
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1+2"
+    version: "1.1.0"
   package_config:
     dependency: transitive
     description:
