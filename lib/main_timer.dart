@@ -27,6 +27,9 @@ class _HomePage extends StatelessWidget {
       body: ListView(
         children: [
           const PeriodicTimerTile(),
+          const PeriodicTimerTile(
+            mutedFuture: true,
+          ),
           const AnimationTimerTile(),
           RaisedButton(
             child: const Text('NEXT PAGE'),
@@ -43,7 +46,12 @@ class _HomePage extends StatelessWidget {
 }
 
 class PeriodicTimerTile extends StatefulWidget {
-  const PeriodicTimerTile({Key key}) : super(key: key);
+  const PeriodicTimerTile({
+    Key key,
+    this.mutedFuture = false,
+  }) : super(key: key);
+
+  final bool mutedFuture;
 
   @override
   _PeriodicTimerTileState createState() => _PeriodicTimerTileState();
@@ -59,8 +67,11 @@ class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
       // Can be modified to large number.
       const Duration(milliseconds: 16),
       (timer) {
-        print('PeriodicTimerTile value will be changed');
-        setState(() {});
+        if (!widget.mutedFuture || TickerMode.of(context)) {
+          print('PeriodicTimerTile (mute: ${widget.mutedFuture}) '
+              'value will be changed');
+          setState(() {});
+        }
       },
     );
   }
@@ -77,13 +88,14 @@ class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
       title: Text(
         DateTime.now().toIso8601String(),
       ),
-      subtitle: const Text('Timer.periodic'),
+      subtitle: Text('Timer.periodic (mute: ${widget.mutedFuture})'),
     );
   }
 }
 
 class AnimationTimerTile extends StatefulWidget {
   const AnimationTimerTile({Key key}) : super(key: key);
+
   @override
   _AnimationTimerTileState createState() => _AnimationTimerTileState();
 }
