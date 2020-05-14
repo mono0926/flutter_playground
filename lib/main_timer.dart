@@ -1,0 +1,143 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+void main() => runApp(const App());
+
+class App extends StatelessWidget {
+  const App({Key key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.from(colorScheme: const ColorScheme.light()),
+      darkTheme: ThemeData.from(colorScheme: const ColorScheme.dark()),
+      home: const _HomePage(),
+    );
+  }
+}
+
+class _HomePage extends StatelessWidget {
+  const _HomePage({Key key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Timer'),
+      ),
+      body: ListView(
+        children: [
+          const PeriodicTimerTile(),
+          const AnimationTimerTile(),
+          RaisedButton(
+            child: const Text('NEXT PAGE'),
+            onPressed: () => Navigator.of(context).push<void>(
+              MaterialPageRoute(
+                builder: (context) => const SecondPage(),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class PeriodicTimerTile extends StatefulWidget {
+  const PeriodicTimerTile({Key key}) : super(key: key);
+
+  @override
+  _PeriodicTimerTileState createState() => _PeriodicTimerTileState();
+}
+
+class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
+  Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(
+      // Can be modified to large number.
+      const Duration(milliseconds: 16),
+      (timer) {
+        print('PeriodicTimerTile value will be changed');
+        setState(() {});
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        DateTime.now().toIso8601String(),
+      ),
+      subtitle: const Text('Timer.periodic'),
+    );
+  }
+}
+
+class AnimationTimerTile extends StatefulWidget {
+  const AnimationTimerTile({Key key}) : super(key: key);
+  @override
+  _AnimationTimerTileState createState() => _AnimationTimerTileState();
+}
+
+class _AnimationTimerTileState extends State<AnimationTimerTile>
+    with SingleTickerProviderStateMixin {
+  AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    )
+      ..repeat()
+      ..addListener(() {
+        // Not called when navigated to NextPage by virtue of
+        // AnimationController's muted feature.
+        print('AnimationTimerTile value will be changed');
+        setState(() {});
+      });
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(
+        DateTime.now().toIso8601String(),
+      ),
+      subtitle: const Text('AnimationController'),
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key key}) : super(key: key);
+
+  static const routeName = '/second';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          routeName,
+        ),
+      ),
+    );
+  }
+}

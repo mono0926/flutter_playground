@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(),
       body: const _Body(),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
         onPressed: () => Provider.of<DataListNotifier>(context, listen: false)
             .updateCurrentIndexUpdatedAt(),
       ),
