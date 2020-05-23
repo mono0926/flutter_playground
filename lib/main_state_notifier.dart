@@ -28,6 +28,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = context.watch<_Controller>();
     return Scaffold(
       body: Center(
         child: Text(
@@ -37,7 +38,7 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: context.watch<_Controller>().increment,
+        onPressed: controller.increment,
       ),
     );
   }
