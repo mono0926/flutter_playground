@@ -33,6 +33,10 @@ class _HomePageState extends State<HomePage> {
     // printの中身を書き換えてからHot Reloadしても反映されない(Hot Restartで反映)
     _sc.stream.listen((message) => print('initState: $message'));
     _sc.stream.listen(_listener);
+
+    // 上と同じく
+    void listener(String message) => print('initState(listener): $message');
+    _sc.stream.listen(listener);
   }
 
   // printの中身を書き換えてからHot Reloadすると反映される
