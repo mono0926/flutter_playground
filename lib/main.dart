@@ -1,38 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const App());
 
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
+  const App({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(),
-//        body: MyWidget(),
-        body: const Center(
-          child: Text('A'),
-        ),
-      ),
+    return const MaterialApp(
+      home: HomePage(),
     );
   }
 }
 
-class MyWidget extends SingleChildRenderObjectWidget {
-  const MyWidget({Key key})
-      : super(
-          key: key,
-          child: const Text(
-            'MyWidget',
-            style: TextStyle(fontSize: 48),
-          ),
-        );
-
+class HomePage extends StatelessWidget {
+  const HomePage({Key key}) : super(key: key);
   @override
-  RenderObject createRenderObject(BuildContext context) {
-    return RenderPositionedBox(
-      alignment: Alignment.centerRight,
-      textDirection: Directionality.of(context),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: const Center(
+        child: Text('Dog'),
+      ),
     );
   }
 }
