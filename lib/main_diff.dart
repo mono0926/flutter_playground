@@ -17,10 +17,13 @@ class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
-        child: Text('Dog'),
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: Scaffold(
+        appBar: AppBar(),
+        body: const Center(
+          child: Text('Dog'),
+        ),
       ),
     );
   }
