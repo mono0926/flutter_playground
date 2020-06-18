@@ -16,6 +16,7 @@ dependencies:
   state_notifier:
   flutter_state_notifier:
   tinycolor:
+  nested:
 dev_dependencies:
   flutter_test:
     sdk: flutter
