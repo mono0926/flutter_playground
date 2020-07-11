@@ -10,13 +10,14 @@ dependencies:
   freezed_annotation:
   cupertino_icons:
   extended_image:
-  mono_kit:
+  mono_kit: ^0.16.0-dev
   intl:
   flutter_hooks:
   state_notifier:
   flutter_state_notifier:
   tinycolor:
   nested:
+  hooks_riverpod:
 dev_dependencies:
   flutter_test:
     sdk: flutter
