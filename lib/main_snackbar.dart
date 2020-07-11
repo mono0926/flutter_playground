@@ -62,7 +62,7 @@ class _HomePage extends HookWidget {
             if (canPop)
               RaisedButton(
                 child: const Text('👈 Pop and show SnackBar'),
-                onPressed: controller.backAndShowSnackBar,
+                onPressed: controller.popAndShowSnackBar,
               ),
           ],
         ),
@@ -100,7 +100,7 @@ class _HomePageController {
     _snackBarMessageDispatcher.show('Hey(　´･‿･｀)');
   }
 
-  void backAndShowSnackBar() {
+  void popAndShowSnackBar() {
     _ref.read(_navigatorKeyProvider).currentState.pop();
     // Remove registration before showing SnackBar
     _removeSnackBarRegistration();
