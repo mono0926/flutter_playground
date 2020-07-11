@@ -84,7 +84,8 @@ final _homePageProviders =
 
 class _HomePageController {
   _HomePageController(this._ref) {
-    _removeRegistration = _snackBarMessageDispatcher.register(scaffoldKey);
+    _removeSnackBarRegistration =
+        _snackBarMessageDispatcher.register(scaffoldKey);
   }
 
   final ProviderReference _ref;
@@ -93,7 +94,7 @@ class _HomePageController {
   _SnackBarMessageDispatcher get _snackBarMessageDispatcher =>
       _ref.read(_snackBarMessageDispatcherProvider);
 
-  VoidCallback _removeRegistration;
+  VoidCallback _removeSnackBarRegistration;
 
   void showSnackBar() {
     _snackBarMessageDispatcher.show('Hey(　´･‿･｀)');
@@ -101,12 +102,13 @@ class _HomePageController {
 
   void backAndShowSnackBar() {
     _ref.read(_navigatorKeyProvider).currentState.pop();
-    _removeRegistration();
+    // Remove registration before showing SnackBar
+    _removeSnackBarRegistration();
     _snackBarMessageDispatcher.show('Came back(　´･‿･｀)');
   }
 
   void dispose() {
-    _removeRegistration();
+    _removeSnackBarRegistration();
   }
 }
 
@@ -127,6 +129,7 @@ class _SnackBarMessageDispatcher {
       logger.info('_presenters.isEmpty');
       return;
     }
+    // Show SnackBar by using last ScaffoldKey
     _scaffoldKeys.last.currentState.showSimpleSnackBar(message);
   }
 
