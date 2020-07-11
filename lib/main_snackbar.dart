@@ -124,13 +124,14 @@ class _SnackBarMessageDispatcher {
     return () => _scaffoldKeys.remove(scaffoldKey);
   }
 
-  void show(String message) {
+  bool show(String message) {
     if (_scaffoldKeys.isEmpty) {
       logger.info('_scaffoldKeys.isEmpty');
-      return;
+      return false;
     }
     // Show SnackBar by using last ScaffoldKey
     _scaffoldKeys.last.currentState.showSimpleSnackBar(message);
+    return true;
   }
 
   void dispose() {
