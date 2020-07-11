@@ -126,7 +126,7 @@ class _SnackBarMessageDispatcher {
 
   void show(String message) {
     if (_scaffoldKeys.isEmpty) {
-      logger.info('_presenters.isEmpty');
+      logger.info('_scaffoldKeys.isEmpty');
       return;
     }
     // Show SnackBar by using last ScaffoldKey
