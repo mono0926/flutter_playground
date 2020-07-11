@@ -69,10 +69,10 @@ class _HomePageState extends State<_HomePage> {
     );
   }
 
-  ScaffoldState get _snackBarState => _rootPageScaffoldKey.currentState;
+  ScaffoldState get _scaffoldState => _rootPageScaffoldKey.currentState;
 
   void showSnackBar() {
-    _snackBarState.showSnackBar(
+    _scaffoldState.showSnackBar(
       const SnackBar(
         content: Text('Hey(　´･‿･｀)'),
       ),
@@ -81,7 +81,7 @@ class _HomePageState extends State<_HomePage> {
 
   void popAndShowSnackBar() {
     _navigatorKey.currentState.pop();
-    _snackBarState.showSnackBar(
+    _scaffoldState.showSnackBar(
       const SnackBar(
         content: Text('Came back(　´･‿･｀)'),
       ),
