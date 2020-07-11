@@ -73,6 +73,16 @@ class _HomePage extends HookWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {},
+            )
+          ],
+        ),
+      ),
     );
   }
 }
