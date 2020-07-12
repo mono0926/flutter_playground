@@ -101,8 +101,8 @@ class _HomePageController {
   final ProviderReference _ref;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
-  _SnackBarMessageDispatcher get _snackBarMessageDispatcher =>
-      _ref.read(_snackBarMessageDispatcherProvider);
+  _SnackBarPresenter get _snackBarMessageDispatcher =>
+      _ref.read(_snackBarPresenterProvider);
 
   VoidCallback _removeSnackBarRegistration;
 
@@ -122,11 +122,11 @@ class _HomePageController {
   }
 }
 
-final _snackBarMessageDispatcherProvider = Provider(
-  (_) => _SnackBarMessageDispatcher(),
+final _snackBarPresenterProvider = Provider(
+  (_) => _SnackBarPresenter(),
 );
 
-class _SnackBarMessageDispatcher {
+class _SnackBarPresenter {
   final _scaffoldKeys = <GlobalKey<ScaffoldState>>[];
 
   VoidCallback register(GlobalKey<ScaffoldState> scaffoldKey) {
