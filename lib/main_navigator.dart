@@ -21,8 +21,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Page> _pages;
-
   var _isPushed = false;
 
   @override
