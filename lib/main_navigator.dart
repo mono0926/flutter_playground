@@ -55,11 +55,8 @@ class _HomePageState extends State<HomePage> {
           ),
       ],
       onPopPage: (Route<void> route, void result) {
-        route.didPop(result);
-        setState(() {
-          _isPushed = false;
-        });
-        return true;
+        _isPushed = false;
+        return route.didPop(result);
       },
     );
   }
