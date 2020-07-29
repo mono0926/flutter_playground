@@ -18,6 +18,7 @@ dependencies:
   tinycolor:
   nested:
   hooks_riverpod:
+  rxdart:
 dev_dependencies:
   flutter_test:
     sdk: flutter
