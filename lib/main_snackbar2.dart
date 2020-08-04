@@ -102,11 +102,11 @@ class _HomePageController {
       _ref.read(_rootScaffoldKeyProvider).currentState;
 
   void showSnackBar() {
-    rootScaffoldState.showSimpleSnackBar('Hey(　´･‿･｀)');
+//    rootScaffoldState.showSimpleSnackBar('Hey(　´･‿･｀)');
   }
 
   void popAndShowSnackBar() {
     _ref.read(_navigatorKeyProvider).currentState.pop();
-    rootScaffoldState.showSimpleSnackBar('Came back(　´･‿･｀)');
+//    rootScaffoldState.showSimpleSnackBar('Came back(　´･‿･｀)');
   }
 }
