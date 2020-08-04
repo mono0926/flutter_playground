@@ -2,7 +2,7 @@ name: flutter_playground
 description: A new Flutter application.
 version: 1.0.0+1
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 dependencies:
   flutter:
     sdk: flutter
@@ -17,14 +17,16 @@ dependencies:
   flutter_state_notifier:
   tinycolor:
   nested:
-  hooks_riverpod:
+  hooks_riverpod: ^0.6.0-dev
   rxdart:
+  uuid:
 dev_dependencies:
   flutter_test:
     sdk: flutter
   pedantic_mono:
   build_runner:
   freezed:
+  analyzer: 0.39.14
 flutter:
   uses-material-design: true
   assets:
