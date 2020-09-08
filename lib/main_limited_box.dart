@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
               color: Colors.red,
             ),
 //          SizedBox(height: 10),
-            LimitedBox(
+            const LimitedBox(
               maxHeight: 30,
             ),
             Container(

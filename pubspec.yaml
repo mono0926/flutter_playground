@@ -10,7 +10,7 @@ dependencies:
   freezed_annotation:
   cupertino_icons:
   extended_image:
-  mono_kit: ^0.16.0-dev
+  mono_kit:
   intl:
   flutter_hooks:
   state_notifier:

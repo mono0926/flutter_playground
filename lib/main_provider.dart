@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
 class _Controller {
   _Controller(this._read);
 
-  Locator _read;
+  final Locator _read;
 
   void foo() {
     print('brightness: ${_read<ThemeData>().brightness}');
