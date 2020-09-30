@@ -21,6 +21,7 @@ dependencies:
   hooks_riverpod:
   rxdart:
   uuid:
+  local_hero:
 dev_dependencies:
   flutter_test:
     sdk: flutter
