@@ -12,7 +12,7 @@ class App extends StatelessWidget {
       home: const HomePage(),
       builder: (context, child) {
         return Consumer(
-          (context, watch) {
+          builder: (context, watch, child) {
             watch(themeProvider).state = Theme.of(context);
             return child;
           },
