@@ -185,7 +185,9 @@ class SnackBarPresenter {
       assert(false, 'scaffoldState should not be null');
       return null;
     }
+    // ignore: deprecated_member_use
     scaffoldState.removeCurrentSnackBar();
+    // ignore: deprecated_member_use
     return scaffoldState.showSnackBar(snackBar);
   }
 

@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     return Navigator(
       pages: [
         MaterialPage<void>(
-          builder: (context) => Scaffold(
+          child: Scaffold(
             appBar: AppBar(),
             body: Center(
               child: RaisedButton(
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         ),
         if (_isPushed)
           MaterialPage<void>(
-            builder: (context) => Scaffold(
+            child: Scaffold(
               appBar: AppBar(),
               body: const Center(
                 child: Text('🐶'),

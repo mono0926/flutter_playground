@@ -1,11 +1,14 @@
 # https://pub.dev/packages/pedantic_mono
 include: package:pedantic_mono/analysis_options.yaml
 analyzer:
-#  enable-experiment:
-#    - non-nullable
+  enable-experiment:
+    - non-nullable
   exclude:
     - lib/*_original.dart
     - lib/generated_*.dart
     - lib/main_global_object_key.dart
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
+linter:
+  rules:
+    sort_pub_dependencies: false
