@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
         IgnorePointer(
           child: ColoredBox(
             color: Colors.red.withOpacity(0.3),
-            child: Center(
+            child: const Center(
               child: Text('(　´･‿･｀)'),
             ),
           ),
