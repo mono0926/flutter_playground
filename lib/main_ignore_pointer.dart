@@ -22,11 +22,26 @@ class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
-        child: Text('Dog'),
-      ),
+    return Stack(
+      children: [
+        Scaffold(
+          appBar: AppBar(),
+          body: Center(
+            child: ElevatedButton(
+              onPressed: () {},
+              child: const Text('Dog'),
+            ),
+          ),
+        ),
+        IgnorePointer(
+          child: ColoredBox(
+            color: Colors.red.withOpacity(0.3),
+            child: Center(
+              child: Text('(　´･‿･｀)'),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

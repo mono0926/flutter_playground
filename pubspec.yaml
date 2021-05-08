@@ -23,6 +23,7 @@ dependencies:
   uuid:
   local_hero:
   url_launcher: ^5.7.7
+  version:
 dev_dependencies:
   flutter_test:
     sdk: flutter
