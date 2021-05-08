@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:version/version.dart';
 
 void main() {
-  print(Version.parse('1.0.0').compareTo(Version.parse('1.0.0-0')));
-  print(Version.parse('1.0.0-d').compareTo(Version.parse('1.0.0-0')));
   runApp(const App());
 }
 
