@@ -13,7 +13,7 @@ class _$Counter1TearOff {
   const _$Counter1TearOff();
 
 // ignore: unused_element
-  _Counter1 call({@required int count}) {
+  _Counter1 call({required int count}) {
     return _Counter1(
       count: count,
     );
@@ -78,7 +78,7 @@ class __$Counter1CopyWithImpl<$Res> extends _$Counter1CopyWithImpl<$Res>
 }
 
 class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
-  const _$_Counter1({@required this.count}) : assert(count != null);
+  const _$_Counter1({required this.count}) : assert(count != null);
 
   @override
   final int count;
@@ -114,7 +114,7 @@ class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
 }
 
 abstract class _Counter1 implements Counter1 {
-  const factory _Counter1({@required int count}) = _$_Counter1;
+  const factory _Counter1({required int count}) = _$_Counter1;
 
   @override
   int get count;
@@ -126,7 +126,7 @@ class _$Counter2TearOff {
   const _$Counter2TearOff();
 
 // ignore: unused_element
-  _Counter2 call({@required int count}) {
+  _Counter2 call({required int count}) {
     return _Counter2(
       count: count,
     );
@@ -191,7 +191,7 @@ class __$Counter2CopyWithImpl<$Res> extends _$Counter2CopyWithImpl<$Res>
 }
 
 class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
-  const _$_Counter2({@required this.count}) : assert(count != null);
+  const _$_Counter2({required this.count}) : assert(count != null);
 
   @override
   final int count;
@@ -227,7 +227,7 @@ class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
 }
 
 abstract class _Counter2 implements Counter2 {
-  const factory _Counter2({@required int count}) = _$_Counter2;
+  const factory _Counter2({required int count}) = _$_Counter2;
 
   @override
   int get count;

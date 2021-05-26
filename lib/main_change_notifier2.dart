@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MultiProvider(
@@ -20,7 +19,7 @@ void main() => runApp(MultiProvider(
     ));
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,7 +32,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +44,8 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
         onPressed: context.watch<_Notifier>().increment,
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -56,7 +55,7 @@ class SomeService1 {}
 
 class SomeService2 {
   SomeService2({
-    @required Locator locator,
+    required Locator locator,
   }) {
     print(locator<SomeService1>());
   }

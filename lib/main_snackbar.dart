@@ -10,7 +10,7 @@ void main() => runApp(
     );
 
 class App extends HookWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class App extends HookWidget {
 
 class _HomePage extends HookWidget {
   const _HomePage({
-    Key key,
+    Key? key,
     this.index = 0,
   }) : super(key: key);
 
@@ -34,7 +34,7 @@ class _HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useProvider(_homePageProviders(index));
-    final canPop = useProvider(navigatorKeyProvider).currentState.canPop();
+    final canPop = useProvider(navigatorKeyProvider).currentState!.canPop();
     return Scaffold(
       key: controller.scaffoldKey,
       appBar: AppBar(title: Text('index: $index')),
@@ -42,12 +42,11 @@ class _HomePage extends HookWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            RaisedButton(
-              child: const Text('Show SnackBar'),
+            ElevatedButton(
               onPressed: () => controller.showSnackBarMessage('Hey(　´･‿･｀)'),
+              child: const Text('Show SnackBar'),
             ),
-            RaisedButton(
-              child: const Text('👉 Navigate to next page'),
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push<void>(
                   MaterialPageRoute(
@@ -57,11 +56,12 @@ class _HomePage extends HookWidget {
                   ),
                 );
               },
+              child: const Text('👉 Navigate to next page'),
             ),
             if (canPop)
-              RaisedButton(
-                child: const Text('👈 Pop and show SnackBar'),
+              ElevatedButton(
                 onPressed: controller.popAndShowSnackBar,
+                child: const Text('👈 Pop and show SnackBar'),
               ),
           ],
         ),
@@ -94,7 +94,7 @@ final _homePageProviders =
 mixin SnackBarMixin {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   SnackBarPresenter get snackBarPresenter;
-  VoidCallback _unregisterSnackBarRegistration;
+  VoidCallback? _unregisterSnackBarRegistration;
 
   @protected
   void registerToStackBarPresenter() {
@@ -103,18 +103,19 @@ mixin SnackBarMixin {
 
   @protected
   void unregisterFromStackBarPresenter() {
-    _unregisterSnackBarRegistration();
+    _unregisterSnackBarRegistration?.call();
   }
 
   @protected
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBarMessage(
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?
+      showSnackBarMessage(
     String message,
   ) {
     return snackBarPresenter.showMessage(message);
   }
 
   @protected
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showSnackBar(
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? showSnackBar(
     SnackBar snackBar,
   ) {
     return snackBarPresenter.show(snackBar);
@@ -133,7 +134,7 @@ class _HomePageController with SnackBarMixin {
       _ref.read(snackBarPresenterProvider);
 
   void popAndShowSnackBar() {
-    _ref.read(navigatorKeyProvider).currentState.pop();
+    _ref.read(navigatorKeyProvider).currentState!.pop();
     // Remove registration before showing SnackBar
     unregisterFromStackBarPresenter();
     showSnackBarMessage('Came back(　´･‿･｀)');
@@ -162,7 +163,7 @@ class SnackBarPresenter {
     _scaffoldKeys.remove(key);
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> showMessage(
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? showMessage(
     String message,
   ) {
     return show(
@@ -172,7 +173,7 @@ class SnackBarPresenter {
     );
   }
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> show(
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? show(
     SnackBar snackBar,
   ) {
     if (_scaffoldKeys.isEmpty) {

@@ -8,7 +8,7 @@ class DialogButtons extends StatelessWidget {
     }
 
     void showDemoDialog(String message, ButtonStyle style1,
-        [ButtonStyle style2]) {
+        [ButtonStyle? style2]) {
       showDialog<void>(
         context: context,
         builder: (BuildContext context) {
@@ -18,16 +18,12 @@ class DialogButtons extends StatelessWidget {
             actions: <Widget>[
               OutlinedButton(
                 style: style1,
-                onPressed: () {
-                  dismissDialog();
-                },
+                onPressed: dismissDialog,
                 child: const Text('Approve'),
               ),
               OutlinedButton(
                 style: style2 ?? style1,
-                onPressed: () {
-                  dismissDialog();
-                },
+                onPressed: dismissDialog,
                 child: const Text('Really Approve'),
               ),
             ],
@@ -73,7 +69,7 @@ class DialogButtons extends StatelessWidget {
               'outline when the button is focused or hovered',
               OutlinedButton.styleFrom(
                 shape: const StadiumBorder(),
-              ).copyWith(side: MaterialStateProperty.resolveWith<BorderSide>(
+              ).copyWith(side: MaterialStateProperty.resolveWith<BorderSide?>(
                 (Set<MaterialState> states) {
                   if (states.contains(MaterialState.hovered) ||
                       states.contains(MaterialState.focused)) {
@@ -311,10 +307,10 @@ class _TextColorButtonsState extends State<TextColorButtons> {
 }
 
 class DefaultButtons extends StatelessWidget {
-  const DefaultButtons({Key key, this.onPressed, this.iconSize = 18})
+  const DefaultButtons({Key? key, this.onPressed, this.iconSize = 18})
       : super(key: key);
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final double iconSize;
 
   @override
@@ -383,9 +379,9 @@ class DefaultButtons extends StatelessWidget {
 
 class ButtonDemo {
   const ButtonDemo({
-    this.title,
-    this.description,
-    this.builder,
+    required this.title,
+    required this.description,
+    required this.builder,
   });
 
   final String title;
@@ -440,16 +436,16 @@ final List<ButtonDemo> allButtonDemos = <ButtonDemo>[
 ];
 
 class Home extends StatefulWidget {
-  const Home({Key key, this.toggleThemeMode}) : super(key: key);
+  const Home({Key? key, this.toggleThemeMode}) : super(key: key);
 
-  final VoidCallback toggleThemeMode;
+  final VoidCallback? toggleThemeMode;
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  PageController _pageController;
+  late final PageController _pageController;
   int _currentPage = 0;
 
   @override
@@ -468,7 +464,7 @@ class _HomeState extends State<Home> {
   void pageChanged() {
     if (_pageController.hasClients) {
       setState(() {
-        _currentPage = _pageController.page.floor();
+        _currentPage = _pageController.page!.floor();
       });
     }
   }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
@@ -36,7 +36,6 @@ class HomePage extends StatelessWidget {
               ),
               child: Center(
                 child: CupertinoButton(
-                  child: const Text('Next page'),
                   onPressed: () {
                     Navigator.of(context).push(
                       CupertinoPageRoute<void>(
@@ -47,10 +46,10 @@ class HomePage extends StatelessWidget {
                             ),
                             body: Center(
                               child: CupertinoButton(
-                                child: const Text('Back'),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
+                                child: const Text('Back'),
                               ),
                             ),
                           );
@@ -58,6 +57,7 @@ class HomePage extends StatelessWidget {
                       ),
                     );
                   },
+                  child: const Text('Next page'),
                 ),
               ),
             );
@@ -70,8 +70,8 @@ class HomePage extends StatelessWidget {
 
 class AppBarWrapper extends PreferredSize with ObstructingPreferredSizeWidget {
   AppBarWrapper({
-    Key key,
-    @required Widget child,
+    Key? key,
+    required Widget child,
   }) : super(
           key: key,
           preferredSize: const Size.fromHeight(kToolbarHeight),

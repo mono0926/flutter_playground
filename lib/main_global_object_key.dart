@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class GlobalKeyWidget extends StatelessWidget {
-  const GlobalKeyWidget({Key key}) : super(key: key);
+  const GlobalKeyWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Counter(
@@ -61,7 +61,7 @@ class GlobalKeyWidget extends StatelessWidget {
 }
 
 class GlobalObjectKeyWidget extends StatelessWidget {
-  const GlobalObjectKeyWidget({Key key}) : super(key: key);
+  const GlobalObjectKeyWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Counter(
@@ -73,8 +73,8 @@ class GlobalObjectKeyWidget extends StatelessWidget {
 
 class Counter extends StatefulWidget {
   const Counter({
-    Key key,
-    @required this.label,
+    Key? key,
+    required this.label,
   }) : super(key: key);
 
   final String label;

@@ -12,7 +12,7 @@ void main() => runApp(
 final _rootScaffoldKeyProvider = Provider((_) => GlobalKey<ScaffoldState>());
 
 class App extends HookWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class App extends HookWidget {
 
 class _HomePage extends HookWidget {
   const _HomePage({
-    Key key,
+    Key? key,
     this.index = 0,
   }) : super(key: key);
 
@@ -41,19 +41,18 @@ class _HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useProvider(_homePageProviders(index));
-    final canPop = useProvider(_navigatorKeyProvider).currentState.canPop();
+    final canPop = useProvider(_navigatorKeyProvider).currentState!.canPop();
     return Scaffold(
       appBar: AppBar(title: Text('index: $index')),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            RaisedButton(
-              child: const Text('Show SnackBar'),
+            ElevatedButton(
               onPressed: controller.showSnackBar,
+              child: const Text('Show SnackBar'),
             ),
-            RaisedButton(
-              child: const Text('👉 Navigate to next page'),
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push<void>(
                   MaterialPageRoute(
@@ -63,11 +62,12 @@ class _HomePage extends HookWidget {
                   ),
                 );
               },
+              child: const Text('👉 Navigate to next page'),
             ),
             if (canPop)
-              RaisedButton(
-                child: const Text('👈 Pop and show SnackBar'),
+              ElevatedButton(
                 onPressed: controller.popAndShowSnackBar,
+                child: const Text('👈 Pop and show SnackBar'),
               ),
           ],
         ),
@@ -99,14 +99,14 @@ class _HomePageController {
   final ProviderReference _ref;
 
   ScaffoldState get rootScaffoldState =>
-      _ref.read(_rootScaffoldKeyProvider).currentState;
+      _ref.read(_rootScaffoldKeyProvider).currentState!;
 
   void showSnackBar() {
 //    rootScaffoldState.showSimpleSnackBar('Hey(　´･‿･｀)');
   }
 
   void popAndShowSnackBar() {
-    _ref.read(_navigatorKeyProvider).currentState.pop();
+    _ref.read(_navigatorKeyProvider).currentState!.pop();
 //    rootScaffoldState.showSimpleSnackBar('Came back(　´･‿･｀)');
   }
 }

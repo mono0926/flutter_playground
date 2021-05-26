@@ -15,18 +15,18 @@ typedef ContentBuilder = Widget Function(
 
 class SpreadsheetView extends StatefulWidget {
   const SpreadsheetView({
-    Key key,
-    @required this.corner,
-    @required this.columnHeaderBuilder,
-    @required this.rowHeaderBuilder,
-    @required this.cellBuilder,
-    @required this.contentBuilder,
-    @required this.columnHeaderHeight,
-    @required this.rowHeaderWidth,
-    @required this.cellWidth,
-    @required this.cellHeight,
-    @required this.columnCount,
-    @required this.rowCount,
+    Key? key,
+    required this.corner,
+    required this.columnHeaderBuilder,
+    required this.rowHeaderBuilder,
+    required this.cellBuilder,
+    required this.contentBuilder,
+    required this.columnHeaderHeight,
+    required this.rowHeaderWidth,
+    required this.cellWidth,
+    required this.cellHeight,
+    required this.columnCount,
+    required this.rowCount,
   }) : super(key: key);
 
   final Widget corner;
@@ -92,8 +92,8 @@ class _SpreadsheetViewState extends State<SpreadsheetView> {
           child: Row(
             children: <Widget>[
               SizedBox(
-                child: _buildRowLabels(),
                 width: widget.rowHeaderWidth,
+                child: _buildRowLabels(),
               ),
               Expanded(
                 child: _buildGrid(),

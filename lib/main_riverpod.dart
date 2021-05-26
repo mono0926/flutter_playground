@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 void main() => runApp(const ProviderScope(child: App()));
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
         return Consumer(
           builder: (context, watch, child) {
             watch(themeProvider).state = Theme.of(context);
-            return child;
+            return child!;
           },
         );
       },
@@ -23,17 +23,17 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: RaisedButton(
-          child: const Text('Dog'),
+        child: ElevatedButton(
           onPressed: () {
             context.read(_controller).foo();
           },
+          child: const Text('Dog'),
         ),
       ),
     );
@@ -47,8 +47,8 @@ class _Controller {
   final Reader _read;
 
   void foo() {
-    print('brightness: ${_read(themeProvider).state.brightness}');
+    print('brightness: ${_read(themeProvider).state!.brightness}');
   }
 }
 
-final themeProvider = StateProvider<ThemeData>((ref) => null);
+final themeProvider = StateProvider<ThemeData?>((ref) => null);

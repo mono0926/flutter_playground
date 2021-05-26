@@ -4,7 +4,7 @@ import 'package:url_launcher/link.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +38,15 @@ class HomePage extends StatelessWidget {
             Link(
               uri: Uri.parse('https://mono0926.com'),
               builder: (context, followLink) => ElevatedButton(
-                child: const Text('mono'),
                 onPressed: followLink,
+                child: const Text('mono'),
               ),
             ),
             Link(
               uri: Uri.parse('/next'),
               builder: (context, followLink) => ElevatedButton(
-                child: const Text('next'),
                 onPressed: followLink,
+                child: const Text('next'),
               ),
             ),
           ],

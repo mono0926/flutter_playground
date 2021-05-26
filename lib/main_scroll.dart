@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(home: HomePage());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
 }
 
 class _Body extends StatefulWidget {
-  const _Body({Key key}) : super(key: key);
+  const _Body({Key? key}) : super(key: key);
   @override
   __BodyState createState() => __BodyState();
 }
@@ -80,8 +80,8 @@ class __BodyState extends State<_Body> {
           child: Row(
             children: <Widget>[
               SizedBox(
-                child: _buildYLabels(),
                 width: _axisWidth,
+                child: _buildYLabels(),
               ),
               Expanded(
                 child: _buildGrid(),

@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _HomePage extends StatelessWidget {
-  const _HomePage({Key key}) : super(key: key);
+  const _HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +35,7 @@ class _HomePage extends StatelessWidget {
 
 // ignore: camel_case_types
 class _MyImage_Stack extends StatelessWidget {
-  const _MyImage_Stack({Key key}) : super(key: key);
+  const _MyImage_Stack({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -53,7 +53,7 @@ class _MyImage_Stack extends StatelessWidget {
 
 // ignore: unused_element
 class _MyImage extends StatelessWidget {
-  const _MyImage({Key key}) : super(key: key);
+  const _MyImage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Image.asset(

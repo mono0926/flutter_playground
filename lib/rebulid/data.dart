@@ -1,10 +1,8 @@
-import 'package:flutter/foundation.dart';
-
 class Data {
   Data({
-    @required this.index,
-    @required this.createdAt,
-    @required this.updatedAt,
+    required this.index,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   final int index;
@@ -23,7 +21,7 @@ class Data {
     );
   }
 
-  Data copyWith({DateTime updatedAt}) => Data(
+  Data copyWith({DateTime? updatedAt}) => Data(
         index: index,
         createdAt: createdAt,
         updatedAt: updatedAt ?? this.updatedAt,

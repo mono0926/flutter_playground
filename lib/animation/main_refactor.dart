@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key, this.title}) : super(key: key);
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                 child: MaterialBanner(
                   content: const Text('This is a banner. Dismiss me'),
                   actions: <Widget>[
-                    FlatButton(
+                    TextButton(
                       onPressed: () async => _isVisible.value = false,
                       child: const Text('DISMISS'),
                     ),

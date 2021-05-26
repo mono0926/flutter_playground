@@ -1,6 +1,8 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
+import 'extended_image_slide_page_route.dart';
+
 void main() => runApp(const App());
 
 final _urls = List.generate(
@@ -9,7 +11,7 @@ final _urls = List.generate(
         'https://storage.googleapis.com/debug-mono/${index % 5 + 1}.jpg');
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -19,7 +21,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,8 +64,8 @@ class HomePage extends StatelessWidget {
 
 class _ImagesPage extends StatefulWidget {
   const _ImagesPage({
-    Key key,
-    @required this.initialIndex,
+    Key? key,
+    required this.initialIndex,
   }) : super(key: key);
 
   final int initialIndex;
@@ -73,8 +75,8 @@ class _ImagesPage extends StatefulWidget {
 }
 
 class __ImagesPageState extends State<_ImagesPage> {
-  PageController _pageController;
-  int _index;
+  late final PageController _pageController;
+  late final int _index;
   static const _viewportFraction = 1.05;
 
   @override
@@ -125,7 +127,6 @@ class __ImagesPageState extends State<_ImagesPage> {
                       mode: ExtendedImageMode.gesture,
                       heroBuilderForSlidingPage: (image) => Hero(
                         tag: index,
-                        child: image,
                         flightShuttleBuilder: (
                           flightContext,
                           animation,
@@ -139,6 +140,7 @@ class __ImagesPageState extends State<_ImagesPage> {
                                   : toHeroContext.widget) as Hero;
                           return hero.child;
                         },
+                        child: image,
                       ),
                     ),
                   ),

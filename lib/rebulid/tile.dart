@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'data.dart';
 
 class Tile extends StatelessWidget {
-  const Tile({Key key}) : super(key: key);
+  const Tile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

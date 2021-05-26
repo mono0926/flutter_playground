@@ -13,7 +13,7 @@ class _$CounterTearOff {
   const _$CounterTearOff();
 
 // ignore: unused_element
-  _Counter call({@required int count}) {
+  _Counter call({required int count}) {
     return _Counter(
       count: count,
     );
@@ -78,7 +78,7 @@ class __$CounterCopyWithImpl<$Res> extends _$CounterCopyWithImpl<$Res>
 }
 
 class _$_Counter with DiagnosticableTreeMixin implements _Counter {
-  const _$_Counter({@required this.count}) : assert(count != null);
+  const _$_Counter({required this.count}) : assert(count != null);
 
   @override
   final int count;
@@ -114,7 +114,7 @@ class _$_Counter with DiagnosticableTreeMixin implements _Counter {
 }
 
 abstract class _Counter implements Counter {
-  const factory _Counter({@required int count}) = _$_Counter;
+  const factory _Counter({required int count}) = _$_Counter;
 
   @override
   int get count;

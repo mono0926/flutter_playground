@@ -8,9 +8,9 @@ class AnimatedListSample extends StatefulWidget {
 
 class _AnimatedListSampleState extends State<AnimatedListSample> {
   final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-  ListModel<int> _list;
-  int _selectedItem;
-  int _nextItem;
+  late final ListModel<int> _list;
+  int? _selectedItem;
+  int _nextItem = 3;
 
   @override
   void initState() {
@@ -20,7 +20,6 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
       initialItems: <int>[0, 1, 2],
       removedItemBuilder: _buildRemovedItem,
     );
-    _nextItem = 3;
   }
 
   Widget _buildItem(
@@ -47,14 +46,16 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
   }
 
   void _insert() {
+    final selectedItem = _selectedItem;
     final index =
-        _selectedItem == null ? _list.length : _list.indexOf(_selectedItem);
-    _list.insert(index, _nextItem++);
+        selectedItem == null ? _list.length : _list.indexOf(selectedItem);
+    _list.insert(index, _nextItem = _nextItem + 1);
   }
 
   void _remove() {
-    if (_selectedItem != null) {
-      _list.removeAt(_list.indexOf(_selectedItem));
+    final selectedItem = _selectedItem;
+    if (selectedItem != null) {
+      _list.removeAt(_list.indexOf(selectedItem));
       setState(() {
         _selectedItem = null;
       });
@@ -95,12 +96,10 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
 
 class ListModel<E> {
   ListModel({
-    @required this.listKey,
-    @required this.removedItemBuilder,
-    Iterable<E> initialItems,
-  })  : assert(listKey != null),
-        assert(removedItemBuilder != null),
-        _items = List<E>.from(initialItems ?? <E>[]);
+    required this.listKey,
+    required this.removedItemBuilder,
+    Iterable<E>? initialItems,
+  }) : _items = List<E>.from(initialItems ?? <E>[]);
 
   final GlobalKey<AnimatedListState> listKey;
   final Widget Function(
@@ -110,7 +109,7 @@ class ListModel<E> {
   ) removedItemBuilder;
   final List<E> _items;
 
-  AnimatedListState get _animatedList => listKey.currentState;
+  AnimatedListState get _animatedList => listKey.currentState!;
 
   void insert(int index, E item) {
     _items.insert(index, item);
@@ -138,24 +137,22 @@ class ListModel<E> {
 
 class CardItem extends StatelessWidget {
   const CardItem(
-      {Key key,
-      @required this.animation,
+      {Key? key,
+      required this.animation,
       this.onTap,
-      @required this.item,
+      required this.item,
       this.selected = false})
-      : assert(animation != null),
-        assert(item != null && item >= 0),
-        assert(selected != null),
+      : assert(item >= 0),
         super(key: key);
 
   final Animation<double> animation;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final int item;
   final bool selected;
 
   @override
   Widget build(BuildContext context) {
-    var textStyle = Theme.of(context).textTheme.headline4;
+    var textStyle = Theme.of(context).textTheme.headline4!;
     if (selected) {
       textStyle = textStyle.copyWith(color: Colors.lightGreenAccent[400]);
     }

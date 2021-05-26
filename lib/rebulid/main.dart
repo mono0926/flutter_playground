@@ -9,7 +9,7 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,23 +22,23 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: const _Body(),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.refresh),
         onPressed: () => Provider.of<DataListNotifier>(context, listen: false)
             .updateCurrentIndexUpdatedAt(),
+        child: const Icon(Icons.refresh),
       ),
     );
   }
 }
 
 class _Body extends StatelessWidget {
-  const _Body({Key key}) : super(key: key);
+  const _Body({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final notifier = Provider.of<DataListNotifier>(context);
@@ -51,7 +51,7 @@ class _Body extends StatelessWidget {
         return ChangeNotifierProxyProvider<DataListNotifier, TileNotifier>(
           create: (context) => TileNotifier(data),
           update: (context, dataListNotifier, previous) =>
-              previous..value = dataListNotifier.value[previous.value.index],
+              previous!..value = dataListNotifier.value[previous.value.index],
           child: const Tile(),
         );
       },

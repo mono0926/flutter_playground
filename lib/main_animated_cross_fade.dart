@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _HomePage extends StatefulWidget {
-  const _HomePage({Key key}) : super(key: key);
+  const _HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -49,12 +49,12 @@ class _HomePageState extends State<_HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.refresh),
         onPressed: () {
           setState(() {
             _isFirst = !_isFirst;
           });
         },
+        child: const Icon(Icons.refresh),
       ),
     );
   }

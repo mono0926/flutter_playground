@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -29,37 +29,32 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin<MyHomePage> {
   ///The animation controller that starts the slide effect
-  AnimationController _slideAnimationController;
+  // ignore: lines_longer_than_80_chars
+  late final AnimationController _slideAnimationController =
+      AnimationController(
+    vsync: this,
+    //whatever duration you want
+    duration: const Duration(milliseconds: 400),
+  );
 
   ///The animation that creates the slide up effect by controlling the height
   ///factor of the [Align] widget
-  Animation<double> _heightFactorAnimation;
+  late final Animation<double> _heightFactorAnimation = CurvedAnimation(
+      parent: _slideAnimationController.drive(
+        //a Tween from 1.0 to 0.0 is what makes the slide effect by shrinking
+        // the container using the [Align.heightFactor] parameter
+        Tween<double>(
+          begin: 1,
+          end: 0,
+        ),
+      ),
+      curve: Curves.ease);
 
   ///Governs whether to show the banner or not. We use a [ValueNotifier]
   ///because the visibility changes asynchronously when the animation finishes,
   ///which we want to trigger the rebuild of [ValueListenableBuilder] That
   ///listens to this value
   final _isVisibleValueNotifier = ValueNotifier(true);
-
-  @override
-  void initState() {
-    _slideAnimationController = AnimationController(
-      vsync: this,
-      //whatever duration you want
-      duration: const Duration(milliseconds: 400),
-    );
-    _heightFactorAnimation = CurvedAnimation(
-        parent: _slideAnimationController.drive(
-          //a Tween from 1.0 to 0.0 is what makes the slide effect by shrinking
-          // the container using the [Align.heightFactor] parameter
-          Tween<double>(
-            begin: 1,
-            end: 0,
-          ),
-        ),
-        curve: Curves.ease);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage>
             builder: (context, isVisible, child) {
               return Visibility(
                 visible: isVisible,
-                child: child,
+                child: child!,
               );
             },
             child: AnimatedBuilder(
@@ -96,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage>
               child: MaterialBanner(
                 content: const Text('This is a banner. Dismiss me'),
                 actions: <Widget>[
-                  FlatButton(
+                  TextButton(
                     onPressed: () async {
                       //pressing the button will start the animation
                       await _slideAnimationController.forward();

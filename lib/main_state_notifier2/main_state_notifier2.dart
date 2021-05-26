@@ -11,7 +11,7 @@ part 'main_state_notifier2.freezed.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +31,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +43,8 @@ class HomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
         onPressed: () => context.read<_Controller2>().increment(),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -60,7 +60,7 @@ class _Controller1 extends StateNotifier<Counter1> {
 
 @freezed
 abstract class Counter1 with _$Counter1 {
-  const factory Counter1({@required int count}) = _Counter1;
+  const factory Counter1({required int count}) = _Counter1;
 }
 
 class _Controller2 extends StateNotifier<Counter2> with LocatorMixin {
@@ -85,5 +85,5 @@ class _Controller2 extends StateNotifier<Counter2> with LocatorMixin {
 
 @freezed
 abstract class Counter2 with _$Counter2 {
-  const factory Counter2({@required int count}) = _Counter2;
+  const factory Counter2({required int count}) = _Counter2;
 }

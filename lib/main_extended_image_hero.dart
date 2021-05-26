@@ -1,10 +1,12 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
+import 'extended_image_slide_page_route.dart';
+
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -14,7 +16,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     const imageUrl = 'https://avatars2.githubusercontent.com/u/1255062';
@@ -26,18 +28,18 @@ class HomePage extends StatelessWidget {
         child: Hero(
           tag: imageUrl,
           child: GestureDetector(
-            child: FractionallySizedBox(
-              widthFactor: 0.5,
-              child: ExtendedImage.network(
-                imageUrl,
-                fit: BoxFit.cover,
-              ),
-            ),
             onTap: () => Navigator.of(context).push<void>(
               TransparentMaterialPageRoute(
                 builder: (context) => const ImageDetailPage(
                   imageUrl: imageUrl,
                 ),
+              ),
+            ),
+            child: FractionallySizedBox(
+              widthFactor: 0.5,
+              child: ExtendedImage.network(
+                imageUrl,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -49,8 +51,8 @@ class HomePage extends StatelessWidget {
 
 class ImageDetailPage extends StatelessWidget {
   const ImageDetailPage({
-    Key key,
-    @required this.imageUrl,
+    Key? key,
+    required this.imageUrl,
   }) : super(key: key);
 
   final String imageUrl;
@@ -67,7 +69,6 @@ class ImageDetailPage extends StatelessWidget {
           mode: ExtendedImageMode.gesture,
           heroBuilderForSlidingPage: (image) => Hero(
             tag: imageUrl,
-            child: image,
             flightShuttleBuilder: (
               flightContext,
               animation,
@@ -80,6 +81,7 @@ class ImageDetailPage extends StatelessWidget {
                   : toHeroContext.widget) as Hero;
               return hero.child;
             },
+            child: image,
           ),
         ),
       ),

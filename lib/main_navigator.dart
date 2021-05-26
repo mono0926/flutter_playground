@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -31,13 +31,13 @@ class _HomePageState extends State<HomePage> {
           child: Scaffold(
             appBar: AppBar(),
             body: Center(
-              child: RaisedButton(
-                child: const Text('Dog'),
+              child: ElevatedButton(
                 onPressed: () {
                   setState(() {
                     _isPushed = true;
                   });
                 },
+                child: const Text('Dog'),
               ),
             ),
           ),

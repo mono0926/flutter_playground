@@ -1,6 +1,7 @@
 /// Flutter code sample for Table
 
-// This sample shows a `Table` with borders, multiple types of column widths and different vertical cell alignments.
+// This sample shows a `Table` with borders, multiple types of column widths and
+// different vertical cell alignments.
 
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ void main() => runApp(const MyApp());
 
 /// This is the main application widget.
 class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   static const String _title = 'Flutter Code Sample';
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
 
 /// This is the stateless widget that the main application instantiates.
 class MyStatelessWidget extends StatelessWidget {
-  const MyStatelessWidget({Key key}) : super(key: key);
+  const MyStatelessWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class MyStatelessWidget extends StatelessWidget {
         TableRow(
           children: <Widget>[
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 200),
+              constraints: const BoxConstraints(maxWidth: 200),
               child: const Padding(
                 padding: EdgeInsets.all(8),
                 child: Text('AAA'),
@@ -58,9 +59,9 @@ class MyStatelessWidget extends StatelessWidget {
           ),
           children: <Widget>[
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 50),
+              constraints: const BoxConstraints(maxWidth: 50),
               child: Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Text('AAA' * 3),
               ),
             ),

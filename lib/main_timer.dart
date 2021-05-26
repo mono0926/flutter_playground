@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
 }
 
 class _HomePage extends StatelessWidget {
-  const _HomePage({Key key}) : super(key: key);
+  const _HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +31,13 @@ class _HomePage extends StatelessWidget {
             mutedFuture: true,
           ),
           const AnimationTimerTile(),
-          RaisedButton(
-            child: const Text('NEXT PAGE'),
+          ElevatedButton(
             onPressed: () => Navigator.of(context).push<void>(
               MaterialPageRoute(
                 builder: (context) => const SecondPage(),
               ),
             ),
+            child: const Text('NEXT PAGE'),
           )
         ],
       ),
@@ -47,7 +47,7 @@ class _HomePage extends StatelessWidget {
 
 class PeriodicTimerTile extends StatefulWidget {
   const PeriodicTimerTile({
-    Key key,
+    Key? key,
     this.mutedFuture = false,
   }) : super(key: key);
 
@@ -58,7 +58,7 @@ class PeriodicTimerTile extends StatefulWidget {
 }
 
 class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
-  Timer _timer;
+  late final Timer _timer;
 
   @override
   void initState() {
@@ -94,7 +94,7 @@ class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
 }
 
 class AnimationTimerTile extends StatefulWidget {
-  const AnimationTimerTile({Key key}) : super(key: key);
+  const AnimationTimerTile({Key? key}) : super(key: key);
 
   @override
   _AnimationTimerTileState createState() => _AnimationTimerTileState();
@@ -102,23 +102,17 @@ class AnimationTimerTile extends StatefulWidget {
 
 class _AnimationTimerTileState extends State<AnimationTimerTile>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(seconds: 1),
-    )
-      ..repeat()
-      ..addListener(() {
-        // Not called when navigated to NextPage by virtue of
-        // AnimationController's muted feature.
-        print('AnimationTimerTile value will be changed');
-        setState(() {});
-      });
-  }
+  late final AnimationController _animationController = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 1),
+  )
+    ..repeat()
+    ..addListener(() {
+      // Not called when navigated to NextPage by virtue of
+      // AnimationController's muted feature.
+      print('AnimationTimerTile value will be changed');
+      setState(() {});
+    });
 
   @override
   void dispose() {
@@ -138,7 +132,7 @@ class _AnimationTimerTileState extends State<AnimationTimerTile>
 }
 
 class SecondPage extends StatelessWidget {
-  const SecondPage({Key key}) : super(key: key);
+  const SecondPage({Key? key}) : super(key: key);
 
   static const routeName = '/second';
 

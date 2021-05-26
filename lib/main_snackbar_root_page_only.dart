@@ -8,7 +8,7 @@ final _rootPageScaffoldKey = GlobalKey<ScaffoldState>();
 final _navigatorKey = GlobalKey<NavigatorState>();
 
 class App extends StatelessWidget {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class App extends StatelessWidget {
 
 class _HomePage extends StatefulWidget {
   const _HomePage({
-    Key key,
+    Key? key,
     this.index = 0,
   }) : super(key: key);
 
@@ -34,7 +34,7 @@ class _HomePage extends StatefulWidget {
 class _HomePageState extends State<_HomePage> {
   @override
   Widget build(BuildContext context) {
-    final canPop = _navigatorKey.currentState.canPop();
+    final canPop = _navigatorKey.currentState!.canPop();
     return Scaffold(
       key: canPop ? null : _rootPageScaffoldKey,
       appBar: AppBar(title: Text('index: ${widget.index}')),
@@ -42,12 +42,11 @@ class _HomePageState extends State<_HomePage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            RaisedButton(
-              child: const Text('Show SnackBar'),
+            ElevatedButton(
               onPressed: showSnackBar,
+              child: const Text('Show SnackBar'),
             ),
-            RaisedButton(
-              child: const Text('👉 Navigate to next page'),
+            ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push<void>(
                   MaterialPageRoute(
@@ -57,11 +56,12 @@ class _HomePageState extends State<_HomePage> {
                   ),
                 );
               },
+              child: const Text('👉 Navigate to next page'),
             ),
             if (canPop)
-              RaisedButton(
-                child: const Text('👈 Pop and show SnackBar'),
+              ElevatedButton(
                 onPressed: popAndShowSnackBar,
+                child: const Text('👈 Pop and show SnackBar'),
               ),
           ],
         ),
@@ -69,7 +69,7 @@ class _HomePageState extends State<_HomePage> {
     );
   }
 
-  ScaffoldState get _scaffoldState => _rootPageScaffoldKey.currentState;
+  ScaffoldState get _scaffoldState => _rootPageScaffoldKey.currentState!;
 
   void showSnackBar() {
     // ignore: deprecated_member_use
@@ -81,7 +81,7 @@ class _HomePageState extends State<_HomePage> {
   }
 
   void popAndShowSnackBar() {
-    _navigatorKey.currentState.pop();
+    _navigatorKey.currentState!.pop();
     // ignore: deprecated_member_use
     _scaffoldState.showSnackBar(
       const SnackBar(
