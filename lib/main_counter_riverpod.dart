@@ -59,7 +59,6 @@ class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print(ref.watch(isLoading));
     return Scaffold(
       appBar: AppBar(),
       body: Center(
