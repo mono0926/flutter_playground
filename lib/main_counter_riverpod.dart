@@ -39,7 +39,7 @@ class CountRepository extends StateNotifier<AsyncValue<int>> {
 
 final incrementer = Provider((ref) {
   // 関数内でのwatch実行はNG。
-  // 関数返すProviderパターンが良いと思ったものの、
+  // この関数返すProviderパターンが良さそうと思ったものの、
   // 素直に別クラスにした方がwatch呼び出しを確実に禁止できて良いかも
   final read = ref.read;
   return () => read(countRepository.notifier).increment();
