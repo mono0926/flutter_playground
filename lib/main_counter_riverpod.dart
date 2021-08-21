@@ -41,9 +41,7 @@ final incrementer = Provider((ref) {
   // 関数返すProviderパターンが良いと思ったものの、
   // 素直に別クラスにした方がwatch呼び出しを確実に禁止できて良いかも
   final read = ref.read;
-  return () {
-    read(countRepository.notifier).increment();
-  };
+  return () => read(countRepository.notifier).increment();
 });
 
 final isLoading = Provider(
