@@ -68,11 +68,11 @@ final incrementer = Provider((ref) {
   final read = ref.read;
   return () async {
     await read(countRepository.notifier).increment();
-    read(incrementedSnackbarPresenter)();
+    read(incrementedSnackBarPresenter)();
   };
 });
 
-final incrementedSnackbarPresenter = Provider(
+final incrementedSnackBarPresenter = Provider(
   (ref) {
     final read = ref.read;
     return () {
