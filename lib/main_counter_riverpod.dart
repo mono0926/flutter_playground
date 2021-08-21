@@ -55,8 +55,7 @@ class CountRepository extends StateNotifier<AsyncValue<int>> {
 
   Future<void> undo() async {
     state = await AsyncValue.guard(() async {
-      _history.removeLast();
-      return _history.last;
+      return (_history..removeLast()).last;
     });
   }
 }
