@@ -31,6 +31,7 @@ class CountRepository extends StateNotifier<AsyncValue<int>> {
       return;
     }
     state = const AsyncValue.loading();
+    // 更新時間中を適当に再現
     await Future<void>.delayed(const Duration(milliseconds: 500));
     state = AsyncValue.data(count + 1);
   }
