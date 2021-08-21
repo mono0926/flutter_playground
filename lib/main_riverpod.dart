@@ -12,8 +12,8 @@ class App extends StatelessWidget {
       home: const HomePage(),
       builder: (context, child) {
         return Consumer(
-          builder: (context, watch, child) {
-            watch(themeProvider).state = Theme.of(context);
+          builder: (context, ref, child) {
+            ref.watch(themeProvider).state = Theme.of(context);
             return child!;
           },
         );
@@ -22,16 +22,16 @@ class App extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            context.read(_controller).foo();
+            ref.read(_controller).foo();
           },
           child: const Text('Dog'),
         ),

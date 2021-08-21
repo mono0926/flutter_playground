@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListSample extends StatefulWidget {
+  const AnimatedListSample({Key? key}) : super(key: key);
+
   @override
   _AnimatedListSampleState createState() => _AnimatedListSampleState();
 }
@@ -180,5 +182,5 @@ class CardItem extends StatelessWidget {
 }
 
 void main() {
-  runApp(AnimatedListSample());
+  runApp(const AnimatedListSample());
 }

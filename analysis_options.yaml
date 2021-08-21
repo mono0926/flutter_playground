@@ -11,4 +11,5 @@ analyzer:
     - lib/**/*.freezed.dart
 linter:
   rules:
+    avoid_print: false
     sort_pub_dependencies: false

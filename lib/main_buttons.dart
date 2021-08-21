@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DialogButtons extends StatelessWidget {
+  const DialogButtons({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     void dismissDialog() {
@@ -91,6 +93,8 @@ class DialogButtons extends StatelessWidget {
 }
 
 class IndividuallySizedButtons extends StatefulWidget {
+  const IndividuallySizedButtons({Key? key}) : super(key: key);
+
   @override
   _IndividuallySizedButtonsState createState() =>
       _IndividuallySizedButtonsState();
@@ -158,6 +162,8 @@ class _IndividuallySizedButtonsState extends State<IndividuallySizedButtons> {
 }
 
 class ShapeButtons extends StatefulWidget {
+  const ShapeButtons({Key? key}) : super(key: key);
+
   @override
   _ShapeButtonsState createState() => _ShapeButtonsState();
 }
@@ -206,6 +212,8 @@ class _ShapeButtonsState extends State<ShapeButtons> {
 }
 
 class TextStyleButtons extends StatefulWidget {
+  const TextStyleButtons({Key? key}) : super(key: key);
+
   @override
   _TextStyleButtonsState createState() => _TextStyleButtonsState();
 }
@@ -247,6 +255,8 @@ class _TextStyleButtonsState extends State<TextStyleButtons> {
 }
 
 class TextColorButtons extends StatefulWidget {
+  const TextColorButtons({Key? key}) : super(key: key);
+
   @override
   _TextColorButtonsState createState() => _TextColorButtonsState();
 }
@@ -402,7 +412,7 @@ final List<ButtonDemo> allButtonDemos = <ButtonDemo>[
         'Use TextButtonTheme, ElevatedButtonTheme, OutlinedButtonTheme to '
         'override the text color of all buttons. The background color for '
         'ElevatedButtons does not change.',
-    builder: (BuildContext context) => TextColorButtons(),
+    builder: (BuildContext context) => const TextColorButtons(),
   ),
   ButtonDemo(
     title: 'TextStyle Buttons',
@@ -411,27 +421,27 @@ final List<ButtonDemo> allButtonDemos = <ButtonDemo>[
         'the default text style of the buttons. '
         'Press any button to toggle the text '
         'style size to an even bigger value.',
-    builder: (BuildContext context) => TextStyleButtons(),
+    builder: (BuildContext context) => const TextStyleButtons(),
   ),
   ButtonDemo(
     title: 'Individually Sized  Buttons',
     description: 'Sets the ButtonStyle parameter of '
         'individual buttons to override their '
         'default text style/ Press any button to toggle its text text style size.',
-    builder: (BuildContext context) => IndividuallySizedButtons(),
+    builder: (BuildContext context) => const IndividuallySizedButtons(),
   ),
   ButtonDemo(
     title: 'Button Shapes',
     description:
         'Use TextButtonTheme, ElevatedButtonTheme, OutlinedButtonTheme to '
         'override the shape all buttons.',
-    builder: (BuildContext context) => ShapeButtons(),
+    builder: (BuildContext context) => const ShapeButtons(),
   ),
   ButtonDemo(
     title: 'Dialog Buttons',
     description:
         'Use ButtonStyle to configure the shape of a dialog\'s action buttons.',
-    builder: (BuildContext context) => DialogButtons(),
+    builder: (BuildContext context) => const DialogButtons(),
   ),
 ];
 
@@ -550,6 +560,8 @@ class _HomeState extends State<Home> {
 }
 
 class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
+
   @override
   _AppState createState() => _AppState();
 }
@@ -575,5 +587,5 @@ class _AppState extends State<App> {
 }
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }

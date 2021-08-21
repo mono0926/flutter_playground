@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mono_kit/mono_kit.dart';
 
@@ -11,14 +10,14 @@ void main() => runApp(
 
 final _rootScaffoldKeyProvider = Provider((_) => GlobalKey<ScaffoldState>());
 
-class App extends HookWidget {
+class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final scaffoldKey = useProvider(_rootScaffoldKeyProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final scaffoldKey = ref.watch(_rootScaffoldKeyProvider);
     return MaterialApp(
-      navigatorKey: useProvider(_navigatorKeyProvider),
+      navigatorKey: ref.watch(_navigatorKeyProvider),
       home: const _HomePage(),
       theme: lightTheme(),
       darkTheme: darkTheme(),
@@ -30,7 +29,7 @@ class App extends HookWidget {
   }
 }
 
-class _HomePage extends HookWidget {
+class _HomePage extends ConsumerWidget {
   const _HomePage({
     Key? key,
     this.index = 0,
@@ -39,9 +38,9 @@ class _HomePage extends HookWidget {
   final int index;
 
   @override
-  Widget build(BuildContext context) {
-    final controller = useProvider(_homePageProviders(index));
-    final canPop = useProvider(_navigatorKeyProvider).currentState!.canPop();
+  Widget build(BuildContext context, WidgetRef ref) {
+    final controller = ref.watch(_homePageProviders(index));
+    final canPop = ref.watch(_navigatorKeyProvider).currentState!.canPop();
     return Scaffold(
       appBar: AppBar(title: Text('index: $index')),
       body: Center(
@@ -90,23 +89,23 @@ final _navigatorKeyProvider = Provider((_) => GlobalKey<NavigatorState>());
 
 final _homePageProviders =
     Provider.autoDispose.family<_HomePageController, int>(
-  (ref, __) => _HomePageController(ref),
+  (ref, __) => _HomePageController(ref.read),
 );
 
 class _HomePageController {
-  _HomePageController(this._ref);
+  _HomePageController(this._read);
 
-  final ProviderReference _ref;
+  final Reader _read;
 
   ScaffoldState get rootScaffoldState =>
-      _ref.read(_rootScaffoldKeyProvider).currentState!;
+      _read(_rootScaffoldKeyProvider).currentState!;
 
   void showSnackBar() {
 //    rootScaffoldState.showSimpleSnackBar('Hey(　´･‿･｀)');
   }
 
   void popAndShowSnackBar() {
-    _ref.read(_navigatorKeyProvider).currentState!.pop();
+    _read(_navigatorKeyProvider).currentState!.pop();
 //    rootScaffoldState.showSimpleSnackBar('Came back(　´･‿･｀)');
   }
 }
