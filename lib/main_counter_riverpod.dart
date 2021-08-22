@@ -36,9 +36,11 @@ final countRepository = StateNotifierProvider<CountRepository, AsyncValue<int>>(
 );
 
 class CountRepository extends StateNotifier<AsyncValue<int>> {
-  CountRepository() : super(const AsyncValue.data(0));
+  CountRepository() : super(const AsyncValue.loading()) {
+    state = const AsyncValue.data(0);
+  }
 
-  final _history = <int>[0];
+  final _history = <int>[];
 
   Future<void> increment() async {
     final value = state.data?.value;
@@ -48,15 +50,19 @@ class CountRepository extends StateNotifier<AsyncValue<int>> {
     state = const AsyncValue.loading();
     // 更新時間中を適当に再現
     await Future<void>.delayed(const Duration(milliseconds: 500));
-    final nextValue = value + 1;
-    _history.add(nextValue);
-    state = AsyncValue.data(nextValue);
+    state = AsyncValue.data(value + 1);
   }
 
   Future<void> undo() async {
     state = await AsyncValue.guard(() async {
       return (_history..removeLast()).last;
     });
+  }
+
+  @override
+  set state(AsyncValue<int> value) {
+    value.whenData(_history.add);
+    super.state = value;
   }
 }
 
