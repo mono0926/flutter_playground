@@ -31,7 +31,7 @@ class App extends ConsumerWidget {
   }
 }
 
-final countRepository = StateNotifierProvider<CountRepository, AsyncValue<int>>(
+final countState = StateNotifierProvider<CountRepository, AsyncValue<int>>(
   (_) => CountRepository(),
 );
 
@@ -72,7 +72,7 @@ final incrementer = Provider((ref) {
   // 素直に別クラスにした方がwatch呼び出しを確実に禁止できて良いかも
   final read = ref.read;
   return () async {
-    await read(countRepository.notifier).increment();
+    await read(countState.notifier).increment();
     read(incrementedSnackBarPresenter)();
   };
 });
@@ -86,11 +86,11 @@ final incrementedSnackBarPresenter = Provider(
         ..showSnackBar(
           SnackBar(
             content: Text(
-              'Incremented to ${read(countRepository).data?.value ?? 0}',
+              'Incremented to ${read(countState).data?.value ?? 0}',
             ),
             action: SnackBarAction(
               label: 'UNDO',
-              onPressed: () => read(countRepository.notifier).undo(),
+              onPressed: () => read(countState.notifier).undo(),
             ),
           ),
         );
@@ -99,11 +99,11 @@ final incrementedSnackBarPresenter = Provider(
 );
 
 final isLoading = Provider(
-  (ref) => ref.watch(countRepository) is AsyncLoading,
+  (ref) => ref.watch(countState) is AsyncLoading,
 );
 
 final countMessage = Provider(
-  (ref) => 'Count: ${ref.watch(countRepository).maybeWhen(
+  (ref) => 'Count: ${ref.watch(countState).maybeWhen(
         data: (count) => '$count',
         orElse: () => '?',
       )}',
