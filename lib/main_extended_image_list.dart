@@ -75,7 +75,10 @@ class _ImagesPage extends StatefulWidget {
 }
 
 class __ImagesPageState extends State<_ImagesPage> {
-  late final PageController _pageController;
+  late final _pageController = ExtendedPageController(
+    initialPage: widget.initialIndex,
+    viewportFraction: _viewportFraction,
+  );
   late final int _index;
   static const _viewportFraction = 1.05;
 
@@ -84,11 +87,6 @@ class __ImagesPageState extends State<_ImagesPage> {
     super.initState();
 
     _index = widget.initialIndex;
-
-    _pageController = PageController(
-      initialPage: widget.initialIndex,
-      viewportFraction: _viewportFraction,
-    );
   }
 
   @override

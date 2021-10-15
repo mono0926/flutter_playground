@@ -43,7 +43,7 @@ class CountRepository extends StateNotifier<AsyncValue<int>> {
   final _history = <int>[];
 
   Future<void> increment() async {
-    final value = state.data?.value;
+    final value = state.asData?.value;
     if (value == null) {
       return;
     }
@@ -86,7 +86,7 @@ final incrementedSnackBarPresenter = Provider(
         ..showSnackBar(
           SnackBar(
             content: Text(
-              'Incremented to ${read(countState).data?.value ?? 0}',
+              'Incremented to ${read(countState).asData?.value ?? 0}',
             ),
             action: SnackBarAction(
               label: 'UNDO',

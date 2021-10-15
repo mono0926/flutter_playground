@@ -3,7 +3,6 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -520,6 +519,17 @@ class _CupertinoBackGestureController<T> {
     // animations.
     const Curve animationCurve = Curves.fastLinearToSlowEaseIn;
     bool animateForward;
+
+    int doubleCompare(double value, double other) {
+      if (value.isNaN || other.isNaN) {
+        throw UnsupportedError('Compared with Infinity or NaN');
+      }
+      final n = value - other;
+      if (n.abs() < precisionErrorTolerance) {
+        return 0;
+      }
+      return n < 0 ? -1 : 1;
+    }
 
     // If the user releases the page before mid screen with sufficient velocity,
     // or after mid screen, we should animate the page out. Otherwise, the page
