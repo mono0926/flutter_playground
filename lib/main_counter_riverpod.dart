@@ -66,41 +66,45 @@ class CountRepository extends StateNotifier<AsyncValue<int>> {
   }
 }
 
-final incrementer = Provider((ref) {
-  // 関数内でのwatch実行はNG。
-  // この関数返すProviderパターンが良さそうと思ったものの、
-  // 素直に別クラスにした方がwatch呼び出しを確実に禁止できて良いかも
-  final read = ref.read;
-  return () async {
-    await read(countState.notifier).increment();
-    read(incrementedSnackBarPresenter)();
-  };
-});
+final incrementer = Provider((ref) => Incrementer(ref.read));
+
+class Incrementer {
+  Incrementer(this._read);
+  final Reader _read;
+
+  Future<void> call() async {
+    await _read(countState.notifier).increment();
+    _read(incrementedSnackBarPresenter)();
+  }
+}
 
 final incrementedSnackBarPresenter = Provider(
-  (ref) {
-    final read = ref.read;
-    return () {
-      ScaffoldMessenger.of(read(navigatorKey).currentContext!)
-        ..removeCurrentSnackBar()
-        ..showSnackBar(
-          SnackBar(
-            content: Text(
-              'Incremented to ${read(countState).asData?.value ?? 0}',
-            ),
-            action: SnackBarAction(
-              label: 'UNDO',
-              onPressed: () => read(countState.notifier).undo(),
-            ),
-          ),
-        );
-    };
-  },
+  (ref) => IncrementedSnackBarPresenter(ref.read),
 );
 
-final isLoading = Provider(
-  (ref) => ref.watch(countState) is AsyncLoading,
-);
+class IncrementedSnackBarPresenter {
+  IncrementedSnackBarPresenter(this._read);
+
+  final Reader _read;
+
+  void call() {
+    ScaffoldMessenger.of(_read(navigatorKey).currentContext!)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(
+            'Incremented to ${_read(countState).asData?.value ?? 0}',
+          ),
+          action: SnackBarAction(
+            label: 'UNDO',
+            onPressed: () => _read(countState.notifier).undo(),
+          ),
+        ),
+      );
+  }
+}
+
+final isLoading = Provider((ref) => ref.watch(countState) is AsyncLoading);
 
 final countMessage = Provider(
   (ref) => 'Count: ${ref.watch(countState).maybeWhen(
