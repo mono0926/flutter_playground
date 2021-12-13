@@ -13,7 +13,7 @@ class App extends StatelessWidget {
       builder: (context, child) {
         return Consumer(
           builder: (context, ref, child) {
-            ref.watch(themeProvider).state = Theme.of(context);
+            ref.watch(themeProvider.notifier).update((_) => Theme.of(context));
             return child!;
           },
         );
@@ -47,7 +47,7 @@ class _Controller {
   final Reader _read;
 
   void foo() {
-    print('brightness: ${_read(themeProvider).state!.brightness}');
+    print('brightness: ${_read(themeProvider)!.brightness}');
   }
 }
 
