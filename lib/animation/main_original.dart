@@ -42,15 +42,16 @@ class _MyHomePageState extends State<MyHomePage>
   ///The animation that creates the slide up effect by controlling the height
   ///factor of the [Align] widget
   late final Animation<double> _heightFactorAnimation = CurvedAnimation(
-      parent: _slideAnimationController.drive(
-        //a Tween from 1.0 to 0.0 is what makes the slide effect by shrinking
-        // the container using the [Align.heightFactor] parameter
-        Tween<double>(
-          begin: 1,
-          end: 0,
-        ),
+    parent: _slideAnimationController.drive(
+      //a Tween from 1.0 to 0.0 is what makes the slide effect by shrinking
+      // the container using the [Align.heightFactor] parameter
+      Tween<double>(
+        begin: 1,
+        end: 0,
       ),
-      curve: Curves.ease);
+    ),
+    curve: Curves.ease,
+  );
 
   ///Governs whether to show the banner or not. We use a [ValueNotifier]
   ///because the visibility changes asynchronously when the animation finishes,

@@ -69,7 +69,7 @@ class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
       (timer) {
         if (!widget.mutedFuture || TickerMode.of(context)) {
           print('PeriodicTimerTile (mute: ${widget.mutedFuture}) '
-              'value will be changed');
+              'value will be changed',);
           setState(() {});
         }
       },

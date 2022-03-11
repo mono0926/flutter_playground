@@ -24,7 +24,10 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
   }
 
   Widget _buildItem(
-      BuildContext context, int index, Animation<double> animation) {
+    BuildContext context,
+    int index,
+    Animation<double> animation,
+  ) {
     return CardItem(
       animation: animation,
       item: _list[index],
@@ -38,7 +41,10 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
   }
 
   Widget _buildRemovedItem(
-      int item, BuildContext context, Animation<double> animation) {
+    int item,
+    BuildContext context,
+    Animation<double> animation,
+  ) {
     return CardItem(
       animation: animation,
       item: item,
@@ -137,13 +143,13 @@ class ListModel<E> {
 }
 
 class CardItem extends StatelessWidget {
-  const CardItem(
-      {Key? key,
-      required this.animation,
-      this.onTap,
-      required this.item,
-      this.selected = false})
-      : assert(item >= 0),
+  const CardItem({
+    Key? key,
+    required this.animation,
+    this.onTap,
+    required this.item,
+    this.selected = false,
+  })  : assert(item >= 0),
         super(key: key);
 
   final Animation<double> animation;

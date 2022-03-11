@@ -8,7 +8,7 @@ void main() => runApp(const App());
 final _urls = List.generate(
     50,
     (index) =>
-        'https://storage.googleapis.com/debug-mono/${index % 5 + 1}.jpg');
+        'https://storage.googleapis.com/debug-mono/${index % 5 + 1}.jpg',);
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);

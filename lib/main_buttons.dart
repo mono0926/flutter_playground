@@ -9,8 +9,11 @@ class DialogButtons extends StatelessWidget {
       Navigator.of(context).pop();
     }
 
-    void showDemoDialog(String message, ButtonStyle style1,
-        [ButtonStyle? style2]) {
+    void showDemoDialog(
+      String message,
+      ButtonStyle style1, [
+      ButtonStyle? style2,
+    ]) {
       showDialog<void>(
         context: context,
         builder: (BuildContext context) {
@@ -35,59 +38,64 @@ class DialogButtons extends StatelessWidget {
     }
 
     return Center(
-      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-        ElevatedButton(
-          onPressed: () {
-            showDemoDialog(
-              'Stadium shaped action buttons, default ouline.',
-              OutlinedButton.styleFrom(shape: const StadiumBorder()),
-            );
-          },
-          child: const Text('Show an AlertDialog'),
-        ),
-        const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: () {
-            showDemoDialog(
-              'One Stadium shaped action button, with a heavy, primary color '
-              'outline.',
-              OutlinedButton.styleFrom(shape: const StadiumBorder()),
-              OutlinedButton.styleFrom(
-                shape: const StadiumBorder(),
-                side: BorderSide(
-                  width: 2,
-                  color: Theme.of(context).colorScheme.primary,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ElevatedButton(
+            onPressed: () {
+              showDemoDialog(
+                'Stadium shaped action buttons, default ouline.',
+                OutlinedButton.styleFrom(shape: const StadiumBorder()),
+              );
+            },
+            child: const Text('Show an AlertDialog'),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              showDemoDialog(
+                'One Stadium shaped action button, with a heavy, primary color '
+                'outline.',
+                OutlinedButton.styleFrom(shape: const StadiumBorder()),
+                OutlinedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                  side: BorderSide(
+                    width: 2,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
                 ),
-              ),
-            );
-          },
-          child: const Text('Show another AlertDialog'),
-        ),
-        const SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: () {
-            showDemoDialog(
-              'Stadium shaped action buttons, with a heavy, primary color '
-              'outline when the button is focused or hovered',
-              OutlinedButton.styleFrom(
-                shape: const StadiumBorder(),
-              ).copyWith(side: MaterialStateProperty.resolveWith<BorderSide?>(
-                (Set<MaterialState> states) {
-                  if (states.contains(MaterialState.hovered) ||
-                      states.contains(MaterialState.focused)) {
-                    return BorderSide(
-                      width: 2,
-                      color: Theme.of(context).colorScheme.primary,
-                    );
-                  }
-                  return null; // defer to the default
-                },
-              )),
-            );
-          },
-          child: const Text('Show yet another AlertDialog'),
-        ),
-      ]),
+              );
+            },
+            child: const Text('Show another AlertDialog'),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              showDemoDialog(
+                'Stadium shaped action buttons, with a heavy, primary color '
+                'outline when the button is focused or hovered',
+                OutlinedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                ).copyWith(
+                  side: MaterialStateProperty.resolveWith<BorderSide?>(
+                    (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.hovered) ||
+                          states.contains(MaterialState.focused)) {
+                        return BorderSide(
+                          width: 2,
+                          color: Theme.of(context).colorScheme.primary,
+                        );
+                      }
+                      return null; // defer to the default
+                    },
+                  ),
+                ),
+              );
+            },
+            child: const Text('Show yet another AlertDialog'),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -482,8 +490,11 @@ class _HomeState extends State<Home> {
   void changePage(int delta) {
     if (_pageController.hasClients) {
       const duration = Duration(milliseconds: 300);
-      _pageController.animateToPage(_currentPage + delta,
-          duration: duration, curve: Curves.easeInOut);
+      _pageController.animateToPage(
+        _currentPage + delta,
+        duration: duration,
+        curve: Curves.easeInOut,
+      );
     }
   }
 
@@ -495,8 +506,10 @@ class _HomeState extends State<Home> {
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text(allButtonDemos[_currentPage].title,
-            style: TextStyle(color: colorScheme.onPrimary)),
+        title: Text(
+          allButtonDemos[_currentPage].title,
+          style: TextStyle(color: colorScheme.onPrimary),
+        ),
         backgroundColor: colorScheme.primary,
         actions: <Widget>[
           TextButton(
@@ -576,12 +589,15 @@ class _AppState extends State<App> {
       darkTheme: ThemeData.from(colorScheme: const ColorScheme.dark()),
       themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
-      home: Home(toggleThemeMode: () {
-        setState(() {
-          _themeMode =
-              _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-        });
-      }),
+      home: Home(
+        toggleThemeMode: () {
+          setState(() {
+            _themeMode = _themeMode == ThemeMode.light
+                ? ThemeMode.dark
+                : ThemeMode.light;
+          });
+        },
+      ),
     );
   }
 }

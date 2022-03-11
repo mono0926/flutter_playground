@@ -1,5 +1,6 @@
-// ignore_for_file: lines_longer_than_80_chars
 // https://github.com/fluttercandies/extended_image/blob/4c2c5767b61252424e1f832b29a989d2ea554a20/lib/src/gesture/extended_image_slide_page_route.dart
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:math';
 import 'dart:ui';
 
@@ -17,8 +18,8 @@ import 'package:flutter/material.dart';
 const double _kBackGestureWidth = 20;
 const double _kMinFlingVelocity = 1; // Screen widths per second.
 
-// An eyeballed value for the maximum time it takes for a page to animate
-// forward if the user releases a page mid swipe.
+// An eyeballed value for the maximum time it takes for a page to animate forward
+// if the user releases a page mid swipe.
 const int _kMaxDroppedSwipePageForwardAnimationTime = 800; // Milliseconds.
 
 // The maximum time for a page to get reset to it's original position if the
@@ -80,7 +81,7 @@ class TransparentMaterialPageRoute<T> extends PageRoute<T> {
 
   @override
   bool canTransitionTo(TransitionRoute<dynamic> nextRoute) {
-    // Don't perform outgoing animation if the next route is a fullscreen dialog.
+    // Don't perform outgoing animation if the next route is a fullscreen edit_dialog.
     return (nextRoute is MaterialPageRoute && !nextRoute.fullscreenDialog) ||
         (nextRoute is CupertinoPageRoute && !nextRoute.fullscreenDialog) ||
         (nextRoute is TransparentMaterialPageRoute &&
@@ -104,11 +105,20 @@ class TransparentMaterialPageRoute<T> extends PageRoute<T> {
   }
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     final theme = Theme.of(context).pageTransitionsTheme;
     return theme.buildTransitions<T>(
-        this, context, animation, secondaryAnimation, child);
+      this,
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    );
   }
 
   @override
@@ -200,7 +210,7 @@ class TransparentCupertinoPageRoute<T> extends PageRoute<T> {
 
   @override
   bool canTransitionTo(TransitionRoute<dynamic> nextRoute) {
-    // Don't perform outgoing animation if the next route is a fullscreen dialog.
+    // Don't perform outgoing animation if the next route is a fullscreen edit_dialog.
     return (nextRoute is CupertinoPageRoute && !nextRoute.fullscreenDialog) ||
         (nextRoute is TransparentCupertinoPageRoute &&
             !nextRoute.fullscreenDialog);
@@ -279,8 +289,11 @@ class TransparentCupertinoPageRoute<T> extends PageRoute<T> {
   }
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
+  Widget buildPage(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
     final Widget result = Semantics(
       scopesRoute: true,
       explicitChildNodes: true,
@@ -293,7 +306,8 @@ class TransparentCupertinoPageRoute<T> extends PageRoute<T> {
   // gesture is detected. The returned controller handles all of the subsequent
   // drag events.
   static _CupertinoBackGestureController<T> _startPopGesture<T>(
-      PageRoute<T> route) {
+    PageRoute<T> route,
+  ) {
     assert(_isPopGestureEnabled(route));
 
     return _CupertinoBackGestureController<T>(
@@ -303,7 +317,7 @@ class TransparentCupertinoPageRoute<T> extends PageRoute<T> {
   }
 
   /// Returns a [CupertinoFullscreenDialogTransition] if [route] is a full
-  /// screen dialog, otherwise a [CupertinoPageTransition] is returned.
+  /// screen edit_dialog, otherwise a [CupertinoPageTransition] is returned.
   ///
   // ignore: comment_references
   /// Used by [CupertinoPageRoute.buildTransitions].
@@ -347,10 +361,19 @@ class TransparentCupertinoPageRoute<T> extends PageRoute<T> {
   }
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
+  Widget buildTransitions(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     return buildPageTransitions<T>(
-        this, context, animation, secondaryAnimation, child);
+      this,
+      context,
+      animation,
+      secondaryAnimation,
+      child,
+    );
   }
 
   @override
@@ -412,14 +435,18 @@ class _CupertinoBackGestureDetectorState<T>
   void _handleDragUpdate(DragUpdateDetails details) {
     assert(mounted);
     _backGestureController!.dragUpdate(
-        _convertToLogical(details.primaryDelta! / context.size!.width));
+      _convertToLogical(details.primaryDelta! / context.size!.width),
+    );
   }
 
   void _handleDragEnd(DragEndDetails details) {
     assert(mounted);
     assert(_backGestureController != null);
-    _backGestureController!.dragEnd(_convertToLogical(
-        details.velocity.pixelsPerSecond.dx / context.size!.width));
+    _backGestureController!.dragEnd(
+      _convertToLogical(
+        details.velocity.pixelsPerSecond.dx / context.size!.width,
+      ),
+    );
     _backGestureController = null;
   }
 
@@ -561,9 +588,11 @@ class _CupertinoBackGestureController<T> {
             .floor(),
         _kMaxPageBackAnimationTime,
       );
-      controller.animateTo(1,
-          duration: Duration(milliseconds: droppedPageForwardAnimationTime),
-          curve: animationCurve);
+      controller.animateTo(
+        1,
+        duration: Duration(milliseconds: droppedPageForwardAnimationTime),
+        curve: animationCurve,
+      );
     } else {
       // This route is destined to pop at this point. Reuse navigator's pop.
       navigator.pop();
@@ -577,9 +606,11 @@ class _CupertinoBackGestureController<T> {
           controller.value,
         )!
             .floor();
-        controller.animateBack(0,
-            duration: Duration(milliseconds: droppedPageBackAnimationTime),
-            curve: animationCurve);
+        controller.animateBack(
+          0,
+          duration: Duration(milliseconds: droppedPageBackAnimationTime),
+          curve: animationCurve,
+        );
       }
     }
 
@@ -665,14 +696,14 @@ class CupertinoPageTransition extends StatelessWidget {
       textDirection: textDirection,
       transformHitTests: false,
       child: SlideTransition(
-          position: _primaryPositionAnimation,
-          textDirection: textDirection,
-          child: child
-          // DecoratedBoxTransition(
-          //   decoration: _primaryShadowAnimation,
-          //   child: child,
-          // ),
-          ),
+        position: _primaryPositionAnimation,
+        textDirection: textDirection,
+        child: child,
+        // DecoratedBoxTransition(
+        //   decoration: _primaryShadowAnimation,
+        //   child: child,
+        // ),
+      ),
     );
   }
 }

@@ -24,8 +24,8 @@ class HomePage extends StatelessWidget {
           boundaryMargin: const EdgeInsets.all(20),
           minScale: 0.1,
           maxScale: 1.6,
-          child: Container(
-            decoration: const BoxDecoration(
+          child: const DecoratedBox(
+            decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,

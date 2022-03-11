@@ -139,7 +139,6 @@ class __BodyState extends State<_Body> {
           itemCount: _colCount,
           itemBuilder: (context, index) => SizedBox(
             width: _cellWidth,
-            // TODO(mono): Not lazy loaded
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: _rowCount,

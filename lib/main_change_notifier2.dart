@@ -15,7 +15,7 @@ void main() => runApp(MultiProvider(
         ),
       ],
       child: const App(),
-    ));
+    ),);
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
