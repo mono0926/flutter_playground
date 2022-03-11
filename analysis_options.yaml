@@ -1,8 +1,9 @@
 # https://pub.dev/packages/pedantic_mono
 include: package:pedantic_mono/analysis_options.yaml
 analyzer:
-  enable-experiment:
-    - non-nullable
+  errors:
+    # https://github.com/rrousselGit/freezed/issues/488
+    invalid_annotation_target: ignore
   exclude:
     - lib/*_original.dart
     - lib/generated_*.dart
