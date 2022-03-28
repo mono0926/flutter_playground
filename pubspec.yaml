@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons:
   extended_image:
   mono_kit:
+  intersperse:
   intl:
   flutter_hooks:
   state_notifier:

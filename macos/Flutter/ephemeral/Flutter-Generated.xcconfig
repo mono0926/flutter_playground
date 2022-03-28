@@ -2,7 +2,7 @@
 FLUTTER_ROOT=/Users/mono/fvm/versions/stable
 FLUTTER_APPLICATION_PATH=/Users/mono/Git/flutter_playground
 COCOAPODS_PARALLEL_CODE_SIGN=true
-FLUTTER_TARGET=/Users/mono/Git/flutter_playground/lib/main_complicated_scroll.dart
+FLUTTER_TARGET=/Users/mono/Git/flutter_playground/lib/main_ intersperse.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
 FLUTTER_BUILD_NUMBER=1
