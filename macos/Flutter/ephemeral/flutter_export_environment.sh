@@ -3,7 +3,7 @@
 export "FLUTTER_ROOT=/Users/mono/fvm/versions/stable"
 export "FLUTTER_APPLICATION_PATH=/Users/mono/Git/flutter_playground"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
-export "FLUTTER_TARGET=/Users/mono/Git/flutter_playground/lib/main_router_location.dart"
+export "FLUTTER_TARGET=/Users/mono/Git/flutter_playground/lib/main_deep_link.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"

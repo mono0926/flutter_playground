@@ -12,6 +12,8 @@ dependencies:
   cupertino_icons:
   cloud_firestore:
   extended_image:
+  faker:
+  gap:
   go_router:
   mono_kit:
   intersperse:

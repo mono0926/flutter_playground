@@ -7,28 +7,29 @@ Future<void> main() async {
   runApp(const App());
 }
 
+final router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      redirect: (_) => '/${HomeTab.values.first.name}',
+    ),
+    GoRoute(
+      path: '/:tab(${HomeTab.values.map((t) => t.name).join('|')})',
+      builder: (context, state) => HomePage(
+        tab: HomeTab.values.byName(state.params['tab']!),
+      ),
+    ),
+  ],
+  navigatorBuilder: (context, state, child) => GoRouterLocationButton(
+    child: child,
+  ),
+);
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final router = GoRouter(
-      routes: [
-        GoRoute(
-          path: '/',
-          redirect: (_) => '/${HomeTab.values.first.name}',
-        ),
-        GoRoute(
-          path: '/:tab(${HomeTab.values.map((t) => t.name).join('|')})',
-          builder: (context, state) => HomePage(
-            tab: HomeTab.values.byName(state.params['tab']!),
-          ),
-        ),
-      ],
-      navigatorBuilder: (context, state, child) => GoRouterLocationButton(
-        child: child,
-      ),
-    );
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerDelegate: router.routerDelegate,
@@ -106,20 +107,26 @@ class GoRouterLocationButton extends StatelessWidget {
         child,
         Positioned(
           right: 0,
-          child: ElevatedButton(
-            onPressed: () async {
-              final next = (await showTextInputDialog(
-                context: router.navigator!.context,
-                textFields: [
-                  DialogTextField(initialText: location),
-                ],
-              ))
-                  ?.first;
-              if (next != null) {
-                router.go(next);
-              }
-            },
-            child: Text(location),
+          bottom: 0,
+          child: SafeArea(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).colorScheme.secondary,
+              ),
+              onPressed: () async {
+                final next = (await showTextInputDialog(
+                  context: router.navigator!.context,
+                  textFields: [
+                    DialogTextField(initialText: location),
+                  ],
+                ))
+                    ?.first;
+                if (next != null) {
+                  router.go(next);
+                }
+              },
+              child: Text(location),
+            ),
           ),
         ),
       ],
