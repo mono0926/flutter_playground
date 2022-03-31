@@ -10,11 +10,13 @@ dependencies:
   provider:
   freezed_annotation:
   cupertino_icons:
+  cloud_firestore:
   extended_image:
   go_router:
   mono_kit:
   intersperse:
   intl:
+  firebase_core:
   flutter_hooks:
   state_notifier:
   flutter_state_notifier:
