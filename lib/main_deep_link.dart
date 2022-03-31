@@ -85,42 +85,44 @@ final userProviders = StreamProvider.family.autoDispose(
 // これを使うとその手間がなくなることに加えてconst Widgetで区切れるメリットもある。
 final userIdProvider = Provider<String>((ref) => throw UnimplementedError());
 
-// 実際にはProviderで囲むと便利
-final router = GoRouter(
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (_, __) => const HomePage(),
-      routes: [
-        GoRoute(
-          path: 'users',
-          builder: (_, __) => const UsersPage(),
-          routes: [
-            GoRoute(
-              path: ':id',
-              builder: (_, state) => ProviderScope(
-                overrides: [
-                  userIdProvider.overrideWithValue(state.params['id']!)
-                ],
-                child: const UserPage(),
+final routerProvider = Provider(
+  (ref) => GoRouter(
+    routes: [
+      GoRoute(
+        path: '/',
+        builder: (_, __) => const HomePage(),
+        routes: [
+          GoRoute(
+            path: 'users',
+            builder: (_, __) => const UsersPage(),
+            routes: [
+              GoRoute(
+                path: ':id',
+                builder: (_, state) => ProviderScope(
+                  overrides: [
+                    userIdProvider.overrideWithValue(state.params['id']!)
+                  ],
+                  child: const UserPage(),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+            ],
+          ),
+        ],
+      ),
+    ],
+    // 右下にパス表示・指定できる独自ボタン配置
+    navigatorBuilder: (_, __, child) => GoRouterLocationButton(
+      child: child,
     ),
-  ],
-  // 右下にパス表示・指定できる独自ボタン配置
-  navigatorBuilder: (_, __, child) => GoRouterLocationButton(
-    child: child,
   ),
 );
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
     return MaterialApp.router(
       theme: lightTheme(),
       darkTheme: darkTheme(),
