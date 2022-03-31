@@ -206,8 +206,7 @@ class UsersPage extends ConsumerWidget {
           : ListView.builder(
               itemCount: users.length,
               itemBuilder: (context, index) {
-                final user = users[index];
-                final userId = user.id;
+                final userId = users[index].id;
                 return ProviderScope(
                   key: ValueKey(userId),
                   overrides: [
