@@ -4,12 +4,14 @@ version: 1.0.0+1
 environment:
   sdk: '>=2.15.0 <3.0.0'
 dependencies:
+  adaptive_dialog:
   flutter:
     sdk: flutter
   provider:
   freezed_annotation:
   cupertino_icons:
   extended_image:
+  go_router:
   mono_kit:
   intersperse:
   intl:
@@ -18,8 +20,8 @@ dependencies:
   flutter_state_notifier:
   tinycolor:
   nested:
-  riverpod:
-  hooks_riverpod:
+  riverpod: '>=2.0.0-0'
+  hooks_riverpod: '>=2.0.0-0'
   rxdart:
   uuid:
   local_hero:
