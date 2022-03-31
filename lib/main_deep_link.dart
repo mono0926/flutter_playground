@@ -67,8 +67,9 @@ final usersProvider = StreamProvider(
 
 // user個別のStream
 // 個別に監視し続けるのはダメなのでautoDisposeにしてリスナーがゼロになったら解除されるように。
-final userProviders = StreamProvider.family.autoDispose(
-  (ref, String id) {
+final userProviders =
+    StreamProvider.family.autoDispose<Document<User?>, String>(
+  (ref, id) {
     // ユーザー一覧で取得済みだったら個別に監視せずに済むように(READコスト節約)
     final users = ref.watch(usersProvider).value ?? [];
     final user = users.firstWhereOrNull((user) => user.id == id);
@@ -247,40 +248,42 @@ class UserPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userId = ref.watch(userIdProvider);
-    // 一覧からの遷移ならローカルにデータがあるので初回表示から名前が取得できる。
+    // 一覧からの遷移ならローカルにデータがあるので初回表示から `data:`に分岐される。
     // Firestoreを使わない時も同様の挙動になるようなケアが必要。
     // (single source of truth的なデータソースからの取得にするイメージ)
-    // ディープリンク・URLでの遷移だと初回は基本nullになる(Firestoreキャッシュされてたらその直後に一瞬で取得される)
-    final username = ref.watch(
-      userProviders(userId).select((user) => user.value?.entity?.name),
-    );
+    // ディープリンク・URLでの遷移だと初回は基本 `loading:` になる
+    // (Firestoreキャッシュされてたらその直後に一瞬で取得される)
     return Scaffold(
       appBar: AppBar(title: Text(userId)),
-      body: username == null
-          ? centeredCircularProgressIndicator
-          : Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Center(child: Text(username)),
-                  const Gap(8),
-                  ElevatedButton(
-                    onPressed: () {
-                      showModal<void>(
-                        context: context,
-                        builder: (modalContext) => ProviderScope(
-                          // `modalContext`はダイアログ用の別Widgetツリーなので
-                          // それを使うと動かないので注意
-                          parent: ProviderScope.containerOf(context),
-                          child: const _Dialog(),
-                        ),
-                      );
-                    },
-                    child: const Text('Show Dialog'),
-                  )
-                ],
-              ),
-            ),
+      body: ref.watch(userProviders(userId)).when(
+            loading: () => centeredCircularProgressIndicator,
+            error: (e, _) => throw AssertionError(e),
+            data: (user) {
+              return Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Center(child: Text(user.entity?.name ?? 'Not Found!!')),
+                    const Gap(8),
+                    ElevatedButton(
+                      onPressed: () {
+                        showModal<void>(
+                          context: context,
+                          builder: (modalContext) => ProviderScope(
+                            // `modalContext`はダイアログ用の別Widgetツリーなので
+                            // それを使うと動かないので注意
+                            parent: ProviderScope.containerOf(context),
+                            child: const _Dialog(),
+                          ),
+                        );
+                      },
+                      child: const Text('Show Dialog'),
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
     );
   }
 }
