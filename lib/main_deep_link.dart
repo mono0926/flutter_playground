@@ -81,7 +81,7 @@ final userProviders = StreamProvider.family.autoDispose(
 // 特定のuser id指定しながら囲むと、その配下のWidgetツリーで watch/read できるようになる。
 // override漏れがあると実行時エラーになるので注意。
 // これ使わずにバケツリレーでも良いが、
-//これを使うとその手間がなくなることに加えてconst Widgetで区切れるメリットもある。
+// これを使うとその手間がなくなることに加えてconst Widgetで区切れるメリットもある。
 final userIdProvider = Provider<String>((ref) => throw UnimplementedError());
 
 // 実際にはProviderで囲むと便利
