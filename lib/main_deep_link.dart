@@ -69,9 +69,9 @@ final usersProvider = StreamProvider(
 // 個別に監視し続けるのはダメなのでautoDisposeにしてリスナーがゼロになったら解除されるように。
 final userProviders = StreamProvider.family.autoDispose(
   (ref, String id) {
-    final users = ref.watch(usersProvider).value;
-    final user = users?.firstWhereOrNull((user) => user.id == id);
     // ユーザー一覧で取得済みだったら個別に監視せずに済むように(READコスト節約)
+    final users = ref.watch(usersProvider).value ?? [];
+    final user = users.firstWhereOrNull((user) => user.id == id);
     return user != null
         ? Stream.value(user)
         : ref
