@@ -193,9 +193,9 @@ class UsersPage extends ConsumerWidget {
   const UsersPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // FirestoreはSDK内部で誤用・セキュリティルールミス以外では
-    // 基本エラー起こらないので、その分岐表示は不要で、
-    // 未取得時にクルクル出るようにする(空画面でも良い)だけで充分
+    // FirestoreはSDK内部で諸々ケアされているため、
+    // 誤用・セキュリティルールミス以外では基本エラー起こらないので、
+    // その分岐表示は不要で、未取得時にクルクル出るようにする(空画面でも良い)だけで充分
     final users = ref.watch(usersProvider).value;
     return Scaffold(
       appBar: AppBar(
