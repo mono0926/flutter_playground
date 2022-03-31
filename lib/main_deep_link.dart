@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:faker/faker.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -251,7 +252,47 @@ class UserPage extends ConsumerWidget {
       appBar: AppBar(title: Text(userId)),
       body: username == null
           ? centeredCircularProgressIndicator
-          : Center(child: Text(username)),
+          : Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Center(child: Text(username)),
+                  const Gap(8),
+                  ElevatedButton(
+                    onPressed: () {
+                      showModal<void>(
+                        context: context,
+                        builder: (modalContext) => ProviderScope(
+                          // `modalContext`はダイアログ用の別Widgetツリーなので
+                          // それを使うと動かないので注意
+                          parent: ProviderScope.containerOf(context),
+                          child: const _Dialog(),
+                        ),
+                      );
+                    },
+                    child: const Text('Show Dialog'),
+                  )
+                ],
+              ),
+            ),
+    );
+  }
+}
+
+class _Dialog extends ConsumerWidget {
+  const _Dialog({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userId = ref.watch(userIdProvider);
+    return AlertDialog(
+      title: const Text('ID'),
+      content: Text(userId),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(MaterialLocalizations.of(context).closeButtonLabel),
+        ),
+      ],
     );
   }
 }
