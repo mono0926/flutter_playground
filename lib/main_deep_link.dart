@@ -78,7 +78,7 @@ final userProviders = StreamProvider.family.autoDispose(
             .watch(usersRefProvider)
             .doc(id)
             .snapshots()
-            .map((snap) => Document(id, snap.data()!));
+            .map((snap) => Document(id, snap.data()));
   },
 );
 
@@ -231,7 +231,7 @@ class _UserTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userId = ref.watch(userIdProvider);
     final username = ref.watch(
-      userProviders(userId).select((user) => user.value?.entity.name ?? ''),
+      userProviders(userId).select((user) => user.value?.entity!.name ?? ''),
     );
     return ListTile(
       title: Text(username),
@@ -252,7 +252,7 @@ class UserPage extends ConsumerWidget {
     // (single source of truth的なデータソースからの取得にするイメージ)
     // ディープリンク・URLでの遷移だと初回は基本nullになる(Firestoreキャッシュされてたらその直後に一瞬で取得される)
     final username = ref.watch(
-      userProviders(userId).select((user) => user.value?.entity.name),
+      userProviders(userId).select((user) => user.value?.entity?.name),
     );
     return Scaffold(
       appBar: AppBar(title: Text(userId)),
