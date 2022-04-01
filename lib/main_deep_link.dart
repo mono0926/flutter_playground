@@ -255,15 +255,21 @@ class UserPage extends ConsumerWidget {
     // (Firestoreキャッシュされてたらその直後に一瞬で取得される)
     return Scaffold(
       appBar: AppBar(title: Text(userId)),
-      body: ref.watch(userProviders(userId)).when(
+      body: ref
+          .watch(
+            userProviders(userId).select(
+              (v) => v.whenData((v) => v.entity?.name ?? 'Not Found!!'),
+            ),
+          )
+          .when(
             loading: () => centeredCircularProgressIndicator,
             error: (e, _) => throw AssertionError(e),
-            data: (user) {
+            data: (username) {
               return Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Center(child: Text(user.entity?.name ?? 'Not Found!!')),
+                    Center(child: Text(username)),
                     const Gap(8),
                     ElevatedButton(
                       onPressed: () {
