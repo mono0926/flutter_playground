@@ -248,48 +248,48 @@ class UserPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userId = ref.watch(userIdProvider);
-    // 一覧からの遷移ならローカルにデータがあるので初回表示から `data:`に分岐される。
-    // Firestoreを使わない時も同様の挙動になるようなケアが必要。
-    // (single source of truth的なデータソースからの取得にするイメージ)
-    // ディープリンク・URLでの遷移だと初回は基本 `loading:` になる
-    // (Firestoreキャッシュされてたらその直後に一瞬で取得される)
     return Scaffold(
       appBar: AppBar(title: Text(userId)),
-      body: ref
-          .watch(
-            userProviders(userId).select(
-              (v) => v.whenData((v) => v.entity?.name ?? 'Not Found!!'),
-            ),
-          )
-          .when(
-            loading: () => centeredCircularProgressIndicator,
-            error: (e, _) => throw AssertionError(e),
-            data: (username) {
-              return Center(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Center(child: Text(username)),
-                    const Gap(8),
-                    ElevatedButton(
-                      onPressed: () {
-                        showModal<void>(
-                          context: context,
-                          builder: (modalContext) => ProviderScope(
-                            // `modalContext`はダイアログ用の別Widgetツリーなので
-                            // それを使うと動かないので注意
-                            parent: ProviderScope.containerOf(context),
-                            child: const _Dialog(),
-                          ),
-                        );
-                      },
-                      child: const Text('Show Dialog'),
-                    )
-                  ],
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // 一覧からの遷移ならローカルにデータがあるので初回表示から `data:`に分岐される。
+            // Firestoreを使わない時も同様の挙動になるようなケアが必要。
+            // (single source of truth的なデータソースからの取得にするイメージ)
+            // ディープリンク・URLでの遷移だと初回は基本 `loading:` になる
+            // (Firestoreキャッシュされてたらその直後に一瞬で取得される)
+            ref
+                .watch(
+                  userProviders(userId).select(
+                    (v) => v.whenData((v) => v.entity?.name ?? 'Not Found!!'),
+                  ),
+                )
+                .when(
+                  loading: () => centeredCircularProgressIndicator,
+                  error: (e, _) => throw AssertionError(e),
+                  data: (username) {
+                    return Center(child: Text(username));
+                  },
                 ),
-              );
-            },
-          ),
+            const Gap(8),
+            ElevatedButton(
+              onPressed: () {
+                showModal<void>(
+                  context: context,
+                  builder: (modalContext) => ProviderScope(
+                    // `modalContext`はダイアログ用の別Widgetツリーなので
+                    // それを使うと動かないので注意
+                    parent: ProviderScope.containerOf(context),
+                    child: const _Dialog(),
+                  ),
+                );
+              },
+              child: const Text('Show Dialog'),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
