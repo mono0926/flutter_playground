@@ -93,6 +93,7 @@ final userIdProvider = Provider<String>((ref) => throw UnimplementedError());
 
 final routerProvider = Provider(
   (ref) => GoRouter(
+    debugLogDiagnostics: true,
     routes: [
       GoRoute(
         path: '/',
