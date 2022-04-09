@@ -24,7 +24,10 @@ Future<void> main() async {
   GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
   runApp(
     const ProviderScope(
-      child: App(),
+      child: RootRestorationScope(
+        restorationId: 'root',
+        child: App(),
+      ),
     ),
   );
 }
@@ -94,6 +97,7 @@ final userIdProvider = Provider<String>((ref) => throw UnimplementedError());
 final routerProvider = Provider(
   (ref) => GoRouter(
     debugLogDiagnostics: true,
+    restorationScopeId: 'router',
     routes: [
       GoRoute(
         path: '/',
@@ -135,6 +139,7 @@ class App extends ConsumerWidget {
       darkTheme: darkTheme(),
       routerDelegate: router.routerDelegate,
       routeInformationParser: router.routeInformationParser,
+      restorationScopeId: 'app',
     );
   }
 }
