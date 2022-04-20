@@ -12,21 +12,7 @@ part of 'main_state_notifier2.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$Counter1TearOff {
-  const _$Counter1TearOff();
-
-  _Counter1 call({required int count}) {
-    return _Counter1(
-      count: count,
-    );
-  }
-}
-
-/// @nodoc
-const $Counter1 = _$Counter1TearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Counter1 {
@@ -135,29 +121,15 @@ class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
 }
 
 abstract class _Counter1 implements Counter1 {
-  const factory _Counter1({required int count}) = _$_Counter1;
+  const factory _Counter1({required final int count}) = _$_Counter1;
 
   @override
-  int get count;
+  int get count => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$Counter1CopyWith<_Counter1> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$Counter2TearOff {
-  const _$Counter2TearOff();
-
-  _Counter2 call({required int count}) {
-    return _Counter2(
-      count: count,
-    );
-  }
-}
-
-/// @nodoc
-const $Counter2 = _$Counter2TearOff();
 
 /// @nodoc
 mixin _$Counter2 {
@@ -266,10 +238,10 @@ class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
 }
 
 abstract class _Counter2 implements Counter2 {
-  const factory _Counter2({required int count}) = _$_Counter2;
+  const factory _Counter2({required final int count}) = _$_Counter2;
 
   @override
-  int get count;
+  int get count => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$Counter2CopyWith<_Counter2> get copyWith =>

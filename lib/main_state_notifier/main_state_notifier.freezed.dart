@@ -12,21 +12,7 @@ part of 'main_state_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$CounterTearOff {
-  const _$CounterTearOff();
-
-  _Counter call({required int count}) {
-    return _Counter(
-      count: count,
-    );
-  }
-}
-
-/// @nodoc
-const $Counter = _$CounterTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Counter {
@@ -134,10 +120,10 @@ class _$_Counter with DiagnosticableTreeMixin implements _Counter {
 }
 
 abstract class _Counter implements Counter {
-  const factory _Counter({required int count}) = _$_Counter;
+  const factory _Counter({required final int count}) = _$_Counter;
 
   @override
-  int get count;
+  int get count => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CounterCopyWith<_Counter> get copyWith =>

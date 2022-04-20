@@ -12,29 +12,11 @@ part of 'main_deep_link.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 User _$UserFromJson(Map<String, dynamic> json) {
   return _User.fromJson(json);
 }
-
-/// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
-
-  _User call({required String name}) {
-    return _User(
-      name: name,
-    );
-  }
-
-  User fromJson(Map<String, Object?> json) {
-    return User.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
@@ -126,6 +108,7 @@ class _$_User extends _User {
             const DeepCollectionEquality().equals(other.name, name));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
@@ -142,32 +125,17 @@ class _$_User extends _User {
 }
 
 abstract class _User extends User {
-  const factory _User({required String name}) = _$_User;
+  const factory _User({required final String name}) = _$_User;
   const _User._() : super._();
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$DocumentTearOff {
-  const _$DocumentTearOff();
-
-  _Document<E> call<E>(String id, E entity) {
-    return _Document<E>(
-      id,
-      entity,
-    );
-  }
-}
-
-/// @nodoc
-const $Document = _$DocumentTearOff();
 
 /// @nodoc
 mixin _$Document<E> {
@@ -288,13 +256,13 @@ class _$_Document<E> extends _Document<E> {
 }
 
 abstract class _Document<E> extends Document<E> {
-  const factory _Document(String id, E entity) = _$_Document<E>;
+  const factory _Document(final String id, final E entity) = _$_Document<E>;
   const _Document._() : super._();
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  E get entity;
+  E get entity => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$DocumentCopyWith<E, _Document<E>> get copyWith =>
