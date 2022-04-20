@@ -45,7 +45,6 @@ class _HomePageState extends State<HomePage>
                 curve: Curves.ease,
                 child: Align(
                   heightFactor: isVisible ? 1 : 0,
-                  alignment: Alignment.center,
                   child: child,
                 ),
               );

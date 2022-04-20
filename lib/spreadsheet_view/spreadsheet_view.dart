@@ -127,7 +127,6 @@ class _SpreadsheetViewState extends State<SpreadsheetView> {
 
   Widget _buildRowLabels() {
     return ListView.builder(
-      scrollDirection: Axis.vertical,
       controller: _verticalScrollSender,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: widget.rowCount,

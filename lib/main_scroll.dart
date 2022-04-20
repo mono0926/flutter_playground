@@ -115,7 +115,6 @@ class __BodyState extends State<_Body> {
 
   Widget _buildYLabels() {
     return ListView.builder(
-      scrollDirection: Axis.vertical,
       controller: _verticalScrollSender,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: _rowCount,

@@ -30,9 +30,7 @@ class HomePage extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.red[100],
-            border: Border.all(
-              color: Colors.black,
-            ),
+            border: Border.all(),
           ),
           child: Text('Col $i'),
         ),
@@ -40,9 +38,7 @@ class HomePage extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.red[100],
-            border: Border.all(
-              color: Colors.black,
-            ),
+            border: Border.all(),
           ),
           child: Text('Row $i'),
         ),

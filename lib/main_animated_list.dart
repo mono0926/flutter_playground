@@ -48,7 +48,6 @@ class _AnimatedListSampleState extends State<AnimatedListSample> {
     return CardItem(
       animation: animation,
       item: item,
-      selected: false,
     );
   }
 
@@ -166,7 +165,6 @@ class CardItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(2),
       child: SizeTransition(
-        axis: Axis.vertical,
         sizeFactor: animation,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,

@@ -28,7 +28,6 @@ class HomePage extends StatelessWidget {
             child: Image.network('https://mono0926.com/images/love_logo.png'),
           ),
           DraggableScrollableSheet(
-            initialChildSize: 0.5,
             minChildSize: 0.2,
             maxChildSize: 0.9,
             builder: (context, scrollController) {
