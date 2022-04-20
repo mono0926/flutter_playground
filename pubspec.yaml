@@ -10,6 +10,7 @@ dependencies:
     sdk: flutter
   provider:
   freezed_annotation:
+  collection:
   cupertino_icons:
   cloud_firestore:
   extended_image:
