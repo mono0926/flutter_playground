@@ -34,12 +34,13 @@ dependencies:
   url_launcher:
   version:
 dev_dependencies:
+  analyzer:
   flutter_test:
     sdk: flutter
   pedantic_mono:
   build_runner:
   freezed:
-  analyzer:
+  go_router_builder:
   json_serializable:
 dependency_overrides:
   freezed_annotation: '>=2.0.0'
