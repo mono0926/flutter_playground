@@ -99,29 +99,7 @@ final routerProvider = Provider(
   (ref) => GoRouter(
     debugLogDiagnostics: true,
     restorationScopeId: 'router',
-    routes: [
-      GoRoute(
-        path: '/',
-        builder: (_, __) => const HomePage(),
-        routes: [
-          GoRoute(
-            path: 'users',
-            builder: (_, __) => const UsersPage(),
-            routes: [
-              GoRoute(
-                path: ':userId',
-                builder: (_, state) => ProviderScope(
-                  overrides: [
-                    userIdProvider.overrideWithValue(state.params['userId']!)
-                  ],
-                  child: const UserPage(),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    ],
+    routes: $appRoutes,
     // 右下にパス表示・指定できる独自ボタン配置
     navigatorBuilder: (_, __, child) => GoRouterLocationButton(
       child: child,
@@ -145,6 +123,23 @@ class App extends ConsumerWidget {
   }
 }
 
+@TypedGoRoute<HomeRoute>(
+  path: '/',
+  routes: [
+    TypedGoRoute<UsersRoute>(
+      path: 'users',
+      routes: [
+        TypedGoRoute<UserRoute>(path: ':userId'),
+      ],
+    ),
+  ],
+)
+class HomeRoute extends GoRouteData {
+  const HomeRoute();
+  @override
+  Widget build(BuildContext context) => const HomePage();
+}
+
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -157,7 +152,7 @@ class HomePage extends ConsumerWidget {
           ListTile(
             title: const Text('users'),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.go('/users'),
+            onTap: () => const UsersRoute().go(context),
           ),
           const Divider(height: 0),
           const Gap(8),
@@ -200,6 +195,12 @@ class HomePage extends ConsumerWidget {
       ),
     );
   }
+}
+
+class UsersRoute extends GoRouteData {
+  const UsersRoute();
+  @override
+  Widget build(BuildContext context) => const UsersPage();
 }
 
 class UsersPage extends ConsumerWidget {
@@ -245,9 +246,19 @@ class _UserTile extends ConsumerWidget {
       title: Text(username),
       subtitle: Text(userId),
       trailing: const Icon(Icons.chevron_right),
-      onTap: () => context.go('/users/$userId'),
+      onTap: () => UserRoute(userId).go(context),
     );
   }
+}
+
+class UserRoute extends GoRouteData {
+  const UserRoute(this.userId);
+  final String userId;
+  @override
+  Widget build(BuildContext context) => ProviderScope(
+        overrides: [userIdProvider.overrideWithValue(userId)],
+        child: const UserPage(),
+      );
 }
 
 class UserPage extends ConsumerWidget {
