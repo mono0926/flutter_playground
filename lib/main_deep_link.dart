@@ -109,10 +109,10 @@ final routerProvider = Provider(
             builder: (_, __) => const UsersPage(),
             routes: [
               GoRoute(
-                path: ':id',
+                path: ':userId',
                 builder: (_, state) => ProviderScope(
                   overrides: [
-                    userIdProvider.overrideWithValue(state.params['id']!)
+                    userIdProvider.overrideWithValue(state.params['userId']!)
                   ],
                   child: const UserPage(),
                 ),
