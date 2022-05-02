@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:io';
 
 import 'package:desktop_webview_auth/desktop_webview_auth.dart';
@@ -30,14 +32,15 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// fir-fir-mono project
 const _webClientId =
     '411503049546-hh9ncrvidn4pvi07leu61mdvoqib0fkl.apps.googleusercontent.com';
 
 class _HomePageState extends State<HomePage> {
   final _googleSignIn = GoogleSignIn(
     scopes: ['email'],
-    // fir-fir-mono project
     clientId: !kIsWeb && Platform.isIOS
+        // fir-fir-mono project
         ? '411503049546-4gfgu18j1b16t2i11682ida12n90lm3t.apps.googleusercontent.com'
         : _webClientId,
   );
