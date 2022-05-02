@@ -47,11 +47,16 @@ dev_dependencies:
 dependency_overrides:
   freezed_annotation: '>=2.0.0'
   freezed: '>=2.0.0'
-  google_sign_in:
+  google_sign_in_ios:
     git:
       url: https://github.com/mono0926/plugins
       ref: fix-flutterfire
-      path: packages/google_sign_in/google_sign_in
+      path: packages/google_sign_in/google_sign_in_ios
+  # google_sign_in:
+  #   git:
+  #     url: https://github.com/mono0926/plugins
+  #     ref: fix-flutterfire
+  #     path: packages/google_sign_in/google_sign_in
 flutter:
   uses-material-design: true
   assets:
