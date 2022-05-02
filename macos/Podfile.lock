@@ -4,6 +4,8 @@ PODS:
     - Firebase/Firestore (~> 8.15.0)
     - firebase_core
     - FlutterMacOS
+  - desktop_webview_auth (0.0.1):
+    - FlutterMacOS
   - Firebase/CoreOnly (8.15.0):
     - FirebaseCore (= 8.15.0)
   - Firebase/Firestore (8.15.0):
@@ -51,6 +53,7 @@ PODS:
 
 DEPENDENCIES:
   - cloud_firestore (from `Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos`)
+  - desktop_webview_auth (from `Flutter/ephemeral/.symlinks/plugins/desktop_webview_auth/macos`)
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
   - FirebaseFirestore (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `8.15.0`)
   - FlutterMacOS (from `Flutter/ephemeral`)
@@ -70,6 +73,8 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   cloud_firestore:
     :path: Flutter/ephemeral/.symlinks/plugins/cloud_firestore/macos
+  desktop_webview_auth:
+    :path: Flutter/ephemeral/.symlinks/plugins/desktop_webview_auth/macos
   firebase_core:
     :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
   FirebaseFirestore:
@@ -89,6 +94,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   cloud_firestore: 5eb22c418b61d1c0225853bd2f8131118b515573
+  desktop_webview_auth: 9bba53a29c9bc6a4ff621fd0ebfbb18856c4dada
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
   firebase_core: c282e8c1f01967ba4ae24d4872e8a3f6c3163730
   FirebaseCore: 5743c5785c074a794d35f2fff7ecc254a91e08b1
