@@ -108,7 +108,7 @@ final routerProvider = Provider(
 );
 
 class App extends ConsumerWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -141,7 +141,7 @@ class HomeRoute extends GoRouteData {
 }
 
 class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -204,7 +204,7 @@ class UsersRoute extends GoRouteData {
 }
 
 class UsersPage extends ConsumerWidget {
-  const UsersPage({Key? key}) : super(key: key);
+  const UsersPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // FirestoreはSDK内部で諸々ケアされているため、
@@ -235,7 +235,7 @@ class UsersPage extends ConsumerWidget {
 }
 
 class _UserTile extends ConsumerWidget {
-  const _UserTile({Key? key}) : super(key: key);
+  const _UserTile();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userId = ref.watch(userIdProvider);
@@ -262,7 +262,7 @@ class UserRoute extends GoRouteData {
 }
 
 class UserPage extends ConsumerWidget {
-  const UserPage({Key? key}) : super(key: key);
+  const UserPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userId = ref.watch(userIdProvider);
@@ -313,7 +313,7 @@ class UserPage extends ConsumerWidget {
 }
 
 class _Dialog extends ConsumerWidget {
-  const _Dialog({Key? key}) : super(key: key);
+  const _Dialog();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userId = ref.watch(userIdProvider);

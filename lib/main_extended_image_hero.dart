@@ -6,7 +6,7 @@ import 'extended_image_slide_page_route.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     const imageUrl = 'https://avatars2.githubusercontent.com/u/1255062';
@@ -51,9 +51,9 @@ class HomePage extends StatelessWidget {
 
 class ImageDetailPage extends StatelessWidget {
   const ImageDetailPage({
-    Key? key,
+    super.key,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   final String imageUrl;
 

@@ -5,7 +5,7 @@ void main() => runApp(const MyApp());
 const _imagePath = 'assets/images/love.jpg';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _HomePage extends StatelessWidget {
-  const _HomePage({Key? key}) : super(key: key);
+  const _HomePage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +25,8 @@ class _HomePage extends StatelessWidget {
       body: Center(
         child: AspectRatio(
           aspectRatio: 1,
-          child: Container(
-            color: Colors.grey[300],
+          child: ColoredBox(
+            color: Colors.grey[300]!,
             child: const _MyImage_Stack(),
           ),
         ),
@@ -37,7 +37,7 @@ class _HomePage extends StatelessWidget {
 
 // ignore: camel_case_types
 class _MyImage_Stack extends StatelessWidget {
-  const _MyImage_Stack({Key? key}) : super(key: key);
+  const _MyImage_Stack();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -55,7 +55,7 @@ class _MyImage_Stack extends StatelessWidget {
 
 // ignore: unused_element
 class _MyImage extends StatelessWidget {
-  const _MyImage({Key? key}) : super(key: key);
+  const _MyImage();
   @override
   Widget build(BuildContext context) {
     return Image.asset(

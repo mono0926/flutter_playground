@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AnimatedListSample extends StatefulWidget {
-  const AnimatedListSample({Key? key}) : super(key: key);
+  const AnimatedListSample({super.key});
 
   @override
   _AnimatedListSampleState createState() => _AnimatedListSampleState();
@@ -143,13 +143,12 @@ class ListModel<E> {
 
 class CardItem extends StatelessWidget {
   const CardItem({
-    Key? key,
+    super.key,
     required this.animation,
     this.onTap,
     required this.item,
     this.selected = false,
-  })  : assert(item >= 0),
-        super(key: key);
+  })  : assert(item >= 0);
 
   final Animation<double> animation;
   final VoidCallback? onTap;

@@ -15,7 +15,7 @@ typedef ContentBuilder = Widget Function(
 
 class SpreadsheetView extends StatefulWidget {
   const SpreadsheetView({
-    Key? key,
+    super.key,
     required this.corner,
     required this.columnHeaderBuilder,
     required this.rowHeaderBuilder,
@@ -27,7 +27,7 @@ class SpreadsheetView extends StatefulWidget {
     required this.cellHeight,
     required this.columnCount,
     required this.rowCount,
-  }) : super(key: key);
+  });
 
   final Widget corner;
   final HeaderBuilder columnHeaderBuilder;

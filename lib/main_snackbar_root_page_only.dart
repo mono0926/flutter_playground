@@ -8,7 +8,7 @@ final _rootPageScaffoldKey = GlobalKey<ScaffoldState>();
 final _navigatorKey = GlobalKey<NavigatorState>();
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,8 @@ class App extends StatelessWidget {
 
 class _HomePage extends StatefulWidget {
   const _HomePage({
-    Key? key,
     this.index = 0,
-  }) : super(key: key);
+  });
 
   final int index;
 

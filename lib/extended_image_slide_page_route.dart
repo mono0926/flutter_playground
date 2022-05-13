@@ -46,11 +46,10 @@ class TransparentMaterialPageRoute<T> extends PageRoute<T> {
   /// be null.
   TransparentMaterialPageRoute({
     required this.builder,
-    RouteSettings? settings,
+    super.settings,
     this.maintainState = true,
-    bool fullscreenDialog = false,
-  }) : //assert(opaque),
-        super(settings: settings, fullscreenDialog: fullscreenDialog);
+    super.fullscreenDialog,
+  });
 
   /// Builds the primary contents of the route.
   final WidgetBuilder builder;
@@ -133,10 +132,10 @@ class TransparentCupertinoPageRoute<T> extends PageRoute<T> {
   TransparentCupertinoPageRoute({
     required this.builder,
     this.title,
-    RouteSettings? settings,
+    super.settings,
     this.maintainState = true,
-    bool fullscreenDialog = false,
-  }) : super(settings: settings, fullscreenDialog: fullscreenDialog);
+    super.fullscreenDialog,
+  });
 
   /// Builds the primary contents of the route.
   final WidgetBuilder builder;
@@ -393,11 +392,11 @@ class TransparentCupertinoPageRoute<T> extends PageRoute<T> {
 /// detector is associated.
 class _CupertinoBackGestureDetector<T> extends StatefulWidget {
   const _CupertinoBackGestureDetector({
-    Key? key,
+    super.key,
     required this.enabledCallback,
     required this.onStartPopGesture,
     required this.child,
-  }) : super(key: key);
+  });
 
   final Widget child;
 
@@ -640,7 +639,7 @@ class CupertinoPageTransition extends StatelessWidget {
   ///  * `linearTransition` is whether to perform primary transition linearly.
   ///    Used to precisely track back gesture drags.
   CupertinoPageTransition({
-    Key? key,
+    super.key,
     required Animation<double> primaryRouteAnimation,
     required Animation<double> secondaryRouteAnimation,
     required this.child,
@@ -666,16 +665,7 @@ class CupertinoPageTransition extends StatelessWidget {
                     curve: Curves.linearToEaseOut,
                     reverseCurve: Curves.easeInToLinear,
                   ))
-            .drive(_kMiddleLeftTween),
-        //  _primaryShadowAnimation =
-        //      (linearTransition
-        //        ? primaryRouteAnimation
-        //        : CurvedAnimation(
-        //            parent: primaryRouteAnimation,
-        //            curve: Curves.linearToEaseOut,
-        //          )
-        //      ).drive(_kGradientShadowTween),
-        super(key: key);
+            .drive(_kMiddleLeftTween);
 
   // When this page is coming in to cover another page.
   final Animation<Offset> _primaryPositionAnimation;

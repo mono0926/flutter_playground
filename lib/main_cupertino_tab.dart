@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
@@ -70,12 +70,10 @@ class HomePage extends StatelessWidget {
 
 class AppBarWrapper extends PreferredSize with ObstructingPreferredSizeWidget {
   AppBarWrapper({
-    Key? key,
-    required Widget child,
+    super.key,
+    required super.child,
   }) : super(
-          key: key,
           preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: child,
         );
 
   @override

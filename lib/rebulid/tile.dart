@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'data.dart';
 
 class Tile extends StatelessWidget {
-  const Tile({Key? key}) : super(key: key);
+  const Tile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,5 +26,5 @@ class Tile extends StatelessWidget {
 }
 
 class TileNotifier extends ValueNotifier<Data> {
-  TileNotifier(Data value) : super(value);
+  TileNotifier(super.value);
 }

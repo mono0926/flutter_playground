@@ -13,7 +13,7 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _HomePageForMac extends StatefulWidget {
-  const _HomePageForMac({Key? key}) : super(key: key);
+  const _HomePageForMac();
   @override
   __HomePageForMacState createState() => __HomePageForMacState();
 }

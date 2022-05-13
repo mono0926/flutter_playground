@@ -26,7 +26,7 @@ final router = GoRouter(
 );
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +40,9 @@ class App extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   const HomePage({
-    Key? key,
+    super.key,
     required this.tab,
-  }) : super(key: key);
+  });
 
   final HomeTab tab;
 
@@ -87,10 +87,10 @@ extension on HomeTab {
 
 class GoRouterLocationButton extends StatelessWidget {
   const GoRouterLocationButton({
-    Key? key,
+    super.key,
     required this.child,
     this.visible = true,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final bool visible;

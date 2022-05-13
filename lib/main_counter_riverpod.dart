@@ -10,7 +10,7 @@ void main() => runApp(
 final navigatorKey = Provider((ref) => GlobalKey<NavigatorState>());
 
 class App extends ConsumerWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -114,7 +114,7 @@ final countMessage = Provider(
 );
 
 class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(

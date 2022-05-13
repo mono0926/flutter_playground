@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DialogButtons extends StatelessWidget {
-  const DialogButtons({Key? key}) : super(key: key);
+  const DialogButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +101,7 @@ class DialogButtons extends StatelessWidget {
 }
 
 class IndividuallySizedButtons extends StatefulWidget {
-  const IndividuallySizedButtons({Key? key}) : super(key: key);
+  const IndividuallySizedButtons({super.key});
 
   @override
   _IndividuallySizedButtonsState createState() =>
@@ -170,7 +170,7 @@ class _IndividuallySizedButtonsState extends State<IndividuallySizedButtons> {
 }
 
 class ShapeButtons extends StatefulWidget {
-  const ShapeButtons({Key? key}) : super(key: key);
+  const ShapeButtons({super.key});
 
   @override
   _ShapeButtonsState createState() => _ShapeButtonsState();
@@ -220,7 +220,7 @@ class _ShapeButtonsState extends State<ShapeButtons> {
 }
 
 class TextStyleButtons extends StatefulWidget {
-  const TextStyleButtons({Key? key}) : super(key: key);
+  const TextStyleButtons({super.key});
 
   @override
   _TextStyleButtonsState createState() => _TextStyleButtonsState();
@@ -263,7 +263,7 @@ class _TextStyleButtonsState extends State<TextStyleButtons> {
 }
 
 class TextColorButtons extends StatefulWidget {
-  const TextColorButtons({Key? key}) : super(key: key);
+  const TextColorButtons({super.key});
 
   @override
   _TextColorButtonsState createState() => _TextColorButtonsState();
@@ -325,8 +325,7 @@ class _TextColorButtonsState extends State<TextColorButtons> {
 }
 
 class DefaultButtons extends StatelessWidget {
-  const DefaultButtons({Key? key, this.onPressed, this.iconSize = 18})
-      : super(key: key);
+  const DefaultButtons({super.key, this.onPressed, this.iconSize = 18});
 
   final VoidCallback? onPressed;
   final double iconSize;
@@ -454,7 +453,7 @@ final List<ButtonDemo> allButtonDemos = <ButtonDemo>[
 ];
 
 class Home extends StatefulWidget {
-  const Home({Key? key, this.toggleThemeMode}) : super(key: key);
+  const Home({super.key, this.toggleThemeMode});
 
   final VoidCallback? toggleThemeMode;
 
@@ -573,7 +572,7 @@ class _HomeState extends State<Home> {
 }
 
 class App extends StatefulWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   _AppState createState() => _AppState();

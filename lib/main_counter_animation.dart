@@ -5,7 +5,7 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage({super.key, required this.title});
 
   final String title;
 
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             TweenAnimationBuilder<double>(
               duration: const Duration(milliseconds: 200),
-              tween: Tween(begin: null, end: _counter / 10 % 1),
+              tween: Tween(end: _counter / 10 % 1),
               builder: (context, progress, child) =>
                   CircularProgressIndicator.adaptive(
                 value: progress,

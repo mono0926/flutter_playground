@@ -6,12 +6,12 @@ import 'extended_image_slide_page_route.dart';
 void main() => runApp(const App());
 
 final _urls = List.generate(
-    50,
-    (index) =>
-        'https://storage.googleapis.com/debug-mono/${index % 5 + 1}.jpg',);
+  50,
+  (index) => 'https://storage.googleapis.com/debug-mono/${index % 5 + 1}.jpg',
+);
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
@@ -21,7 +21,7 @@ class App extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,9 +64,8 @@ class HomePage extends StatelessWidget {
 
 class _ImagesPage extends StatefulWidget {
   const _ImagesPage({
-    Key? key,
     required this.initialIndex,
-  }) : super(key: key);
+  });
 
   final int initialIndex;
 

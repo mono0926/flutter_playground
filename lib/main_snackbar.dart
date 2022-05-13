@@ -9,7 +9,7 @@ void main() => runApp(
     );
 
 class App extends ConsumerWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,9 +24,8 @@ class App extends ConsumerWidget {
 
 class _HomePage extends ConsumerWidget {
   const _HomePage({
-    Key? key,
     this.index = 0,
-  }) : super(key: key);
+  });
 
   final int index;
 

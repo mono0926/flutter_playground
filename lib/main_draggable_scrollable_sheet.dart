@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +31,8 @@ class HomePage extends StatelessWidget {
             minChildSize: 0.2,
             maxChildSize: 0.9,
             builder: (context, scrollController) {
-              return Container(
-                color: Colors.blue[100],
+              return ColoredBox(
+                color: Colors.blue[100]!,
                 child: ListView.builder(
                   controller: scrollController,
                   itemCount: 25,

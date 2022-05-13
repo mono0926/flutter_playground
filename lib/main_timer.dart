@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +17,7 @@ class App extends StatelessWidget {
 }
 
 class _HomePage extends StatelessWidget {
-  const _HomePage({Key? key}) : super(key: key);
+  const _HomePage();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +47,9 @@ class _HomePage extends StatelessWidget {
 
 class PeriodicTimerTile extends StatefulWidget {
   const PeriodicTimerTile({
-    Key? key,
+    super.key,
     this.mutedFuture = false,
-  }) : super(key: key);
+  });
 
   final bool mutedFuture;
 
@@ -68,8 +68,10 @@ class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
       const Duration(milliseconds: 16),
       (timer) {
         if (!widget.mutedFuture || TickerMode.of(context)) {
-          print('PeriodicTimerTile (mute: ${widget.mutedFuture}) '
-              'value will be changed',);
+          print(
+            'PeriodicTimerTile (mute: ${widget.mutedFuture}) '
+            'value will be changed',
+          );
           setState(() {});
         }
       },
@@ -94,7 +96,7 @@ class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
 }
 
 class AnimationTimerTile extends StatefulWidget {
-  const AnimationTimerTile({Key? key}) : super(key: key);
+  const AnimationTimerTile({super.key});
 
   @override
   _AnimationTimerTileState createState() => _AnimationTimerTileState();
@@ -132,7 +134,7 @@ class _AnimationTimerTileState extends State<AnimationTimerTile>
 }
 
 class SecondPage extends StatelessWidget {
-  const SecondPage({Key? key}) : super(key: key);
+  const SecondPage({super.key});
 
   static const routeName = '/second';
 
