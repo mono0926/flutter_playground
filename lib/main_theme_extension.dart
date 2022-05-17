@@ -11,11 +11,14 @@ class AppColors extends ThemeExtension<AppColors> {
     required this.danger,
   });
 
-  final Color? brandColor;
-  final Color? danger;
+  final Color brandColor;
+  final Color danger;
 
   @override
-  AppColors copyWith({Color? brandColor, Color? danger}) {
+  AppColors copyWith({
+    Color? brandColor,
+    Color? danger,
+  }) {
     return AppColors(
       brandColor: brandColor ?? this.brandColor,
       danger: danger ?? this.danger,
@@ -28,14 +31,13 @@ class AppColors extends ThemeExtension<AppColors> {
       return this;
     }
     return AppColors(
-      brandColor: Color.lerp(brandColor, other.brandColor, t),
-      danger: Color.lerp(danger, other.danger, t),
+      brandColor: Color.lerp(brandColor, other.brandColor, t)!,
+      danger: Color.lerp(danger, other.danger, t)!,
     );
   }
 
-  // Optional
   @override
-  String toString() => 'MyColors(brandColor: $brandColor, danger: $danger)';
+  String toString() => 'AppColors(brandColor: $brandColor, danger: $danger)';
 }
 
 void main() {
