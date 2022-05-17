@@ -23,7 +23,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 //We add the [SingleTickerProviderStateMixin] because it allows us to create an

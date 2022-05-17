@@ -42,7 +42,7 @@ class SpreadsheetView extends StatefulWidget {
   final int rowCount;
 
   @override
-  _SpreadsheetViewState createState() => _SpreadsheetViewState();
+  State<SpreadsheetView> createState() => _SpreadsheetViewState();
 }
 
 class _SpreadsheetViewState extends State<SpreadsheetView> {

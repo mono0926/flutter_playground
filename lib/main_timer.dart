@@ -54,7 +54,7 @@ class PeriodicTimerTile extends StatefulWidget {
   final bool mutedFuture;
 
   @override
-  _PeriodicTimerTileState createState() => _PeriodicTimerTileState();
+  State<PeriodicTimerTile> createState() => _PeriodicTimerTileState();
 }
 
 class _PeriodicTimerTileState extends State<PeriodicTimerTile> {
@@ -99,7 +99,7 @@ class AnimationTimerTile extends StatefulWidget {
   const AnimationTimerTile({super.key});
 
   @override
-  _AnimationTimerTileState createState() => _AnimationTimerTileState();
+  State<AnimationTimerTile> createState() => _AnimationTimerTileState();
 }
 
 class _AnimationTimerTileState extends State<AnimationTimerTile>

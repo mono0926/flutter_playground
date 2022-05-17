@@ -44,7 +44,7 @@ class DialogButtons extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               showDemoDialog(
-                'Stadium shaped action buttons, default ouline.',
+                'Stadium shaped action buttons, default outline.',
                 OutlinedButton.styleFrom(shape: const StadiumBorder()),
               );
             },
@@ -104,7 +104,7 @@ class IndividuallySizedButtons extends StatefulWidget {
   const IndividuallySizedButtons({super.key});
 
   @override
-  _IndividuallySizedButtonsState createState() =>
+  State<IndividuallySizedButtons> createState() =>
       _IndividuallySizedButtonsState();
 }
 
@@ -173,7 +173,7 @@ class ShapeButtons extends StatefulWidget {
   const ShapeButtons({super.key});
 
   @override
-  _ShapeButtonsState createState() => _ShapeButtonsState();
+  State<ShapeButtons> createState() => _ShapeButtonsState();
 }
 
 class _ShapeButtonsState extends State<ShapeButtons> {
@@ -223,7 +223,7 @@ class TextStyleButtons extends StatefulWidget {
   const TextStyleButtons({super.key});
 
   @override
-  _TextStyleButtonsState createState() => _TextStyleButtonsState();
+  State<TextStyleButtons> createState() => _TextStyleButtonsState();
 }
 
 class _TextStyleButtonsState extends State<TextStyleButtons> {
@@ -266,7 +266,7 @@ class TextColorButtons extends StatefulWidget {
   const TextColorButtons({super.key});
 
   @override
-  _TextColorButtonsState createState() => _TextColorButtonsState();
+  State<TextColorButtons> createState() => _TextColorButtonsState();
 }
 
 class _TextColorButtonsState extends State<TextColorButtons> {
@@ -458,7 +458,7 @@ class Home extends StatefulWidget {
   final VoidCallback? toggleThemeMode;
 
   @override
-  _HomeState createState() => _HomeState();
+  State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
@@ -575,7 +575,7 @@ class App extends StatefulWidget {
   const App({super.key});
 
   @override
-  _AppState createState() => _AppState();
+  State<App> createState() => _AppState();
 }
 
 class _AppState extends State<App> {

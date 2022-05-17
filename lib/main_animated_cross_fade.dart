@@ -17,7 +17,7 @@ class _HomePage extends StatefulWidget {
   const _HomePage();
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<_HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<_HomePage> {

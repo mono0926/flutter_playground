@@ -4,7 +4,7 @@ class AnimatedListSample extends StatefulWidget {
   const AnimatedListSample({super.key});
 
   @override
-  _AnimatedListSampleState createState() => _AnimatedListSampleState();
+  State<AnimatedListSample> createState() => _AnimatedListSampleState();
 }
 
 class _AnimatedListSampleState extends State<AnimatedListSample> {
@@ -148,7 +148,7 @@ class CardItem extends StatelessWidget {
     this.onTap,
     required this.item,
     this.selected = false,
-  })  : assert(item >= 0);
+  }) : assert(item >= 0);
 
   final Animation<double> animation;
   final VoidCallback? onTap;
