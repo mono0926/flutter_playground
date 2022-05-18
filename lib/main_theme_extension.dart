@@ -54,20 +54,20 @@ class App extends ConsumerWidget {
     return MaterialApp(
       title: 'Flutter Code Sample',
       theme: lightTheme().copyWith(
-        extensions: [
+        extensions: {
           const AppColors(
             brandColor: Color(0xFF1E88E5),
             danger: Color(0xFFE53935),
           ),
-        ],
+        },
       ),
       darkTheme: darkTheme().copyWith(
-        extensions: [
+        extensions: {
           const AppColors(
             brandColor: Color(0xFF90CAF9),
             danger: Color(0xFFEF9A9A),
           ),
-        ],
+        },
       ),
       themeMode: ref.watch(themeModeProvider),
       home: const HomePage(),
