@@ -76,10 +76,8 @@ class _ImagesPage extends StatefulWidget {
 class __ImagesPageState extends State<_ImagesPage> {
   late final _pageController = ExtendedPageController(
     initialPage: widget.initialIndex,
-    viewportFraction: _viewportFraction,
   );
   late final int _index;
-  static const _viewportFraction = 1.05;
 
   @override
   void initState() {
@@ -113,32 +111,28 @@ class __ImagesPageState extends State<_ImagesPage> {
               onPageChanged: (index) => setState(() => _index = index),
               itemBuilder: (context, index) {
                 final url = _urls[index];
-                return FractionallySizedBox(
-                  widthFactor: 1 / _viewportFraction,
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: ExtendedImage.network(
-                      url,
-                      fit: BoxFit.contain,
-                      enableSlideOutPage: true,
-                      mode: ExtendedImageMode.gesture,
-                      heroBuilderForSlidingPage: (image) => Hero(
-                        tag: index,
-                        flightShuttleBuilder: (
-                          flightContext,
-                          animation,
-                          flightDirection,
-                          fromHeroContext,
-                          toHeroContext,
-                        ) {
-                          final hero =
-                              (flightDirection == HeroFlightDirection.pop
-                                  ? fromHeroContext.widget
-                                  : toHeroContext.widget) as Hero;
-                          return hero.child;
-                        },
-                        child: image,
-                      ),
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pop(),
+                  child: ExtendedImage.network(
+                    url,
+                    fit: BoxFit.contain,
+                    enableSlideOutPage: true,
+                    mode: ExtendedImageMode.gesture,
+                    heroBuilderForSlidingPage: (image) => Hero(
+                      tag: index,
+                      flightShuttleBuilder: (
+                        flightContext,
+                        animation,
+                        flightDirection,
+                        fromHeroContext,
+                        toHeroContext,
+                      ) {
+                        final hero = (flightDirection == HeroFlightDirection.pop
+                            ? fromHeroContext.widget
+                            : toHeroContext.widget) as Hero;
+                        return hero.child;
+                      },
+                      child: image,
                     ),
                   ),
                 );
