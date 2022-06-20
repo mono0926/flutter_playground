@@ -9,10 +9,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:mono_kit/extensions/theme_data.dart';
+import 'package:mono_kit/mono_kit.dart';
 
 import 'firebase_options.dart';
-import 'main_router_location.dart';
 
 part 'main_deep_link.freezed.dart';
 part 'main_deep_link.g.dart';
@@ -101,9 +100,7 @@ final routerProvider = Provider(
     restorationScopeId: 'router',
     routes: $appRoutes,
     // 右下にパス表示・指定できる独自ボタン配置
-    navigatorBuilder: (_, __, child) => GoRouterLocationButton(
-      child: child,
-    ),
+    navigatorBuilder: goRouteLocationButtonNavigationBuilder,
   ),
 );
 
@@ -146,7 +143,9 @@ class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('GoRouter・Riverpod Example'),
+      ),
       body: ListView(
         children: [
           ListTile(
@@ -183,7 +182,7 @@ class HomePage extends ConsumerWidget {
           Center(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).colorScheme.error,
+                onPrimary: Theme.of(context).colorScheme.error,
               ),
               onPressed: () {
                 deleteAllDocuments(query: ref.read(usersRefProvider));
