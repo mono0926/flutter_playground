@@ -138,7 +138,7 @@ class HomePage extends ConsumerWidget {
           // https://github.com/flutter/flutter/blob/676cefaaff197f27424942307668886253e1ec35/packages/flutter/lib/src/material/app.dart#L768-L786
           _LinkTile(
             value: '${ScrollConfiguration.of(context)}',
-            label: 'ScrollConfiguration',
+            label: 'crollConfiguration.of(context)',
             url:
                 'https://docs.flutter.dev/release/breaking-changes/default-desktop-scrollbars',
           ),
