@@ -141,25 +141,20 @@ class _PlatformDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: DropdownButton<TargetPlatform?>(
-          value: platform,
-          items: [
-            null,
-            ...TargetPlatform.values,
-          ]
-              .map(
-                (platform) => DropdownMenuItem(
-                  value: platform,
-                  child: Text(platform?.name ?? 'null'),
-                ),
-              )
-              .toList(),
-          onChanged: onChanged,
-        ),
-      ),
+    return DropdownButton<TargetPlatform?>(
+      value: platform,
+      items: [
+        null,
+        ...TargetPlatform.values,
+      ]
+          .map(
+            (platform) => DropdownMenuItem(
+              value: platform,
+              child: Text(platform?.name ?? 'null'),
+            ),
+          )
+          .toList(),
+      onChanged: onChanged,
     );
   }
 }
