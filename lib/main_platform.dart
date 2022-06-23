@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:mono_kit/mono_kit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   setUrlStrategy(PathUrlStrategy());
   runApp(const ProviderScope(child: App()));
 }
+
+const title = 'Platform example';
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -23,6 +26,7 @@ class App extends ConsumerWidget {
     final selectedPlatform = ref.watch(platformProvider);
     print('selectedPlatform: $selectedPlatform');
     return MaterialApp(
+      title: title,
       theme: ThemeData(
         colorSchemeSeed: Colors.green,
         useMaterial3: true,
@@ -38,14 +42,14 @@ class HomePage extends ConsumerWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Platform example'),
+        title: const Text(title),
         centerTitle: false,
       ),
       body: ListView(
         // TODO(mono): それぞれの要素タップでドキュメントへ飛ぶようにしたい
-        // TODO(mono): density・materialTapTargetSizeも表示
         children: [
           _PlatformDropdownButtonTile(
             label: 'Theme(platform:) =',
@@ -68,7 +72,7 @@ class HomePage extends ConsumerWidget {
             subtitle: const Text('defaultTargetPlatform'),
           ),
           ListTile(
-            title: Text(Theme.of(context).platform.name),
+            title: Text(theme.platform.name),
             subtitle: const Text('Theme.of(context).platform'),
           ),
           const ListTile(
@@ -98,6 +102,35 @@ class HomePage extends ConsumerWidget {
           ListTile(
             title: Text('${!kIsWeb && Platform.isFuchsia}'),
             subtitle: const Text('Platform.isFuchsia'),
+          ),
+          ListTile(
+            title: Text('${theme.visualDensity}'),
+            subtitle: const Text('Theme.of(context).visualDensity'),
+          ),
+          ListTile(
+            title: Text(theme.materialTapTargetSize.name),
+            subtitle: const Text('Theme.of(context).materialTapTargetSize'),
+          ),
+          // https://docs.flutter.dev/release/breaking-changes/default-desktop-scrollbars
+          // https://github.com/flutter/flutter/blob/676cefaaff197f27424942307668886253e1ec35/packages/flutter/lib/src/material/app.dart#L768-L786
+          ListTile(
+            title: Text('${ScrollConfiguration.of(context)}'),
+            subtitle: const Text('Theme.of(context).materialTapTargetSize'),
+          ),
+          const Divider(),
+          AboutListTile(
+            icon: const Icon(Icons.info),
+            aboutBoxChildren: [
+              TextButton.icon(
+                label: const Text('Source Code'),
+                onPressed: () => launchUrl(
+                  Uri.parse(
+                    'https://github.com/mono0926/flutter_playground/blob/main/lib/main_platform.dart',
+                  ),
+                ),
+                icon: const Icon(Icons.open_in_browser),
+              ),
+            ],
           ),
         ],
       ),
