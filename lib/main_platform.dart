@@ -49,7 +49,6 @@ class HomePage extends ConsumerWidget {
         centerTitle: false,
       ),
       body: ListView(
-        // TODO(mono): それぞれの要素タップでドキュメントへ飛ぶようにしたい
         children: [
           _PlatformDropdownButtonTile(
             label: 'Theme(platform:) =',
@@ -67,55 +66,77 @@ class HomePage extends ConsumerWidget {
                 .update((_) => platform),
           ),
           const Divider(),
-          ListTile(
-            title: Text(defaultTargetPlatform.name),
-            subtitle: const Text('defaultTargetPlatform'),
+          _LinkTile(
+            value: defaultTargetPlatform.name,
+            label: 'defaultTargetPlatform',
+            url:
+                'https://api.flutter.dev/flutter/foundation/defaultTargetPlatform.html',
           ),
-          ListTile(
-            title: Text(theme.platform.name),
-            subtitle: const Text('Theme.of(context).platform'),
+          _LinkTile(
+            value: theme.platform.name,
+            label: 'Theme.of(context).platform',
+            url:
+                'https://api.flutter.dev/flutter/material/ThemeData/platform.html',
           ),
-          const ListTile(
-            title: Text('$kIsWeb'),
-            subtitle: Text('kIsWeb'),
+          const _LinkTile(
+            value: '$kIsWeb',
+            label: 'kIsWeb',
+            url:
+                'https://api.flutter.dev/flutter/foundation/kIsWeb-constant.html',
           ),
-          ListTile(
-            title: Text('${!kIsWeb && Platform.isAndroid}'),
-            subtitle: const Text('Platform.isAndroid'),
+          _LinkTile(
+            value: '${!kIsWeb && Platform.isAndroid}',
+            label: 'Platform.isAndroid',
+            url:
+                'https://api.flutter.dev/flutter/dart-io/Platform/isAndroid.html',
           ),
-          ListTile(
-            title: Text('${!kIsWeb && Platform.isIOS}'),
-            subtitle: const Text('Platform.isIOS'),
+          _LinkTile(
+            value: '${!kIsWeb && Platform.isIOS}',
+            label: 'Platform.isIOS',
+            url: 'https://api.flutter.dev/flutter/dart-io/Platform/isIOS.html',
           ),
-          ListTile(
-            title: Text('${!kIsWeb && Platform.isMacOS}'),
-            subtitle: const Text('Platform.isMacOS'),
+          _LinkTile(
+            value: '${!kIsWeb && Platform.isMacOS}',
+            label: 'Platform.isMacOS',
+            url:
+                'https://api.flutter.dev/flutter/dart-io/Platform/isMacOS.html',
           ),
-          ListTile(
-            title: Text('${!kIsWeb && Platform.isWindows}'),
-            subtitle: const Text('Platform.isWindows'),
+          _LinkTile(
+            value: '${!kIsWeb && Platform.isWindows}',
+            label: 'Platform.isWindows',
+            url:
+                'https://api.flutter.dev/flutter/dart-io/Platform/isWindows.html',
           ),
-          ListTile(
-            title: Text('${!kIsWeb && Platform.isLinux}'),
-            subtitle: const Text('Platform.isLinux'),
+          _LinkTile(
+            value: '${!kIsWeb && Platform.isLinux}',
+            label: 'Platform.isLinux',
+            url:
+                'https://api.flutter.dev/flutter/dart-io/Platform/isLinux.html',
           ),
-          ListTile(
-            title: Text('${!kIsWeb && Platform.isFuchsia}'),
-            subtitle: const Text('Platform.isFuchsia'),
+          _LinkTile(
+            value: '${!kIsWeb && Platform.isFuchsia}',
+            label: 'Platform.isFuchsia',
+            url:
+                'https://api.flutter.dev/flutter/dart-io/Platform/isFuchsia.html',
           ),
-          ListTile(
-            title: Text('${theme.visualDensity}'),
-            subtitle: const Text('Theme.of(context).visualDensity'),
+          _LinkTile(
+            value: '${theme.visualDensity}',
+            label: 'Theme.of(context).visualDensity',
+            url:
+                'https://api.flutter.dev/flutter/material/VisualDensity-class.html',
           ),
-          ListTile(
-            title: Text(theme.materialTapTargetSize.name),
-            subtitle: const Text('Theme.of(context).materialTapTargetSize'),
+          _LinkTile(
+            value: theme.materialTapTargetSize.name,
+            label: 'Theme.of(context).materialTapTargetSize',
+            url:
+                'https://api.flutter.dev/flutter/material/MaterialTapTargetSize.html',
           ),
-          // https://docs.flutter.dev/release/breaking-changes/default-desktop-scrollbars
           // https://github.com/flutter/flutter/blob/676cefaaff197f27424942307668886253e1ec35/packages/flutter/lib/src/material/app.dart#L768-L786
-          ListTile(
-            title: Text('${ScrollConfiguration.of(context)}'),
-            subtitle: const Text('Theme.of(context).materialTapTargetSize'),
+          _LinkTile(
+            value: '${ScrollConfiguration.of(context)}',
+            label: 'ScrollConfiguration',
+            url:
+                'https://docs.flutter.dev/release/breaking-changes/default-desktop-scrollbars',
           ),
           const Divider(),
           AboutListTile(
@@ -123,10 +144,8 @@ class HomePage extends ConsumerWidget {
             aboutBoxChildren: [
               TextButton.icon(
                 label: const Text('Source Code'),
-                onPressed: () => launchUrl(
-                  Uri.parse(
-                    'https://github.com/mono0926/flutter_playground/blob/main/lib/main_platform.dart',
-                  ),
+                onPressed: () => _launch(
+                  'https://github.com/mono0926/flutter_playground/blob/main/lib/main_platform.dart',
                 ),
                 icon: const Icon(Icons.open_in_browser),
               ),
@@ -180,3 +199,27 @@ class _PlatformDropdownButtonTile extends StatelessWidget {
     );
   }
 }
+
+class _LinkTile extends StatelessWidget {
+  const _LinkTile({
+    required this.value,
+    required this.label,
+    required this.url,
+  });
+
+  final String value;
+  final String label;
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(value),
+      subtitle: Text(label),
+      onTap: () => _launch(url),
+      trailing: const Icon(Icons.open_in_browser),
+    );
+  }
+}
+
+void _launch(String url) => launchUrl(Uri.parse(url));
