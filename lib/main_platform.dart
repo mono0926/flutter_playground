@@ -47,40 +47,20 @@ class HomePage extends ConsumerWidget {
         // TODO(mono): それぞれの要素タップでドキュメントへ飛ぶようにしたい
         // TODO(mono): density・materialTapTargetSizeも表示
         children: [
-          TilePadding(
-            child: Table(
-              columnWidths: const {
-                1: IntrinsicColumnWidth(),
-              },
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              children: [
-                TableRow(
-                  children: [
-                    const Text('Theme(platform:) ='),
-                    _PlatformDropdownButton(
-                      platform: ref.watch(platformProvider),
-                      onChanged: (platform) => ref
-                          .read(platformProvider.notifier)
-                          .update((_) => platform),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    const Text('debugDefaultTargetPlatformOverride ='),
-                    _PlatformDropdownButton(
-                      platform:
-                          ref.watch(debugDefaultTargetPlatformOverrideProvider),
-                      onChanged: (platform) => ref
-                          .read(
-                            debugDefaultTargetPlatformOverrideProvider.notifier,
-                          )
-                          .update((_) => platform),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          _PlatformDropdownButtonTile(
+            label: 'Theme(platform:) =',
+            platform: ref.watch(platformProvider),
+            onChanged: (platform) =>
+                ref.read(platformProvider.notifier).update((_) => platform),
+          ),
+          _PlatformDropdownButtonTile(
+            label: 'debugDefaultTargetPlatformOverride =',
+            platform: ref.watch(debugDefaultTargetPlatformOverrideProvider),
+            onChanged: (platform) => ref
+                .read(
+                  debugDefaultTargetPlatformOverrideProvider.notifier,
+                )
+                .update((_) => platform),
           ),
           const Divider(),
           ListTile(
@@ -130,31 +110,40 @@ final platformProvider = StateProvider<TargetPlatform?>((ref) => null);
 final debugDefaultTargetPlatformOverrideProvider =
     StateProvider<TargetPlatform?>((ref) => null);
 
-class _PlatformDropdownButton extends StatelessWidget {
-  const _PlatformDropdownButton({
+class _PlatformDropdownButtonTile extends StatelessWidget {
+  const _PlatformDropdownButtonTile({
+    required this.label,
     required this.platform,
     required this.onChanged,
   });
 
+  final String label;
   final TargetPlatform? platform;
   final ValueChanged<TargetPlatform?> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<TargetPlatform?>(
-      value: platform,
-      items: [
-        null,
-        ...TargetPlatform.values,
-      ]
-          .map(
-            (platform) => DropdownMenuItem(
-              value: platform,
-              child: Text(platform?.name ?? 'null'),
-            ),
-          )
-          .toList(),
-      onChanged: onChanged,
+    return TilePadding(
+      child: Row(
+        children: [
+          Expanded(child: Text(label)),
+          DropdownButton<TargetPlatform?>(
+            value: platform,
+            items: [
+              null,
+              ...TargetPlatform.values,
+            ]
+                .map(
+                  (platform) => DropdownMenuItem(
+                    value: platform,
+                    child: Text(platform?.name ?? 'null'),
+                  ),
+                )
+                .toList(),
+            onChanged: onChanged,
+          ),
+        ],
+      ),
     );
   }
 }
