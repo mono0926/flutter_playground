@@ -25,6 +25,8 @@ dependencies:
   firebase_core:
   flutter_hooks:
   flutter_riverpod:
+  flutter_web_plugins:
+    sdk: flutter
   state_notifier:
   flutter_state_notifier:
   tinycolor:

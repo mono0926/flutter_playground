@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "mono-firebase"
+  },
+  "targets": {
+    "mono-firebase": {
+      "hosting": {
+        "platform": [
+          "flutter-platform"
+        ]
+      }
+    }
+  }
+}
