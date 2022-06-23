@@ -45,6 +45,7 @@ class HomePage extends ConsumerWidget {
       ),
       body: ListView(
         // TODO(mono): それぞれの要素タップでドキュメントへ飛ぶようにしたい
+        // TODO(mono): density・materialTapTargetSizeも表示
         children: [
           TilePadding(
             child: Table(
