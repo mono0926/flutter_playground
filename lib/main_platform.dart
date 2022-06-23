@@ -16,10 +16,9 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen<TargetPlatform?>(
-      debugDefaultTargetPlatformOverrideProvider,
-      (_, platform) => debugDefaultTargetPlatformOverride = platform,
-    );
+    // 値が変わったらリビルド走らせたい(Theme再生成したい)ので、watchしつつセット
+    debugDefaultTargetPlatformOverride =
+        ref.watch(debugDefaultTargetPlatformOverrideProvider);
     // デフォルトnull
     final selectedPlatform = ref.watch(platformProvider);
     print('selectedPlatform: $selectedPlatform');
