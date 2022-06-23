@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
-import 'package:mono_kit/mono_kit.dart';
+import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -55,6 +55,8 @@ class HomePage extends ConsumerWidget {
             platform: ref.watch(platformProvider),
             onChanged: (platform) =>
                 ref.read(platformProvider.notifier).update((_) => platform),
+            url:
+                'https://api.flutter.dev/flutter/material/ThemeData/platform.html',
           ),
           _PlatformDropdownButtonTile(
             label: 'debugDefaultTargetPlatformOverride =',
@@ -64,6 +66,8 @@ class HomePage extends ConsumerWidget {
                   debugDefaultTargetPlatformOverrideProvider.notifier,
                 )
                 .update((_) => platform),
+            url:
+                'https://api.flutter.dev/flutter/foundation/debugDefaultTargetPlatformOverride.html',
           ),
           const Divider(),
           _LinkTile(
@@ -167,18 +171,22 @@ class _PlatformDropdownButtonTile extends StatelessWidget {
     required this.label,
     required this.platform,
     required this.onChanged,
+    required this.url,
   });
 
   final String label;
   final TargetPlatform? platform;
   final ValueChanged<TargetPlatform?> onChanged;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
-    return TilePadding(
-      child: Row(
+    return ListTile(
+      title: Text(label),
+      onTap: () => _launch(url),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(child: Text(label)),
           DropdownButton<TargetPlatform?>(
             value: platform,
             items: [
@@ -194,6 +202,8 @@ class _PlatformDropdownButtonTile extends StatelessWidget {
                 .toList(),
             onChanged: onChanged,
           ),
+          const Gap(16),
+          const Icon(Icons.open_in_browser),
         ],
       ),
     );
