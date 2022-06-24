@@ -14,6 +14,17 @@ void main() {
 
 const title = 'Platform example';
 
+void _launch(String url) => launchUrl(Uri.parse(url));
+
+final platformProvider = StateProvider<TargetPlatform?>(
+  (ref) => null,
+);
+
+final debugDefaultTargetPlatformOverrideProvider =
+    StateProvider<TargetPlatform?>(
+  (ref) => null,
+);
+
 class App extends ConsumerWidget {
   const App({super.key});
 
@@ -161,11 +172,6 @@ class HomePage extends ConsumerWidget {
   }
 }
 
-final platformProvider = StateProvider<TargetPlatform?>((ref) => null);
-
-final debugDefaultTargetPlatformOverrideProvider =
-    StateProvider<TargetPlatform?>((ref) => null);
-
 class _PlatformDropdownButtonTile extends StatelessWidget {
   const _PlatformDropdownButtonTile({
     required this.label,
@@ -232,4 +238,3 @@ class _LinkTile extends StatelessWidget {
   }
 }
 
-void _launch(String url) => launchUrl(Uri.parse(url));
