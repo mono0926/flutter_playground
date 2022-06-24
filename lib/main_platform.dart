@@ -25,6 +25,8 @@ final debugDefaultTargetPlatformOverrideProvider =
   (ref) => null,
 );
 
+final haveScrollBarProvider = StateProvider((ref) => false);
+
 class App extends ConsumerWidget {
   const App({super.key});
 
@@ -44,6 +46,9 @@ class App extends ConsumerWidget {
         platform: selectedPlatform,
       ),
       debugShowCheckedModeBanner: false,
+      scrollBehavior: ref.watch(haveScrollBarProvider)
+          ? const _AlwaysHaveScrollBarBehavior()
+          : null,
       home: const HomePage(),
     );
   }
@@ -79,6 +84,15 @@ class HomePage extends ConsumerWidget {
                 .update((_) => platform),
             url:
                 'https://api.flutter.dev/flutter/foundation/debugDefaultTargetPlatformOverride.html',
+          ),
+          SwitchListTile.adaptive(
+            title: const Text('Always Have ScrollBar'),
+            subtitle: const Text(
+              '通常はデスクトップ環境のみデフォルトでスクロールバーが表示されますが、オンにするとモバイル環境でも同様に表示されます。',
+            ),
+            value: ref.watch(haveScrollBarProvider),
+            onChanged: (on) =>
+                ref.read(haveScrollBarProvider.notifier).update((_) => on),
           ),
           const Divider(),
           _LinkTile(
@@ -238,3 +252,22 @@ class _LinkTile extends StatelessWidget {
   }
 }
 
+class _AlwaysHaveScrollBarBehavior extends MaterialScrollBehavior {
+  const _AlwaysHaveScrollBarBehavior();
+  @override
+  Widget buildScrollbar(
+    BuildContext context,
+    Widget child,
+    ScrollableDetails details,
+  ) {
+    switch (axisDirectionToAxis(details.direction)) {
+      case Axis.horizontal:
+        return child;
+      case Axis.vertical:
+        return Scrollbar(
+          controller: details.controller,
+          child: child,
+        );
+    }
+  }
+}
