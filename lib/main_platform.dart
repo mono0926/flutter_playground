@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:gap/gap.dart';
+import 'package:mono_kit/mono_kit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -159,6 +160,11 @@ class HomePage extends ConsumerWidget {
             url:
                 'https://api.flutter.dev/flutter/material/MaterialTapTargetSize.html',
           ),
+          const TilePadding(
+            child: Text('paddedの時は誤タップしないような隙間が空いて、shrinkWrapの時は隙間ゼロになる:'),
+          ),
+          ElevatedButton(onPressed: () {}, child: const Text('Dog')),
+          ElevatedButton(onPressed: () {}, child: const Text('Cat')),
           // https://github.com/flutter/flutter/blob/676cefaaff197f27424942307668886253e1ec35/packages/flutter/lib/src/material/app.dart#L768-L786
           _LinkTile(
             value: '${ScrollConfiguration.of(context)}',
