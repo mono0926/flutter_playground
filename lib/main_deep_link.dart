@@ -24,11 +24,11 @@ Future<void> main() async {
   GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
   runApp(
     const ProviderScope(
-      child: RootRestorationScope(
-        restorationId: 'root',
-        child: App(),
-      ),
+      // child: RootRestorationScope(
+      //   restorationId: 'root',
+      child: App(),
     ),
+    // ),
   );
 }
 
@@ -97,7 +97,7 @@ final userIdProvider = Provider<String>((ref) => throw UnimplementedError());
 final routerProvider = Provider(
   (ref) => GoRouter(
     debugLogDiagnostics: true,
-    restorationScopeId: 'router',
+    // restorationScopeId: 'router',
     routes: $appRoutes,
     // 右下にパス表示・指定できる独自ボタン配置
     navigatorBuilder: goRouteLocationButtonNavigationBuilder,
@@ -116,7 +116,7 @@ class App extends ConsumerWidget {
       routerDelegate: router.routerDelegate,
       routeInformationParser: router.routeInformationParser,
       routeInformationProvider: router.routeInformationProvider,
-      restorationScopeId: 'app',
+      // restorationScopeId: 'app',
     );
   }
 }
