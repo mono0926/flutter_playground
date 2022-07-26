@@ -115,6 +115,7 @@ class App extends ConsumerWidget {
       darkTheme: darkTheme(),
       routerDelegate: router.routerDelegate,
       routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
       restorationScopeId: 'app',
     );
   }
