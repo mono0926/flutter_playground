@@ -51,27 +51,28 @@ class _$CounterCopyWithImpl<$Res> implements $CounterCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$CounterCopyWith<$Res> implements $CounterCopyWith<$Res> {
-  factory _$CounterCopyWith(_Counter value, $Res Function(_Counter) then) =
-      __$CounterCopyWithImpl<$Res>;
+abstract class _$$_CounterCopyWith<$Res> implements $CounterCopyWith<$Res> {
+  factory _$$_CounterCopyWith(
+          _$_Counter value, $Res Function(_$_Counter) then) =
+      __$$_CounterCopyWithImpl<$Res>;
   @override
   $Res call({int count});
 }
 
 /// @nodoc
-class __$CounterCopyWithImpl<$Res> extends _$CounterCopyWithImpl<$Res>
-    implements _$CounterCopyWith<$Res> {
-  __$CounterCopyWithImpl(_Counter _value, $Res Function(_Counter) _then)
-      : super(_value, (v) => _then(v as _Counter));
+class __$$_CounterCopyWithImpl<$Res> extends _$CounterCopyWithImpl<$Res>
+    implements _$$_CounterCopyWith<$Res> {
+  __$$_CounterCopyWithImpl(_$_Counter _value, $Res Function(_$_Counter) _then)
+      : super(_value, (v) => _then(v as _$_Counter));
 
   @override
-  _Counter get _value => super._value as _Counter;
+  _$_Counter get _value => super._value as _$_Counter;
 
   @override
   $Res call({
     Object? count = freezed,
   }) {
-    return _then(_Counter(
+    return _then(_$_Counter(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -105,7 +106,7 @@ class _$_Counter with DiagnosticableTreeMixin implements _Counter {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Counter &&
+            other is _$_Counter &&
             const DeepCollectionEquality().equals(other.count, count));
   }
 
@@ -115,17 +116,17 @@ class _$_Counter with DiagnosticableTreeMixin implements _Counter {
 
   @JsonKey(ignore: true)
   @override
-  _$CounterCopyWith<_Counter> get copyWith =>
-      __$CounterCopyWithImpl<_Counter>(this, _$identity);
+  _$$_CounterCopyWith<_$_Counter> get copyWith =>
+      __$$_CounterCopyWithImpl<_$_Counter>(this, _$identity);
 }
 
 abstract class _Counter implements Counter {
   const factory _Counter({required final int count}) = _$_Counter;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(ignore: true)
-  _$CounterCopyWith<_Counter> get copyWith =>
+  _$$_CounterCopyWith<_$_Counter> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -34,7 +34,9 @@ extension $HomeRouteExtension on HomeRoute {
         '/',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 extension $UsersRouteExtension on UsersRoute {
@@ -44,7 +46,9 @@ extension $UsersRouteExtension on UsersRoute {
         '/users',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 extension $UserRouteExtension on UserRoute {
@@ -56,7 +60,9 @@ extension $UserRouteExtension on UserRoute {
         '/users/${Uri.encodeComponent(userId)}',
       );
 
-  void go(BuildContext buildContext) => buildContext.go(location, extra: this);
+  void go(BuildContext context) => context.go(location, extra: this);
+
+  void push(BuildContext context) => context.push(location, extra: this);
 }
 
 // **************************************************************************

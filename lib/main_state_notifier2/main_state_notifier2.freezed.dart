@@ -52,27 +52,29 @@ class _$Counter1CopyWithImpl<$Res> implements $Counter1CopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$Counter1CopyWith<$Res> implements $Counter1CopyWith<$Res> {
-  factory _$Counter1CopyWith(_Counter1 value, $Res Function(_Counter1) then) =
-      __$Counter1CopyWithImpl<$Res>;
+abstract class _$$_Counter1CopyWith<$Res> implements $Counter1CopyWith<$Res> {
+  factory _$$_Counter1CopyWith(
+          _$_Counter1 value, $Res Function(_$_Counter1) then) =
+      __$$_Counter1CopyWithImpl<$Res>;
   @override
   $Res call({int count});
 }
 
 /// @nodoc
-class __$Counter1CopyWithImpl<$Res> extends _$Counter1CopyWithImpl<$Res>
-    implements _$Counter1CopyWith<$Res> {
-  __$Counter1CopyWithImpl(_Counter1 _value, $Res Function(_Counter1) _then)
-      : super(_value, (v) => _then(v as _Counter1));
+class __$$_Counter1CopyWithImpl<$Res> extends _$Counter1CopyWithImpl<$Res>
+    implements _$$_Counter1CopyWith<$Res> {
+  __$$_Counter1CopyWithImpl(
+      _$_Counter1 _value, $Res Function(_$_Counter1) _then)
+      : super(_value, (v) => _then(v as _$_Counter1));
 
   @override
-  _Counter1 get _value => super._value as _Counter1;
+  _$_Counter1 get _value => super._value as _$_Counter1;
 
   @override
   $Res call({
     Object? count = freezed,
   }) {
-    return _then(_Counter1(
+    return _then(_$_Counter1(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -106,7 +108,7 @@ class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Counter1 &&
+            other is _$_Counter1 &&
             const DeepCollectionEquality().equals(other.count, count));
   }
 
@@ -116,18 +118,18 @@ class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
 
   @JsonKey(ignore: true)
   @override
-  _$Counter1CopyWith<_Counter1> get copyWith =>
-      __$Counter1CopyWithImpl<_Counter1>(this, _$identity);
+  _$$_Counter1CopyWith<_$_Counter1> get copyWith =>
+      __$$_Counter1CopyWithImpl<_$_Counter1>(this, _$identity);
 }
 
 abstract class _Counter1 implements Counter1 {
   const factory _Counter1({required final int count}) = _$_Counter1;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(ignore: true)
-  _$Counter1CopyWith<_Counter1> get copyWith =>
+  _$$_Counter1CopyWith<_$_Counter1> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -169,27 +171,29 @@ class _$Counter2CopyWithImpl<$Res> implements $Counter2CopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$Counter2CopyWith<$Res> implements $Counter2CopyWith<$Res> {
-  factory _$Counter2CopyWith(_Counter2 value, $Res Function(_Counter2) then) =
-      __$Counter2CopyWithImpl<$Res>;
+abstract class _$$_Counter2CopyWith<$Res> implements $Counter2CopyWith<$Res> {
+  factory _$$_Counter2CopyWith(
+          _$_Counter2 value, $Res Function(_$_Counter2) then) =
+      __$$_Counter2CopyWithImpl<$Res>;
   @override
   $Res call({int count});
 }
 
 /// @nodoc
-class __$Counter2CopyWithImpl<$Res> extends _$Counter2CopyWithImpl<$Res>
-    implements _$Counter2CopyWith<$Res> {
-  __$Counter2CopyWithImpl(_Counter2 _value, $Res Function(_Counter2) _then)
-      : super(_value, (v) => _then(v as _Counter2));
+class __$$_Counter2CopyWithImpl<$Res> extends _$Counter2CopyWithImpl<$Res>
+    implements _$$_Counter2CopyWith<$Res> {
+  __$$_Counter2CopyWithImpl(
+      _$_Counter2 _value, $Res Function(_$_Counter2) _then)
+      : super(_value, (v) => _then(v as _$_Counter2));
 
   @override
-  _Counter2 get _value => super._value as _Counter2;
+  _$_Counter2 get _value => super._value as _$_Counter2;
 
   @override
   $Res call({
     Object? count = freezed,
   }) {
-    return _then(_Counter2(
+    return _then(_$_Counter2(
       count: count == freezed
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -223,7 +227,7 @@ class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Counter2 &&
+            other is _$_Counter2 &&
             const DeepCollectionEquality().equals(other.count, count));
   }
 
@@ -233,17 +237,17 @@ class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
 
   @JsonKey(ignore: true)
   @override
-  _$Counter2CopyWith<_Counter2> get copyWith =>
-      __$Counter2CopyWithImpl<_Counter2>(this, _$identity);
+  _$$_Counter2CopyWith<_$_Counter2> get copyWith =>
+      __$$_Counter2CopyWithImpl<_$_Counter2>(this, _$identity);
 }
 
 abstract class _Counter2 implements Counter2 {
   const factory _Counter2({required final int count}) = _$_Counter2;
 
   @override
-  int get count => throw _privateConstructorUsedError;
+  int get count;
   @override
   @JsonKey(ignore: true)
-  _$Counter2CopyWith<_Counter2> get copyWith =>
+  _$$_Counter2CopyWith<_$_Counter2> get copyWith =>
       throw _privateConstructorUsedError;
 }
