@@ -16,7 +16,7 @@ class ApiUsersPage extends ConsumerWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final paging = ref.watch(usersPagingController);
-    final pagingController = ref.watch(usersPagingController.notifier);
+    final pagingNotifier = ref.watch(usersPagingController.notifier);
     final usersAsync = paging.items;
     final users = usersAsync.value;
     return Scaffold(
@@ -29,7 +29,7 @@ class ApiUsersPage extends ConsumerWidget {
               itemCount: paging.itemLoadingCount,
               itemBuilder: (context, index) {
                 if (paging.isLoadingIndex(index)) {
-                  pagingController.loadMoreIfNeeded();
+                  pagingNotifier.loadMoreIfNeeded();
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
