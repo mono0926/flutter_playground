@@ -51,6 +51,9 @@ class ApiPagingNotifier<T> extends StateNotifier<AsyncValue<PagingState<T>>> {
         );
       }))
           .copyWithPrevious(state);
+      if (state is AsyncError) {
+        logger.warning('state is error: $state');
+      }
       _isLoadingMore = false;
     }
   }
