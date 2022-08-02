@@ -39,7 +39,8 @@ class ApiPagingNotifier<T> extends StateNotifier<PagingState<T>> {
           ),
         );
       });
-      late final bool hasMore;
+      // guard内でエラーが発生した時になってほしい値は、再操作でリトライできるようにtrueのはず
+      var hasMore = true;
       final items = await AsyncValue.guard(() async {
         final items = await fetcher(
           from: state.items.value?.length ?? 0,
