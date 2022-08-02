@@ -20,7 +20,7 @@ class PagingNotifier<T> extends StateNotifier<PagingState<T>> {
     _querySubscription = _limitController.stream
         .switchMap((limit) => query.limit(limit + 1).snapshots())
         // クルクルをじっくりみたい時
-        // .debounceTime(const Duration(seconds: 1))
+        .debounceTime(const Duration(seconds: 1))
         .listen((snapshot) {
       _isLoadingMore = false;
       final snapshots = snapshot.docs;
@@ -46,6 +46,8 @@ class PagingNotifier<T> extends StateNotifier<PagingState<T>> {
     if (hasMore) {
       _isLoadingMore = true;
       logger.info('loaded more');
+      // Firestore取得がキャッシュ経由などで高速過ぎるとこのsetが取得より後になってLoadingで落ち着いてしまう問題あり
+      // debounceTimeなどで一瞬遅らせればとりあえず回避可能
       WidgetsBinding.instance.addPostFrameCallback((_) {
         state = state.copyWith(
           snapshots:
@@ -76,9 +78,4 @@ class PagingState<T> with _$PagingState<T> {
     required AsyncValue<List<QueryDocumentSnapshot<T>>> snapshots,
   }) = _PagingState;
   PagingState._();
-
-  late final itemLoadingCount =
-      (snapshots.value?.length ?? 0) + (hasMore ? 1 : 0);
-
-  bool isLoadingIndex(int index) => hasMore && (index + 1) == itemLoadingCount;
 }
