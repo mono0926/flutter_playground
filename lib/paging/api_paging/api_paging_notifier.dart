@@ -41,17 +41,23 @@ class ApiPagingNotifier<T> extends StateNotifier<PagingState<T>> {
       });
       // guard内でエラーが発生した時になってほしい値は、再操作でリトライできるようにtrueのはず
       var hasMore = true;
-      final items = await AsyncValue.guard(() async {
-        final items = await fetcher(
+      late final AsyncValue<List<T>> items;
+      try {
+        final fetchedItems = await fetcher(
           from: state.items.value?.length ?? 0,
           size: pagingSize + 1,
         );
-        hasMore = items.length > pagingSize;
-        return <T>[
-          ...state.items.value ?? [],
-          ...items.take(pagingSize),
-        ];
-      });
+        hasMore = fetchedItems.length > pagingSize;
+        items = AsyncValue.data(
+          [
+            ...state.items.value ?? [],
+            ...fetchedItems.take(pagingSize),
+          ],
+        );
+      } on Exception catch (e) {
+        logger.warning(e);
+        items = AsyncError<List<T>>(e).copyWithPrevious(state.items);
+      }
       state = state.copyWith(
         items: items,
         hasMore: hasMore,

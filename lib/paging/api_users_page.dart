@@ -62,6 +62,10 @@ final usersPagingController = StateNotifierProvider.autoDispose<
     fetcher: ({required from, required size}) async {
       // 実際にはここで Web API リクエスト
       await Future<void>.delayed(const Duration(seconds: 1));
+      // 例外再現
+      // if (from == 30) {
+      //   throw Exception('dummy error');
+      // }
       return List.generate(
         // 43件しか無いと仮定
         from >= 40 ? 3 : size,
