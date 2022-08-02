@@ -8,8 +8,6 @@ analyzer:
     - lib/*_original.dart
     - lib/generated_*.dart
     - lib/main_global_object_key.dart
-    - '**/*.g.dart'
-    - '**/*.freezed.dart'
     - lib/firebase_options.dart
 linter:
   rules:
