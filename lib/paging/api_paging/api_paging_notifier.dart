@@ -65,7 +65,7 @@ class ApiPagingNotifier<T> extends StateNotifier<AsyncValue<PagingState<T>>> {
 @freezed
 class PagingState<T> with _$PagingState<T> {
   factory PagingState({
-    @Default(true) bool hasMore,
+    required bool hasMore,
     required List<T> items,
   }) = _PagingState;
   PagingState._();

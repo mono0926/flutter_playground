@@ -101,12 +101,11 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_PagingState<T> extends _PagingState<T> {
-  _$_PagingState({this.hasMore = true, required final List<T> items})
+  _$_PagingState({required this.hasMore, required final List<T> items})
       : _items = items,
         super._();
 
   @override
-  @JsonKey()
   final bool hasMore;
   final List<T> _items;
   @override
@@ -142,8 +141,9 @@ class _$_PagingState<T> extends _PagingState<T> {
 }
 
 abstract class _PagingState<T> extends PagingState<T> {
-  factory _PagingState({final bool hasMore, required final List<T> items}) =
-      _$_PagingState<T>;
+  factory _PagingState(
+      {required final bool hasMore,
+      required final List<T> items}) = _$_PagingState<T>;
   _PagingState._() : super._();
 
   @override

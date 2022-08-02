@@ -61,9 +61,7 @@ class PagingNotifier<T> extends StateNotifier<AsyncValue<PagingState<T>>> {
 @freezed
 class PagingState<T> with _$PagingState<T> {
   factory PagingState({
-    @Default(true) bool hasMore,
-    // https://github.com/dart-lang/sdk/issues/49245
-    // @Default(<QueryDocumentSnapshot<T>>[])
+    required bool hasMore,
     required List<QueryDocumentSnapshot<T>> snapshots,
   }) = _PagingState;
   PagingState._();

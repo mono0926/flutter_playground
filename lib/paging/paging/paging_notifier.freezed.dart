@@ -16,9 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PagingState<T> {
-  bool get hasMore =>
-      throw _privateConstructorUsedError; // https://github.com/dart-lang/sdk/issues/49245
-// @Default(<QueryDocumentSnapshot<T>>[])
+  bool get hasMore => throw _privateConstructorUsedError;
   List<QueryDocumentSnapshot<T>> get snapshots =>
       throw _privateConstructorUsedError;
 
@@ -105,19 +103,14 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
 
 class _$_PagingState<T> extends _PagingState<T> {
   _$_PagingState(
-      {this.hasMore = true,
+      {required this.hasMore,
       required final List<QueryDocumentSnapshot<T>> snapshots})
       : _snapshots = snapshots,
         super._();
 
   @override
-  @JsonKey()
   final bool hasMore;
-// https://github.com/dart-lang/sdk/issues/49245
-// @Default(<QueryDocumentSnapshot<T>>[])
   final List<QueryDocumentSnapshot<T>> _snapshots;
-// https://github.com/dart-lang/sdk/issues/49245
-// @Default(<QueryDocumentSnapshot<T>>[])
   @override
   List<QueryDocumentSnapshot<T>> get snapshots {
     // ignore: implicit_dynamic_type
@@ -153,15 +146,14 @@ class _$_PagingState<T> extends _PagingState<T> {
 
 abstract class _PagingState<T> extends PagingState<T> {
   factory _PagingState(
-          {final bool hasMore,
+          {required final bool hasMore,
           required final List<QueryDocumentSnapshot<T>> snapshots}) =
       _$_PagingState<T>;
   _PagingState._() : super._();
 
   @override
   bool get hasMore;
-  @override // https://github.com/dart-lang/sdk/issues/49245
-// @Default(<QueryDocumentSnapshot<T>>[])
+  @override
   List<QueryDocumentSnapshot<T>> get snapshots;
   @override
   @JsonKey(ignore: true)
