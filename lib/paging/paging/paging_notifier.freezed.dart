@@ -16,8 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PagingState<T> {
-  bool get hasMore => throw _privateConstructorUsedError;
-  AsyncValue<List<QueryDocumentSnapshot<T>>> get snapshots =>
+  bool get hasMore =>
+      throw _privateConstructorUsedError; // https://github.com/dart-lang/sdk/issues/49245
+// @Default(<QueryDocumentSnapshot<T>>[])
+  List<QueryDocumentSnapshot<T>> get snapshots =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,8 +32,7 @@ abstract class $PagingStateCopyWith<T, $Res> {
   factory $PagingStateCopyWith(
           PagingState<T> value, $Res Function(PagingState<T>) then) =
       _$PagingStateCopyWithImpl<T, $Res>;
-  $Res call(
-      {bool hasMore, AsyncValue<List<QueryDocumentSnapshot<T>>> snapshots});
+  $Res call({bool hasMore, List<QueryDocumentSnapshot<T>> snapshots});
 }
 
 /// @nodoc
@@ -56,7 +57,7 @@ class _$PagingStateCopyWithImpl<T, $Res>
       snapshots: snapshots == freezed
           ? _value.snapshots
           : snapshots // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<QueryDocumentSnapshot<T>>>,
+              as List<QueryDocumentSnapshot<T>>,
     ));
   }
 }
@@ -68,8 +69,7 @@ abstract class _$$_PagingStateCopyWith<T, $Res>
           _$_PagingState<T> value, $Res Function(_$_PagingState<T>) then) =
       __$$_PagingStateCopyWithImpl<T, $Res>;
   @override
-  $Res call(
-      {bool hasMore, AsyncValue<List<QueryDocumentSnapshot<T>>> snapshots});
+  $Res call({bool hasMore, List<QueryDocumentSnapshot<T>> snapshots});
 }
 
 /// @nodoc
@@ -94,9 +94,9 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool,
       snapshots: snapshots == freezed
-          ? _value.snapshots
+          ? _value._snapshots
           : snapshots // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<QueryDocumentSnapshot<T>>>,
+              as List<QueryDocumentSnapshot<T>>,
     ));
   }
 }
@@ -104,13 +104,25 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_PagingState<T> extends _PagingState<T> {
-  _$_PagingState({this.hasMore = true, required this.snapshots}) : super._();
+  _$_PagingState(
+      {this.hasMore = true,
+      required final List<QueryDocumentSnapshot<T>> snapshots})
+      : _snapshots = snapshots,
+        super._();
 
   @override
   @JsonKey()
   final bool hasMore;
+// https://github.com/dart-lang/sdk/issues/49245
+// @Default(<QueryDocumentSnapshot<T>>[])
+  final List<QueryDocumentSnapshot<T>> _snapshots;
+// https://github.com/dart-lang/sdk/issues/49245
+// @Default(<QueryDocumentSnapshot<T>>[])
   @override
-  final AsyncValue<List<QueryDocumentSnapshot<T>>> snapshots;
+  List<QueryDocumentSnapshot<T>> get snapshots {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_snapshots);
+  }
 
   @override
   String toString() {
@@ -123,14 +135,15 @@ class _$_PagingState<T> extends _PagingState<T> {
         (other.runtimeType == runtimeType &&
             other is _$_PagingState<T> &&
             const DeepCollectionEquality().equals(other.hasMore, hasMore) &&
-            const DeepCollectionEquality().equals(other.snapshots, snapshots));
+            const DeepCollectionEquality()
+                .equals(other._snapshots, _snapshots));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(hasMore),
-      const DeepCollectionEquality().hash(snapshots));
+      const DeepCollectionEquality().hash(_snapshots));
 
   @JsonKey(ignore: true)
   @override
@@ -140,15 +153,16 @@ class _$_PagingState<T> extends _PagingState<T> {
 
 abstract class _PagingState<T> extends PagingState<T> {
   factory _PagingState(
-      {final bool hasMore,
-      required final AsyncValue<List<QueryDocumentSnapshot<T>>>
-          snapshots}) = _$_PagingState<T>;
+          {final bool hasMore,
+          required final List<QueryDocumentSnapshot<T>> snapshots}) =
+      _$_PagingState<T>;
   _PagingState._() : super._();
 
   @override
   bool get hasMore;
-  @override
-  AsyncValue<List<QueryDocumentSnapshot<T>>> get snapshots;
+  @override // https://github.com/dart-lang/sdk/issues/49245
+// @Default(<QueryDocumentSnapshot<T>>[])
+  List<QueryDocumentSnapshot<T>> get snapshots;
   @override
   @JsonKey(ignore: true)
   _$$_PagingStateCopyWith<T, _$_PagingState<T>> get copyWith =>

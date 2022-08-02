@@ -15,14 +15,14 @@ class UsersPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final paging = ref.watch(usersPagingController);
     final pagingNotifier = ref.watch(usersPagingController.notifier);
-    final users = paging.snapshots.value ?? [];
+    final users = paging.value?.snapshots ?? [];
     return Scaffold(
       appBar: AppBar(
         title: const Text('Users'),
       ),
       body: PagingLoader(
         notifier: pagingNotifier,
-        state: paging,
+        stateAsync: paging,
         child: ListView.builder(
           itemCount: users.length,
           itemBuilder: (context, index) {
@@ -53,8 +53,8 @@ class User with _$User {
   const User._();
 }
 
-final usersPagingController =
-    StateNotifierProvider.autoDispose<PagingNotifier<User>, PagingState<User>>(
+final usersPagingController = StateNotifierProvider.autoDispose<
+    PagingNotifier<User>, AsyncValue<PagingState<User>>>(
   (ref) => PagingNotifier(
     query: ref.watch(usersRefProvider),
   ),

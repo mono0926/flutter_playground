@@ -8,18 +8,18 @@ class PagingLoader<T> extends StatelessWidget {
   const PagingLoader({
     super.key,
     required this.notifier,
-    required this.state,
+    required this.stateAsync,
     required this.child,
   });
 
   final PagingNotifier<T> notifier;
-  final PagingState<T> state;
+  final AsyncValue<PagingState<T>> stateAsync;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    final snapshots = state.snapshots;
-    return snapshots.value == null
+    final state = stateAsync.value;
+    return state == null
         ? centeredCircularProgressIndicator
         : NotificationListener<ScrollNotification>(
             onNotification: (notification) {
@@ -33,7 +33,7 @@ class PagingLoader<T> extends StatelessWidget {
                 Expanded(
                   child: child,
                 ),
-                if (snapshots.isRefreshing) centeredCircularProgressIndicator,
+                if (stateAsync.isRefreshing) centeredCircularProgressIndicator,
               ],
             ),
           );
