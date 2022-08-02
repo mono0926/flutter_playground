@@ -16,6 +16,11 @@ class HomePage extends StatelessWidget {
             onTap: () => context.go('/users'),
             trailing: const Icon(Icons.chevron_right),
           ),
+          ListTile(
+            title: const Text('API Users'),
+            onTap: () => context.go('/api_users'),
+            trailing: const Icon(Icons.chevron_right),
+          ),
         ],
       ),
     );
