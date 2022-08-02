@@ -15,15 +15,15 @@ class ApiUsersPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final paging = ref.watch(usersPagingController);
+    final pagingAsync = ref.watch(usersPagingController);
+    final paging = pagingAsync.value;
     final pagingNotifier = ref.watch(usersPagingController.notifier);
-    final usersAsync = paging.items;
-    final users = usersAsync.value;
+    final users = pagingAsync.value?.items ?? [];
     return Scaffold(
       appBar: AppBar(
         title: const Text('Users'),
       ),
-      body: users == null
+      body: paging == null
           ? centeredCircularProgressIndicator
           : ListView.builder(
               itemCount: paging.itemLoadingCount,
@@ -34,7 +34,7 @@ class ApiUsersPage extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       centeredCircularProgressIndicator,
-                      if (usersAsync.hasError)
+                      if (pagingAsync.hasError)
                         Padding(
                           padding: const EdgeInsets.only(left: 8),
                           child: Text(
@@ -78,7 +78,7 @@ bool _throwError = true;
 
 // 各ページでそれぞれ必要な実装
 final usersPagingController = StateNotifierProvider.autoDispose<
-    ApiPagingNotifier<User>, PagingState<User>>(
+    ApiPagingNotifier<User>, AsyncValue<PagingState<User>>>(
   (ref) => ApiPagingNotifier(
     fetcher: ({required from, required size}) async {
       // 実際にはここで Web API リクエスト

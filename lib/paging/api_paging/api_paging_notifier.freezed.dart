@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PagingState<T> {
   bool get hasMore => throw _privateConstructorUsedError;
-  AsyncValue<List<T>> get items => throw _privateConstructorUsedError;
+  List<T> get items => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PagingStateCopyWith<T, PagingState<T>> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $PagingStateCopyWith<T, $Res> {
   factory $PagingStateCopyWith(
           PagingState<T> value, $Res Function(PagingState<T>) then) =
       _$PagingStateCopyWithImpl<T, $Res>;
-  $Res call({bool hasMore, AsyncValue<List<T>> items});
+  $Res call({bool hasMore, List<T> items});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$PagingStateCopyWithImpl<T, $Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<T>>,
+              as List<T>,
     ));
   }
 }
@@ -66,7 +66,7 @@ abstract class _$$_PagingStateCopyWith<T, $Res>
           _$_PagingState<T> value, $Res Function(_$_PagingState<T>) then) =
       __$$_PagingStateCopyWithImpl<T, $Res>;
   @override
-  $Res call({bool hasMore, AsyncValue<List<T>> items});
+  $Res call({bool hasMore, List<T> items});
 }
 
 /// @nodoc
@@ -91,9 +91,9 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool,
       items: items == freezed
-          ? _value.items
+          ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as AsyncValue<List<T>>,
+              as List<T>,
     ));
   }
 }
@@ -101,13 +101,19 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$_PagingState<T> extends _PagingState<T> {
-  _$_PagingState({this.hasMore = true, required this.items}) : super._();
+  _$_PagingState({this.hasMore = true, required final List<T> items})
+      : _items = items,
+        super._();
 
   @override
   @JsonKey()
   final bool hasMore;
+  final List<T> _items;
   @override
-  final AsyncValue<List<T>> items;
+  List<T> get items {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_items);
+  }
 
   @override
   String toString() {
@@ -120,14 +126,14 @@ class _$_PagingState<T> extends _PagingState<T> {
         (other.runtimeType == runtimeType &&
             other is _$_PagingState<T> &&
             const DeepCollectionEquality().equals(other.hasMore, hasMore) &&
-            const DeepCollectionEquality().equals(other.items, items));
+            const DeepCollectionEquality().equals(other._items, _items));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(hasMore),
-      const DeepCollectionEquality().hash(items));
+      const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
   @override
@@ -136,15 +142,14 @@ class _$_PagingState<T> extends _PagingState<T> {
 }
 
 abstract class _PagingState<T> extends PagingState<T> {
-  factory _PagingState(
-      {final bool hasMore,
-      required final AsyncValue<List<T>> items}) = _$_PagingState<T>;
+  factory _PagingState({final bool hasMore, required final List<T> items}) =
+      _$_PagingState<T>;
   _PagingState._() : super._();
 
   @override
   bool get hasMore;
   @override
-  AsyncValue<List<T>> get items;
+  List<T> get items;
   @override
   @JsonKey(ignore: true)
   _$$_PagingStateCopyWith<T, _$_PagingState<T>> get copyWith =>

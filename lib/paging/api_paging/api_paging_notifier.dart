@@ -13,12 +13,12 @@ typedef PagingFetcher<T> = Future<List<T>> Function({
   required int size,
 });
 
-class ApiPagingNotifier<T> extends StateNotifier<PagingState<T>> {
+class ApiPagingNotifier<T> extends StateNotifier<AsyncValue<PagingState<T>>> {
   ApiPagingNotifier({
     required this.fetcher,
     this.defaultPagingSize = 10,
     int initialSize = 20,
-  }) : super(PagingState(items: const AsyncLoading())) {
+  }) : super(const AsyncLoading()) {
     _loadMoreIfNeeded(pagingSize: initialSize);
   }
 
@@ -29,39 +29,28 @@ class ApiPagingNotifier<T> extends StateNotifier<PagingState<T>> {
   Future<void> _loadMoreIfNeeded({required int pagingSize}) async {
     // `!state.snapshots.isRefreshing` でチェックで済ませたかったが、
     // addPostFrameCallbackする故に連続で呼ばれた時に弾けない
-    if (state.hasMore && !_isLoadingMore) {
+    if ((state.value?.hasMore ?? true) && !_isLoadingMore) {
       _isLoadingMore = true;
       logger.info('loaded more');
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        state = state.copyWith(
-          items: AsyncLoading<List<T>>().copyWithPrevious(
-            state.items,
-          ),
+        state = AsyncLoading<PagingState<T>>().copyWithPrevious(
+          state,
         );
       });
-      // guard内でエラーが発生した時になってほしい値は、再操作でリトライできるようにtrueのはず
-      var hasMore = true;
-      late final AsyncValue<List<T>> items;
-      try {
+      state = (await AsyncValue.guard(() async {
         final fetchedItems = await fetcher(
-          from: state.items.value?.length ?? 0,
+          from: state.value?.items.length ?? 0,
           size: pagingSize + 1,
         );
-        hasMore = fetchedItems.length > pagingSize;
-        items = AsyncValue.data(
-          [
-            ...state.items.value ?? [],
+        return PagingState(
+          items: <T>[
+            ...state.value?.items ?? [],
             ...fetchedItems.take(pagingSize),
           ],
+          hasMore: fetchedItems.length > pagingSize,
         );
-      } on Exception catch (e) {
-        logger.warning(e);
-        items = AsyncError<List<T>>(e).copyWithPrevious(state.items);
-      }
-      state = state.copyWith(
-        items: items,
-        hasMore: hasMore,
-      );
+      }))
+          .copyWithPrevious(state);
       _isLoadingMore = false;
     }
   }
@@ -74,11 +63,11 @@ class ApiPagingNotifier<T> extends StateNotifier<PagingState<T>> {
 class PagingState<T> with _$PagingState<T> {
   factory PagingState({
     @Default(true) bool hasMore,
-    required AsyncValue<List<T>> items,
+    required List<T> items,
   }) = _PagingState;
   PagingState._();
 
-  late final itemLoadingCount = (items.value?.length ?? 0) + (hasMore ? 1 : 0);
+  late final itemLoadingCount = items.length + (hasMore ? 1 : 0);
 
   bool isLoadingIndex(int index) => hasMore && (index + 1) == itemLoadingCount;
 }
