@@ -298,18 +298,18 @@ class _TextColorButtonsState extends State<TextColorButtons> {
     final backgroundColor = backgroundColors[index];
     return TextButtonTheme(
       data: TextButtonThemeData(
-        style: TextButton.styleFrom(primary: foregroundColor),
+        style: TextButton.styleFrom(foregroundColor: foregroundColor),
       ),
       child: ElevatedButtonTheme(
         data: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            primary: backgroundColor,
-            onPrimary: foregroundColor,
+            backgroundColor: backgroundColor,
+            foregroundColor: foregroundColor,
           ),
         ),
         child: OutlinedButtonTheme(
           data: OutlinedButtonThemeData(
-            style: TextButton.styleFrom(primary: foregroundColor),
+            style: TextButton.styleFrom(foregroundColor: foregroundColor),
           ),
           child: DefaultButtons(
             onPressed: () {
@@ -501,7 +501,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final actionButtonStyle = TextButton.styleFrom(
-      primary: colorScheme.onPrimary,
+      foregroundColor: colorScheme.onPrimary,
     );
     return Scaffold(
       appBar: AppBar(

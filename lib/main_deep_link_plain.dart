@@ -189,7 +189,7 @@ class HomePage extends ConsumerWidget {
           Center(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).colorScheme.error,
+                backgroundColor: Theme.of(context).colorScheme.error,
               ),
               onPressed: () {
                 deleteAllDocuments(query: ref.read(usersRefProvider));

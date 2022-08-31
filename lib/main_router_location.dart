@@ -111,7 +111,7 @@ class GoRouterLocationButton extends StatelessWidget {
           child: SafeArea(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).colorScheme.secondary,
+                backgroundColor: Theme.of(context).colorScheme.secondary,
               ),
               onPressed: () async {
                 final next = (await showTextInputDialog(
