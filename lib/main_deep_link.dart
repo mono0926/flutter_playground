@@ -98,9 +98,13 @@ final routerProvider = Provider(
   (ref) => GoRouter(
     debugLogDiagnostics: true,
     // restorationScopeId: 'router',
-    routes: $appRoutes,
-    // 右下にパス表示・指定できる独自ボタン配置
-    navigatorBuilder: goRouteLocationButtonNavigationBuilder,
+    routes: [
+      ShellRoute(
+        routes: $appRoutes,
+        // 右下にパス表示・指定できる独自ボタン配置
+        builder: goRouteLocationButtonNavigationBuilder,
+      ),
+    ],
   ),
 );
 

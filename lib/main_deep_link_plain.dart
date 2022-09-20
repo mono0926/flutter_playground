@@ -101,32 +101,37 @@ final routerProvider = Provider(
     debugLogDiagnostics: true,
     restorationScopeId: 'router',
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (_, __) => const HomePage(),
+      ShellRoute(
+        // 右下にパス表示・指定できる独自ボタン配置
+        builder: (_, __, child) => GoRouterLocationButton(
+          child: child,
+        ),
         routes: [
           GoRoute(
-            path: 'users',
-            builder: (_, __) => const UsersPage(),
+            path: '/',
+            builder: (_, __) => const HomePage(),
             routes: [
               GoRoute(
-                path: ':userId',
-                builder: (_, state) => ProviderScope(
-                  overrides: [
-                    userIdProvider.overrideWithValue(state.params['userId']!)
-                  ],
-                  child: const UserPage(),
-                ),
+                path: 'users',
+                builder: (_, __) => const UsersPage(),
+                routes: [
+                  GoRoute(
+                    path: ':userId',
+                    builder: (_, state) => ProviderScope(
+                      overrides: [
+                        userIdProvider
+                            .overrideWithValue(state.params['userId']!)
+                      ],
+                      child: const UserPage(),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
         ],
       ),
     ],
-    // 右下にパス表示・指定できる独自ボタン配置
-    navigatorBuilder: (_, __, child) => GoRouterLocationButton(
-      child: child,
-    ),
   ),
 );
 

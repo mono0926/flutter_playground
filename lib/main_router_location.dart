@@ -9,20 +9,24 @@ Future<void> main() async {
 
 final router = GoRouter(
   routes: [
-    GoRoute(
-      path: '/',
-      redirect: (_) => '/${HomeTab.values.first.name}',
-    ),
-    GoRoute(
-      path: '/:tab(${HomeTab.values.map((t) => t.name).join('|')})',
-      builder: (context, state) => HomePage(
-        tab: HomeTab.values.byName(state.params['tab']!),
+    ShellRoute(
+      builder: (context, state, child) => GoRouterLocationButton(
+        child: child,
       ),
+      routes: [
+        GoRoute(
+          path: '/',
+          redirect: (_, __) => '/${HomeTab.values.first.name}',
+        ),
+        GoRoute(
+          path: '/:tab(${HomeTab.values.map((t) => t.name).join('|')})',
+          builder: (context, state) => HomePage(
+            tab: HomeTab.values.byName(state.params['tab']!),
+          ),
+        ),
+      ],
     ),
   ],
-  navigatorBuilder: (context, state, child) => GoRouterLocationButton(
-    child: child,
-  ),
 );
 
 class App extends StatelessWidget {
