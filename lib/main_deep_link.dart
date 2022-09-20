@@ -113,13 +113,10 @@ class App extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(routerProvider);
     return MaterialApp.router(
       theme: lightTheme(),
       darkTheme: darkTheme(),
-      routerDelegate: router.routerDelegate,
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
+      routerConfig: ref.watch(routerProvider),
       // restorationScopeId: 'app',
     );
   }
