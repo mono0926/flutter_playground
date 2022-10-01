@@ -88,23 +88,23 @@ final _navigatorKeyProvider = Provider((_) => GlobalKey<NavigatorState>());
 
 final _homePageProviders =
     Provider.autoDispose.family<_HomePageController, int>(
-  (ref, __) => _HomePageController(ref.read),
+  (ref, __) => _HomePageController(ref),
 );
 
 class _HomePageController {
-  _HomePageController(this._read);
+  _HomePageController(this._ref);
 
-  final Reader _read;
+  final Ref _ref;
 
   ScaffoldState get rootScaffoldState =>
-      _read(_rootScaffoldKeyProvider).currentState!;
+      _ref.read(_rootScaffoldKeyProvider).currentState!;
 
   void showSnackBar() {
 //    rootScaffoldState.showSimpleSnackBar('Hey(　´･‿･｀)');
   }
 
   void popAndShowSnackBar() {
-    _read(_navigatorKeyProvider).currentState!.pop();
+    _ref.read(_navigatorKeyProvider).currentState!.pop();
 //    rootScaffoldState.showSimpleSnackBar('Came back(　´･‿･｀)');
   }
 }

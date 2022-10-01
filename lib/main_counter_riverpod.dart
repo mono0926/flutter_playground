@@ -66,38 +66,38 @@ class CountRepository extends StateNotifier<AsyncValue<int>> {
   }
 }
 
-final incrementer = Provider((ref) => Incrementer(ref.read));
+final incrementer = Provider(Incrementer.new);
 
 class Incrementer {
-  Incrementer(this._read);
-  final Reader _read;
+  Incrementer(this._ref);
+  final Ref _ref;
 
   Future<void> call() async {
-    await _read(countState.notifier).increment();
-    _read(incrementedSnackBarPresenter)();
+    await _ref.read(countState.notifier).increment();
+    _ref.read(incrementedSnackBarPresenter)();
   }
 }
 
 final incrementedSnackBarPresenter = Provider(
-  (ref) => IncrementedSnackBarPresenter(ref.read),
+  IncrementedSnackBarPresenter.new,
 );
 
 class IncrementedSnackBarPresenter {
-  IncrementedSnackBarPresenter(this._read);
+  IncrementedSnackBarPresenter(this._ref);
 
-  final Reader _read;
+  final Ref _ref;
 
   void call() {
-    ScaffoldMessenger.of(_read(navigatorKey).currentContext!)
+    ScaffoldMessenger.of(_ref.read(navigatorKey).currentContext!)
       ..removeCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
           content: Text(
-            'Incremented to ${_read(countState).asData?.value ?? 0}',
+            'Incremented to ${_ref.read(countState).asData?.value ?? 0}',
           ),
           action: SnackBarAction(
             label: 'UNDO',
-            onPressed: () => _read(countState.notifier).undo(),
+            onPressed: () => _ref.read(countState.notifier).undo(),
           ),
         ),
       );

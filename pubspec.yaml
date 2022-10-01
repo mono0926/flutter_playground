@@ -31,8 +31,8 @@ dependencies:
   flutter_state_notifier:
   tinycolor:
   nested:
-  riverpod: '>=2.0.0-0'
-  hooks_riverpod: '>=2.0.0-0'
+  riverpod:
+  hooks_riverpod:
   rxdart:
   uuid:
   local_hero:
@@ -48,8 +48,8 @@ dev_dependencies:
   go_router_builder:
   json_serializable:
 dependency_overrides:
-  freezed_annotation: '>=2.0.0'
-  freezed: '>=2.0.0'
+  freezed_annotation:
+  freezed:
   google_sign_in_ios:
     git:
       url: https://github.com/mono0926/plugins

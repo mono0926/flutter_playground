@@ -40,14 +40,14 @@ class HomePage extends ConsumerWidget {
   }
 }
 
-final _controller = Provider((ref) => _Controller(ref.read));
+final _controller = Provider(_Controller.new);
 
 class _Controller {
-  _Controller(this._read);
-  final Reader _read;
+  _Controller(this._ref);
+  final Ref _ref;
 
   void foo() {
-    print('brightness: ${_read(themeProvider)!.brightness}');
+    print('brightness: ${_ref.read(themeProvider)!.brightness}');
   }
 }
 
