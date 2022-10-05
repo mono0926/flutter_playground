@@ -37,7 +37,10 @@ final countState = StateNotifierProvider<CountRepository, AsyncValue<int>>(
 
 class CountRepository extends StateNotifier<AsyncValue<int>> {
   CountRepository() : super(const AsyncValue.loading()) {
-    state = const AsyncValue.data(0);
+    Future(() async {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+      state = const AsyncValue.data(0);
+    });
   }
 
   final _history = <int>[];
