@@ -1,22 +1,22 @@
 PODS:
-  - cloud_firestore (3.4.8):
-    - Firebase/CoreOnly (~> 9.5.0)
-    - Firebase/Firestore (~> 9.5.0)
+  - cloud_firestore (3.5.0):
+    - Firebase/CoreOnly (~> 9.6.0)
+    - Firebase/Firestore (~> 9.6.0)
     - firebase_core
     - FlutterMacOS
   - desktop_webview_auth (0.0.1):
     - FlutterMacOS
   - dynamic_color (0.0.2):
     - FlutterMacOS
-  - Firebase/CoreOnly (9.5.0):
-    - FirebaseCore (= 9.5.0)
-  - Firebase/Firestore (9.5.0):
+  - Firebase/CoreOnly (9.6.0):
+    - FirebaseCore (= 9.6.0)
+  - Firebase/Firestore (9.6.0):
     - Firebase/CoreOnly
-    - FirebaseFirestore (~> 9.5.0)
-  - firebase_core (1.22.0):
-    - Firebase/CoreOnly (~> 9.5.0)
+    - FirebaseFirestore (~> 9.6.0)
+  - firebase_core (1.24.0):
+    - Firebase/CoreOnly (~> 9.6.0)
     - FlutterMacOS
-  - FirebaseCore (9.5.0):
+  - FirebaseCore (9.6.0):
     - FirebaseCoreDiagnostics (~> 9.0)
     - FirebaseCoreInternal (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -28,13 +28,13 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
   - FirebaseCoreInternal (9.6.0):
     - "GoogleUtilities/NSData+zlib (~> 7.7)"
-  - FirebaseFirestore (9.5.0):
-    - FirebaseFirestore/AutodetectLeveldb (= 9.5.0)
-  - FirebaseFirestore/AutodetectLeveldb (9.5.0):
+  - FirebaseFirestore (9.6.0):
+    - FirebaseFirestore/AutodetectLeveldb (= 9.6.0)
+  - FirebaseFirestore/AutodetectLeveldb (9.6.0):
     - FirebaseFirestore/Base
     - FirebaseFirestore/WithLeveldb
-  - FirebaseFirestore/Base (9.5.0)
-  - FirebaseFirestore/WithLeveldb (9.5.0):
+  - FirebaseFirestore/Base (9.6.0)
+  - FirebaseFirestore/WithLeveldb (9.6.0):
     - FirebaseFirestore/Base
   - FlutterMacOS (1.0.0)
   - GoogleDataTransport (9.2.0):
@@ -64,7 +64,7 @@ DEPENDENCIES:
   - desktop_webview_auth (from `Flutter/ephemeral/.symlinks/plugins/desktop_webview_auth/macos`)
   - dynamic_color (from `Flutter/ephemeral/.symlinks/plugins/dynamic_color/macos`)
   - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
-  - FirebaseFirestore/WithLeveldb (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `9.5.0`)
+  - FirebaseFirestore/WithLeveldb (from `https://github.com/invertase/firestore-ios-sdk-frameworks.git`, tag `9.6.0`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - macos_ui (from `Flutter/ephemeral/.symlinks/plugins/macos_ui/macos`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
@@ -92,7 +92,7 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 9.5.0
+    :tag: 9.6.0
   FlutterMacOS:
     :path: Flutter/ephemeral
   macos_ui:
@@ -105,18 +105,18 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   FirebaseFirestore:
     :git: https://github.com/invertase/firestore-ios-sdk-frameworks.git
-    :tag: 9.5.0
+    :tag: 9.6.0
 
 SPEC CHECKSUMS:
-  cloud_firestore: 7f7b9da0c6176be666d2ccd12a0b3abaea9c85f3
+  cloud_firestore: 507abc60df3e9181b69e5821d0b344960602a191
   desktop_webview_auth: 9bba53a29c9bc6a4ff621fd0ebfbb18856c4dada
   dynamic_color: 394d6a888650f8534e029b27d2f8bc5c64e44008
-  Firebase: 800f16f07af493d98d017446a315c27af0552f41
-  firebase_core: 1f8cd9d6db109cceadc51ddf9c580b197fd5ad22
-  FirebaseCore: 25c0400b670fd1e2f2104349cd3b5dcce8d9418f
+  Firebase: 5ae8b7cf8efce559a653aef0ad95bab3f427c351
+  firebase_core: 970bc7db019f0985976324d90cdc370527c31461
+  FirebaseCore: 2082fffcd855f95f883c0a1641133eb9bbe76d40
   FirebaseCoreDiagnostics: 99a495094b10a57eeb3ae8efa1665700ad0bdaa6
   FirebaseCoreInternal: bca76517fe1ed381e989f5e7d8abb0da8d85bed3
-  FirebaseFirestore: cbb150095370d64f1f021e3a7eecd2b543356ae3
+  FirebaseFirestore: 9bfe2e814686fb3ba2495b97618b38987e4c8526
   FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
   GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
@@ -126,6 +126,6 @@ SPEC CHECKSUMS:
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   url_launcher_macos: 597e05b8e514239626bcf4a850fcf9ef5c856ec3
 
-PODFILE CHECKSUM: f89adfdae73e17d6271de8bd6e2e96d2d952faab
+PODFILE CHECKSUM: 8b0e317136121f2bca6f8a784f2a78ad9e5a0b66
 
 COCOAPODS: 1.11.3
