@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -31,16 +33,14 @@ class App extends ConsumerWidget {
   }
 }
 
-final countState = StateNotifierProvider<CountRepository, AsyncValue<int>>(
-  (_) => CountRepository(),
-);
+final countState =
+    AsyncNotifierProvider<CountRepository, int>(CountRepository.new);
 
-class CountRepository extends StateNotifier<AsyncValue<int>> {
-  CountRepository() : super(const AsyncValue.loading()) {
-    Future(() async {
-      await Future<void>.delayed(const Duration(milliseconds: 500));
-      state = const AsyncValue.data(0);
-    });
+class CountRepository extends AsyncNotifier<int> {
+  @override
+  FutureOr<int> build() async {
+    await Future<void>.delayed(const Duration(milliseconds: 500));
+    return 0;
   }
 
   final _history = <int>[];

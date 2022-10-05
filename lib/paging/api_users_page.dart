@@ -18,7 +18,7 @@ class ApiUsersPage extends ConsumerWidget {
     final pagingAsync = ref.watch(usersPagingController);
     final paging = pagingAsync.value;
     final pagingNotifier = ref.watch(usersPagingController.notifier);
-    final users = pagingAsync.value?.items ?? [];
+    final users = paging?.items ?? [];
     return Scaffold(
       appBar: AppBar(
         title: const Text('Users'),
@@ -77,9 +77,9 @@ class User with _$User {
 bool _throwError = true;
 
 // 各ページでそれぞれ必要な実装
-final usersPagingController = StateNotifierProvider.autoDispose<
-    ApiPagingNotifier<User>, AsyncValue<PagingState<User>>>(
-  (ref) => ApiPagingNotifier(
+final usersPagingController = AsyncNotifierProvider.autoDispose<
+    ApiPagingNotifier<User>, PagingState<User>>(
+  () => ApiPagingNotifier(
     fetcher: ({required from, required size}) async {
       // 実際にはここで Web API リクエスト
       await Future<void>.delayed(const Duration(seconds: 1));
