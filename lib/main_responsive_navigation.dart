@@ -50,8 +50,9 @@ class App extends ConsumerWidget {
 final navigatorKey = Provider((ref) => GlobalKey<NavigatorState>());
 
 final router = Provider((ref) {
-  final responsiveMode = ref.watch(responsiveModeProvider);
-  final isMobile = responsiveMode == ResponsiveMode.mobile;
+  final isMobile = ref.watch(
+    responsiveModeProvider.select((mode) => mode == ResponsiveMode.mobile),
+  );
   ref.listenSelf((previous, current) {
     final previousLocation = previous?.location;
     if (previousLocation != null) {
