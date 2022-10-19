@@ -25,11 +25,11 @@ Future<void> main() async {
   usePathUrlStrategy();
   runApp(
     const ProviderScope(
-      // child: RootRestorationScope(
-      //   restorationId: 'root',
-      child: App(),
+      child: RootRestorationScope(
+        restorationId: 'root',
+        child: App(),
+      ),
     ),
-    // ),
   );
 }
 
@@ -98,7 +98,7 @@ final userIdProvider = Provider<String>((ref) => throw UnimplementedError());
 final routerProvider = Provider(
   (ref) => GoRouter(
     debugLogDiagnostics: true,
-    // restorationScopeId: 'router',
+    restorationScopeId: 'router',
     routes: [
       ShellRoute(
         routes: $appRoutes,
@@ -118,7 +118,7 @@ class App extends ConsumerWidget {
       theme: lightTheme(),
       darkTheme: darkTheme(),
       routerConfig: ref.watch(routerProvider),
-      // restorationScopeId: 'app',
+      restorationScopeId: 'app',
     );
   }
 }
