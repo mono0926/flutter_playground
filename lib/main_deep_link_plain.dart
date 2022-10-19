@@ -6,6 +6,7 @@ import 'package:faker/faker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/firestore_util.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +24,7 @@ Future<void> main() async {
   // `flutterfire configure`で自動生成されたコードで初期化(接続設定ファイル要らず)
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   // URLから `#` を除去
-  GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
+  usePathUrlStrategy();
   runApp(
     const ProviderScope(
       child: RootRestorationScope(
