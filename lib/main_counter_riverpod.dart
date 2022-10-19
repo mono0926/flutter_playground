@@ -39,6 +39,7 @@ final countState =
 class CountRepository extends AsyncNotifier<int> {
   @override
   FutureOr<int> build() async {
+    // 更新時間中を適当に再現
     await Future<void>.delayed(const Duration(milliseconds: 500));
     return 0;
   }
@@ -47,7 +48,6 @@ class CountRepository extends AsyncNotifier<int> {
 
   Future<void> increment() async {
     state = const AsyncValue<int>.loading().copyWithPrevious(state);
-    // 更新時間中を適当に再現
     await update((value) async {
       // 更新時間中を適当に再現
       await Future<void>.delayed(const Duration(milliseconds: 500));
