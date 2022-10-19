@@ -107,7 +107,7 @@ class IncrementedSnackBarPresenter {
 final isLoading = Provider((ref) => ref.watch(countState).isLoading);
 
 final countMessage = Provider(
-  (ref) => 'Count: ${ref.watch(isLoading) ? '?': ref.watch(countState).value}',
+  (ref) => 'Count: ${ref.watch(isLoading) ? '?' : ref.watch(countState).value}',
 );
 
 class HomePage extends ConsumerWidget {
