@@ -50,7 +50,7 @@ class CountRepository extends AsyncNotifier<int> {
     // 更新時間中を適当に再現
     await update((value) async {
       // 更新時間中を適当に再現
-      // await Future<void>.delayed(const Duration(milliseconds: 500));
+      await Future<void>.delayed(const Duration(milliseconds: 500));
       return value + 1;
     });
   }
@@ -104,13 +104,10 @@ class IncrementedSnackBarPresenter {
   }
 }
 
-final isLoading = Provider((ref) => ref.watch(countState) is AsyncLoading);
+final isLoading = Provider((ref) => ref.watch(countState).isLoading);
 
 final countMessage = Provider(
-  (ref) => 'Count: ${ref.watch(countState).maybeWhen(
-        data: (count) => '$count',
-        orElse: () => '?',
-      )}',
+  (ref) => 'Count: ${ref.watch(isLoading) ? '?': ref.watch(countState).value}',
 );
 
 class HomePage extends ConsumerWidget {
