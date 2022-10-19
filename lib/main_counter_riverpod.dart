@@ -104,16 +104,20 @@ class IncrementedSnackBarPresenter {
   }
 }
 
-final isLoading = Provider((ref) => ref.watch(countState).isLoading);
+final isLoadingProvider = Provider((ref) => ref.watch(countState).isLoading);
 
 final countMessage = Provider(
-  (ref) => 'Count: ${ref.watch(isLoading) ? '?' : ref.watch(countState).value}',
+  (ref) => 'Count: ${ref.watch(countState).maybeWhen(
+        data: (count) => '$count',
+        orElse: () => '?',
+      )}',
 );
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = ref.watch(isLoadingProvider);
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -121,14 +125,16 @@ class HomePage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button this many times:'),
-            Text(
-              ref.watch(countMessage),
-              style: Theme.of(context).textTheme.headline4,
+            Opacity(
+              opacity: isLoading ? 0.5 : 1,
+              child: Text(
+                ref.watch(countMessage),
+                style: Theme.of(context).textTheme.headline4,),
             ),
           ],
         ),
       ),
-      floatingActionButton: ref.watch(isLoading)
+      floatingActionButton: isLoading
           ? null
           : FloatingActionButton(
               onPressed: () => ref.read(incrementer)(),
