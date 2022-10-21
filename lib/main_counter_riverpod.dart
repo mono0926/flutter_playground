@@ -129,7 +129,8 @@ class HomePage extends ConsumerWidget {
               opacity: isLoading ? 0.5 : 1,
               child: Text(
                 ref.watch(countMessage),
-                style: Theme.of(context).textTheme.headline4,),
+                style: Theme.of(context).textTheme.headline4,
+              ),
             ),
           ],
         ),
