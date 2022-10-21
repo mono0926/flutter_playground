@@ -47,8 +47,9 @@ class CountRepository extends AsyncNotifier<int> {
   final _history = <int>[];
 
   Future<void> increment() async {
-    state = const AsyncValue<int>.loading().copyWithPrevious(state);
     await update((value) async {
+      state =
+          const AsyncValue<int>.loading().copyWithPrevious(AsyncData(value));
       // 更新時間中を適当に再現
       await Future<void>.delayed(const Duration(milliseconds: 500));
       return value + 1;
