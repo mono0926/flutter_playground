@@ -137,7 +137,7 @@ class App extends ConsumerWidget {
 class HomeRoute extends GoRouteData {
   const HomeRoute();
   @override
-  Widget build(BuildContext context) => const HomePage();
+  Widget build(BuildContext context, GoRouterState state) => const HomePage();
 }
 
 class HomePage extends ConsumerWidget {
@@ -202,7 +202,7 @@ class HomePage extends ConsumerWidget {
 class UsersRoute extends GoRouteData {
   const UsersRoute();
   @override
-  Widget build(BuildContext context) => const UsersPage();
+  Widget build(BuildContext context, GoRouterState state) => const UsersPage();
 }
 
 class UsersPage extends ConsumerWidget {
@@ -257,7 +257,7 @@ class UserRoute extends GoRouteData {
   const UserRoute(this.userId);
   final String userId;
   @override
-  Widget build(BuildContext context) => ProviderScope(
+  Widget build(BuildContext context, GoRouterState state) => ProviderScope(
         overrides: [userIdProvider.overrideWithValue(userId)],
         child: const UserPage(),
       );

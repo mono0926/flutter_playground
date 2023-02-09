@@ -1,5 +1,3 @@
-/// Flutter code sample for Table
-
 // This sample shows a `Table` with borders, multiple types of column widths and
 // different vertical cell alignments.
 

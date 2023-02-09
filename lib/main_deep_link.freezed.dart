@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'main_deep_link.dart';
 
@@ -175,14 +175,14 @@ class _$DocumentCopyWithImpl<E, $Res, $Val extends Document<E>>
   @override
   $Res call({
     Object? id = null,
-    Object? entity = null,
+    Object? entity = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      entity: null == entity
+      entity: freezed == entity
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
               as E,
@@ -213,14 +213,14 @@ class __$$_DocumentCopyWithImpl<E, $Res>
   @override
   $Res call({
     Object? id = null,
-    Object? entity = null,
+    Object? entity = freezed,
   }) {
     return _then(_$_Document<E>(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      null == entity
+      freezed == entity
           ? _value.entity
           : entity // ignore: cast_nullable_to_non_nullable
               as E,
