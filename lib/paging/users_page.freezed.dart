@@ -30,28 +30,32 @@ mixin _$User {
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+      _$UserCopyWithImpl<$Res, User>;
+  @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
+class _$UserCopyWithImpl<$Res, $Val extends User>
+    implements $UserCopyWith<$Res> {
   _$UserCopyWithImpl(this._value, this._then);
 
-  final User _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -60,24 +64,23 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$$_UserCopyWith(_$_User value, $Res Function(_$_User) then) =
       __$$_UserCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String name});
 }
 
 /// @nodoc
-class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
     implements _$$_UserCopyWith<$Res> {
   __$$_UserCopyWithImpl(_$_User _value, $Res Function(_$_User) _then)
-      : super(_value, (v) => _then(v as _$_User));
+      : super(_value, _then);
 
-  @override
-  _$_User get _value => super._value as _$_User;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = freezed,
+    Object? name = null,
   }) {
     return _then(_$_User(
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
@@ -105,16 +108,16 @@ class _$_User extends _User {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_User &&
-            const DeepCollectionEquality().equals(other.name, name));
+            (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(name));
+  int get hashCode => Object.hash(runtimeType, name);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UserCopyWith<_$_User> get copyWith =>
       __$$_UserCopyWithImpl<_$_User>(this, _$identity);
 

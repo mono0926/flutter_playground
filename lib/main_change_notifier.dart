@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text(
           '${context.select((_Notifier n) => n.count)}',
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
       floatingActionButton: FloatingActionButton(

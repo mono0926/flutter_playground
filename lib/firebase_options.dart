@@ -61,8 +61,10 @@ class DefaultFirebaseOptions {
     projectId: 'fir-fir-mono',
     databaseURL: 'https://fir-fir-mono.firebaseio.com',
     storageBucket: 'fir-fir-mono.appspot.com',
-    androidClientId: '411503049546-fdeqtjv1jl7cjkkvn8sgi02limetqjh5.apps.googleusercontent.com',
-    iosClientId: '411503049546-qru48i8knf4qj5kuuscqbpfh3geh5nkl.apps.googleusercontent.com',
+    androidClientId:
+        '411503049546-fdeqtjv1jl7cjkkvn8sgi02limetqjh5.apps.googleusercontent.com',
+    iosClientId:
+        '411503049546-qru48i8knf4qj5kuuscqbpfh3geh5nkl.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterPlayground',
   );
 
@@ -73,8 +75,10 @@ class DefaultFirebaseOptions {
     projectId: 'fir-fir-mono',
     databaseURL: 'https://fir-fir-mono.firebaseio.com',
     storageBucket: 'fir-fir-mono.appspot.com',
-    androidClientId: '411503049546-fdeqtjv1jl7cjkkvn8sgi02limetqjh5.apps.googleusercontent.com',
-    iosClientId: '411503049546-qru48i8knf4qj5kuuscqbpfh3geh5nkl.apps.googleusercontent.com',
+    androidClientId:
+        '411503049546-fdeqtjv1jl7cjkkvn8sgi02limetqjh5.apps.googleusercontent.com',
+    iosClientId:
+        '411503049546-qru48i8knf4qj5kuuscqbpfh3geh5nkl.apps.googleusercontent.com',
     iosBundleId: 'com.example.flutterPlayground',
   );
 }

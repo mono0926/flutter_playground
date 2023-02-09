@@ -29,34 +29,37 @@ mixin _$PagingState<T> {
 abstract class $PagingStateCopyWith<T, $Res> {
   factory $PagingStateCopyWith(
           PagingState<T> value, $Res Function(PagingState<T>) then) =
-      _$PagingStateCopyWithImpl<T, $Res>;
+      _$PagingStateCopyWithImpl<T, $Res, PagingState<T>>;
+  @useResult
   $Res call({bool hasMore, List<QueryDocumentSnapshot<T>> snapshots});
 }
 
 /// @nodoc
-class _$PagingStateCopyWithImpl<T, $Res>
+class _$PagingStateCopyWithImpl<T, $Res, $Val extends PagingState<T>>
     implements $PagingStateCopyWith<T, $Res> {
   _$PagingStateCopyWithImpl(this._value, this._then);
 
-  final PagingState<T> _value;
   // ignore: unused_field
-  final $Res Function(PagingState<T>) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasMore = freezed,
-    Object? snapshots = freezed,
+    Object? hasMore = null,
+    Object? snapshots = null,
   }) {
     return _then(_value.copyWith(
-      hasMore: hasMore == freezed
+      hasMore: null == hasMore
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool,
-      snapshots: snapshots == freezed
+      snapshots: null == snapshots
           ? _value.snapshots
           : snapshots // ignore: cast_nullable_to_non_nullable
               as List<QueryDocumentSnapshot<T>>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -67,31 +70,30 @@ abstract class _$$_PagingStateCopyWith<T, $Res>
           _$_PagingState<T> value, $Res Function(_$_PagingState<T>) then) =
       __$$_PagingStateCopyWithImpl<T, $Res>;
   @override
+  @useResult
   $Res call({bool hasMore, List<QueryDocumentSnapshot<T>> snapshots});
 }
 
 /// @nodoc
 class __$$_PagingStateCopyWithImpl<T, $Res>
-    extends _$PagingStateCopyWithImpl<T, $Res>
+    extends _$PagingStateCopyWithImpl<T, $Res, _$_PagingState<T>>
     implements _$$_PagingStateCopyWith<T, $Res> {
   __$$_PagingStateCopyWithImpl(
       _$_PagingState<T> _value, $Res Function(_$_PagingState<T>) _then)
-      : super(_value, (v) => _then(v as _$_PagingState<T>));
+      : super(_value, _then);
 
-  @override
-  _$_PagingState<T> get _value => super._value as _$_PagingState<T>;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hasMore = freezed,
-    Object? snapshots = freezed,
+    Object? hasMore = null,
+    Object? snapshots = null,
   }) {
     return _then(_$_PagingState<T>(
-      hasMore: hasMore == freezed
+      hasMore: null == hasMore
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool,
-      snapshots: snapshots == freezed
+      snapshots: null == snapshots
           ? _value._snapshots
           : snapshots // ignore: cast_nullable_to_non_nullable
               as List<QueryDocumentSnapshot<T>>,
@@ -127,19 +129,18 @@ class _$_PagingState<T> extends _PagingState<T> {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PagingState<T> &&
-            const DeepCollectionEquality().equals(other.hasMore, hasMore) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
             const DeepCollectionEquality()
                 .equals(other._snapshots, _snapshots));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(hasMore),
-      const DeepCollectionEquality().hash(_snapshots));
+      runtimeType, hasMore, const DeepCollectionEquality().hash(_snapshots));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PagingStateCopyWith<T, _$_PagingState<T>> get copyWith =>
       __$$_PagingStateCopyWithImpl<T, _$_PagingState<T>>(this, _$identity);
 }

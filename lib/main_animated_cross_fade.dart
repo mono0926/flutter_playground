@@ -33,7 +33,7 @@ class _HomePageState extends State<_HomePage> {
           children: <Widget>[
             Text(
               'DartとFlutterがスムーズに切り替わります',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
             AnimatedCrossFade(
               firstChild: Image.asset('assets/images/dart.png'),
@@ -45,7 +45,7 @@ class _HomePageState extends State<_HomePage> {
             ),
             Text(
               'クロスフェードしながら高さも滑らかに変化します',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),

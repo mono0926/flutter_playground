@@ -25,28 +25,32 @@ mixin _$Counter {
 /// @nodoc
 abstract class $CounterCopyWith<$Res> {
   factory $CounterCopyWith(Counter value, $Res Function(Counter) then) =
-      _$CounterCopyWithImpl<$Res>;
+      _$CounterCopyWithImpl<$Res, Counter>;
+  @useResult
   $Res call({int count});
 }
 
 /// @nodoc
-class _$CounterCopyWithImpl<$Res> implements $CounterCopyWith<$Res> {
+class _$CounterCopyWithImpl<$Res, $Val extends Counter>
+    implements $CounterCopyWith<$Res> {
   _$CounterCopyWithImpl(this._value, this._then);
 
-  final Counter _value;
   // ignore: unused_field
-  final $Res Function(Counter) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = freezed,
+    Object? count = null,
   }) {
     return _then(_value.copyWith(
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -56,24 +60,24 @@ abstract class _$$_CounterCopyWith<$Res> implements $CounterCopyWith<$Res> {
           _$_Counter value, $Res Function(_$_Counter) then) =
       __$$_CounterCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int count});
 }
 
 /// @nodoc
-class __$$_CounterCopyWithImpl<$Res> extends _$CounterCopyWithImpl<$Res>
+class __$$_CounterCopyWithImpl<$Res>
+    extends _$CounterCopyWithImpl<$Res, _$_Counter>
     implements _$$_CounterCopyWith<$Res> {
   __$$_CounterCopyWithImpl(_$_Counter _value, $Res Function(_$_Counter) _then)
-      : super(_value, (v) => _then(v as _$_Counter));
+      : super(_value, _then);
 
-  @override
-  _$_Counter get _value => super._value as _$_Counter;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? count = freezed,
+    Object? count = null,
   }) {
     return _then(_$_Counter(
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
@@ -107,15 +111,15 @@ class _$_Counter with DiagnosticableTreeMixin implements _Counter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Counter &&
-            const DeepCollectionEquality().equals(other.count, count));
+            (identical(other.count, count) || other.count == count));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(count));
+  int get hashCode => Object.hash(runtimeType, count);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_CounterCopyWith<_$_Counter> get copyWith =>
       __$$_CounterCopyWithImpl<_$_Counter>(this, _$identity);
 }

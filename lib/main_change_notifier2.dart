@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(MultiProvider(
-      providers: [
-        Provider(create: (context) => SomeService1()),
-        Provider(
-          create: (context) => SomeService2(
-            locator: context.read,
-          ),
-          // If uncomment `lazy: false`, error occurs:
-          // 'package:provider/src/provider.dart': Failed assertion: line 427 pos 12: '!debugDoingBuild &&
-          // !_debugIsInInheritedProviderUpdate': is not true.
+void main() => runApp(
+      MultiProvider(
+        providers: [
+          Provider(create: (context) => SomeService1()),
+          Provider(
+            create: (context) => SomeService2(
+              locator: context.read,
+            ),
+            // If uncomment `lazy: false`, error occurs:
+            // 'package:provider/src/provider.dart': Failed assertion: line 427 pos 12: '!debugDoingBuild &&
+            // !_debugIsInInheritedProviderUpdate': is not true.
 //          lazy: false,
-        ),
-      ],
-      child: const App(),
-    ),);
+          ),
+        ],
+        child: const App(),
+      ),
+    );
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -39,7 +41,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text(
           '${context.select((_Notifier n) => n.count)}',
-          style: Theme.of(context).textTheme.headline4,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
       floatingActionButton: FloatingActionButton(

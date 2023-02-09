@@ -76,7 +76,7 @@ class _ConfirmationDialogState extends State<_ConfirmationDialog> {
               padding: const EdgeInsets.all(16),
               child: Text(
                 'Select Favorite Animal',
-                style: theme.textTheme.headline6,
+                style: theme.textTheme.titleLarge,
               ),
             ),
             const Divider(height: 0),

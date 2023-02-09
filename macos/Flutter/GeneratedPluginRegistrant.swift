@@ -10,7 +10,7 @@ import desktop_webview_auth
 import dynamic_color
 import firebase_core
 import macos_ui
-import path_provider_macos
+import path_provider_foundation
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

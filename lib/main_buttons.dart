@@ -124,8 +124,9 @@ class _IndividuallySizedButtonsState extends State<IndividuallySizedButtons> {
           spacer,
           TextButton(
             style: TextButton.styleFrom(
-              textStyle:
-                  _textButtonFlag ? textTheme.headline2 : textTheme.headline4,
+              textStyle: _textButtonFlag
+                  ? textTheme.displayMedium
+                  : textTheme.headlineMedium,
             ),
             onPressed: () {
               setState(() {
@@ -138,8 +139,8 @@ class _IndividuallySizedButtonsState extends State<IndividuallySizedButtons> {
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               textStyle: _containedButtonFlag
-                  ? textTheme.headline2
-                  : textTheme.headline4,
+                  ? textTheme.displayMedium
+                  : textTheme.headlineMedium,
             ),
             onPressed: () {
               setState(() {
@@ -152,8 +153,8 @@ class _IndividuallySizedButtonsState extends State<IndividuallySizedButtons> {
           OutlinedButton(
             style: OutlinedButton.styleFrom(
               textStyle: _outlinedButtonFlag
-                  ? textTheme.headline2
-                  : textTheme.headline4,
+                  ? textTheme.displayMedium
+                  : textTheme.headlineMedium,
             ),
             onPressed: () {
               setState(() {
@@ -232,7 +233,7 @@ class _TextStyleButtonsState extends State<TextStyleButtons> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final style = _flag ? textTheme.headline1 : textTheme.headline4;
+    final style = _flag ? textTheme.displayLarge : textTheme.headlineMedium;
     return TextButtonTheme(
       data: TextButtonThemeData(
         style: TextButton.styleFrom(textStyle: style),
