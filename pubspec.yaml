@@ -32,6 +32,7 @@ dependencies:
   tinycolor:
   nested:
   riverpod:
+  riverpod_annotation:
   hooks_riverpod:
   rxdart:
   uuid:
@@ -47,6 +48,7 @@ dev_dependencies:
   freezed:
   go_router_builder:
   json_serializable:
+  riverpod_generator:
 dependency_overrides:
   freezed_annotation:
   freezed:
