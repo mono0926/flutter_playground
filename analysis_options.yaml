@@ -9,6 +9,8 @@ analyzer:
     - lib/generated_*.dart
     - lib/main_global_object_key.dart
     - lib/firebase_options.dart
+  plugins:
+    - custom_lint
 linter:
   rules:
     avoid_print: false
