@@ -16,6 +16,7 @@ dependencies:
   desktop_webview_auth:
   extended_image:
   faker:
+  firebase_auth:
   gap:
   go_router:
   google_sign_in:
