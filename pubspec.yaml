@@ -42,6 +42,7 @@ dependencies:
   version:
 dev_dependencies:
   analyzer:
+  custom_lint:
   flutter_test:
     sdk: flutter
   pedantic_mono:
@@ -50,6 +51,7 @@ dev_dependencies:
   go_router_builder:
   json_serializable:
   riverpod_generator:
+  riverpod_lint:
 dependency_overrides:
   freezed_annotation:
   freezed:
