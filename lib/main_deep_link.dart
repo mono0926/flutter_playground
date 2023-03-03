@@ -11,6 +11,7 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mono_kit/mono_kit.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'firebase_options.dart';
 
@@ -48,44 +49,42 @@ class Document<E> with _$Document<E> {
   const Document._();
 }
 
-final usersRefProvider = Provider(
-  (ref) => FirebaseFirestore.instance.collection('sampleUsers').withConverter(
-        fromFirestore: (snap, _) => User.fromJson(snap.data()!),
-        toFirestore: (user, _) => user.toJson(),
-      ),
-);
+@riverpod
+CollectionReference<User> usersRef(UsersRefRef ref) =>
+    FirebaseFirestore.instance.collection('sampleUsers').withConverter(
+          fromFirestore: (snap, _) => User.fromJson(snap.data()!),
+          toFirestore: (user, _) => user.toJson(),
+        );
 
 // 上位20件のusersのStream
-final usersProvider = StreamProvider(
-  (ref) => ref.watch(usersRefProvider).limit(20).snapshots().map(
-        (snap) => snap.docs
-            .map(
-              (snap) => Document(
-                snap.id,
-                snap.data(),
-              ),
-            )
-            .toList(),
-      ),
-);
+@riverpod
+Stream<List<Document<User>>> users(UsersRef ref) =>
+    ref.watch(usersRefProvider).limit(20).snapshots().map(
+          (snap) => snap.docs
+              .map(
+                (snap) => Document(
+                  snap.id,
+                  snap.data(),
+                ),
+              )
+              .toList(),
+        );
 
 // user個別のStream
 // 個別に監視し続けるのはダメなのでautoDisposeにしてリスナーがゼロになったら解除されるように。
-final userProviders =
-    StreamProvider.family.autoDispose<Document<User?>, String>(
-  (ref, id) {
-    // ユーザー一覧で取得済みだったら個別に監視せずに済むように(READコスト節約)
-    final users = ref.watch(usersProvider).value ?? [];
-    final user = users.firstWhereOrNull((user) => user.id == id);
-    return user != null
-        ? Stream.value(user)
-        : ref
-            .watch(usersRefProvider)
-            .doc(id)
-            .snapshots()
-            .map((snap) => Document(id, snap.data()));
-  },
-);
+@riverpod
+Stream<Document<User?>> userFamily(UserFamilyRef ref, String id) {
+  // ユーザー一覧で取得済みだったら個別に監視せずに済むように(READコスト節約)
+  final users = ref.watch(usersProvider).value ?? [];
+  final user = users.firstWhereOrNull((user) => user.id == id);
+  return user != null
+      ? Stream.value(user)
+      : ref
+          .watch(usersRefProvider)
+          .doc(id)
+          .snapshots()
+          .map((snap) => Document(id, snap.data()));
+}
 
 // user id の scoped provider
 // リストの要素・詳細ページなどを `ProviderScope(overrides:)`にて
@@ -93,21 +92,21 @@ final userProviders =
 // override漏れがあると実行時エラーになるので注意。
 // これ使わずにバケツリレーでも良いが、
 // これを使うとその手間がなくなることに加えてconst Widgetで区切れるメリットもある。
-final userIdProvider = Provider<String>((ref) => throw UnimplementedError());
+@riverpod
+external String userIdScoped();
 
-final routerProvider = Provider(
-  (ref) => GoRouter(
-    debugLogDiagnostics: true,
-    restorationScopeId: 'router',
-    routes: [
-      ShellRoute(
-        routes: $appRoutes,
-        // 右下にパス表示・指定できる独自ボタン配置
-        builder: goRouteLocationButtonNavigationBuilder,
-      ),
-    ],
-  ),
-);
+@riverpod
+GoRouter router(RouterRef ref) => GoRouter(
+      debugLogDiagnostics: true,
+      restorationScopeId: 'router',
+      routes: [
+        ShellRoute(
+          routes: $appRoutes,
+          // 右下にパス表示・指定できる独自ボタン配置
+          builder: goRouteLocationButtonNavigationBuilder,
+        ),
+      ],
+    );
 
 class App extends ConsumerWidget {
   const App({super.key});
@@ -226,7 +225,7 @@ class UsersPage extends ConsumerWidget {
                 return ProviderScope(
                   key: ValueKey(userId),
                   overrides: [
-                    userIdProvider.overrideWithValue(userId),
+                    userIdScopedProvider.overrideWithValue(userId),
                   ],
                   child: const _UserTile(),
                 );
@@ -240,9 +239,10 @@ class _UserTile extends ConsumerWidget {
   const _UserTile();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userId = ref.watch(userIdProvider);
+    final userId = ref.watch(userIdScopedProvider);
     final username = ref.watch(
-      userProviders(userId).select((user) => user.value?.entity!.name ?? ''),
+      userFamilyProvider(userId)
+          .select((user) => user.value?.entity!.name ?? ''),
     );
     return ListTile(
       title: Text(username),
@@ -258,7 +258,7 @@ class UserRoute extends GoRouteData {
   final String userId;
   @override
   Widget build(BuildContext context, GoRouterState state) => ProviderScope(
-        overrides: [userIdProvider.overrideWithValue(userId)],
+        overrides: [userIdScopedProvider.overrideWithValue(userId)],
         child: const UserPage(),
       );
 }
@@ -267,7 +267,7 @@ class UserPage extends ConsumerWidget {
   const UserPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userId = ref.watch(userIdProvider);
+    final userId = ref.watch(userIdScopedProvider);
     return Scaffold(
       appBar: AppBar(title: Text(userId)),
       body: Center(
@@ -281,7 +281,7 @@ class UserPage extends ConsumerWidget {
             // (Firestoreキャッシュされてたらその直後に一瞬で取得される)
             ref
                 .watch(
-                  userProviders(userId).select(
+                  userFamilyProvider(userId).select(
                     (v) => v.whenData((v) => v.entity?.name ?? 'Not Found!!'),
                   ),
                 )
@@ -318,7 +318,7 @@ class _Dialog extends ConsumerWidget {
   const _Dialog();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userId = ref.watch(userIdProvider);
+    final userId = ref.watch(userIdScopedProvider);
     return AlertDialog(
       title: const Text('ID'),
       content: Text(userId),
