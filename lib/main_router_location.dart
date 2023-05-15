@@ -22,7 +22,7 @@ final router = GoRouter(
         GoRoute(
           path: '/:tab(${HomeTab.values.map((t) => t.name).join('|')})',
           builder: (context, state) => HomePage(
-            tab: HomeTab.values.byName(state.params['tab']!),
+            tab: HomeTab.values.byName(state.pathParameters['tab']!),
           ),
         ),
       ],

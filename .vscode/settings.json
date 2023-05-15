@@ -1,3 +1,4 @@
 {
-  "cSpell.ignorePaths": ["firebase_options.dart"]
+  "cSpell.ignorePaths": ["firebase_options.dart"],
+  "dart.flutterSdkPath": "/Users/mono/fvm/versions/stable"
 }

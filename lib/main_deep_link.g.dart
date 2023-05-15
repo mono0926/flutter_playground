@@ -8,11 +8,11 @@ part of 'main_deep_link.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<GoRoute> get $appRoutes => [
+List<RouteBase> get $appRoutes => [
       $homeRoute,
     ];
 
-GoRoute get $homeRoute => GoRouteData.$route(
+RouteBase get $homeRoute => GoRouteData.$route(
       path: '/',
       factory: $HomeRouteExtension._fromState,
       routes: [
@@ -38,7 +38,7 @@ extension $HomeRouteExtension on HomeRoute {
 
   void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
@@ -53,7 +53,7 @@ extension $UsersRouteExtension on UsersRoute {
 
   void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
@@ -61,7 +61,7 @@ extension $UsersRouteExtension on UsersRoute {
 
 extension $UserRouteExtension on UserRoute {
   static UserRoute _fromState(GoRouterState state) => UserRoute(
-        state.params['userId']!,
+        state.pathParameters['userId']!,
       );
 
   String get location => GoRouteData.$location(
@@ -70,7 +70,7 @@ extension $UserRouteExtension on UserRoute {
 
   void go(BuildContext context) => context.go(location);
 
-  void push(BuildContext context) => context.push(location);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
@@ -242,7 +242,7 @@ final userIdScopedProvider = AutoDisposeProvider<String>.internal(
 );
 
 typedef UserIdScopedRef = AutoDisposeProviderRef<String>;
-String _$routerHash() => r'f0e88bfd47ac24aa8b39812dabe5a9dfaccdb3ad';
+String _$routerHash() => r'a32adf7b20299c28242590f4a6554237b500e01b';
 
 /// See also [router].
 @ProviderFor(router)

@@ -93,10 +93,11 @@ Stream<Document<User?>> userFamily(UserFamilyRef ref, String id) {
 // これ使わずにバケツリレーでも良いが、
 // これを使うとその手間がなくなることに加えてconst Widgetで区切れるメリットもある。
 @riverpod
+// ignore: unreachable_from_main
 external String userIdScoped();
 
 @riverpod
-GoRouter router(RouterRef ref) => GoRouter(
+Raw<GoRouter> router(RouterRef ref) => GoRouter(
       debugLogDiagnostics: true,
       restorationScopeId: 'router',
       routes: [
@@ -235,6 +236,7 @@ class UsersPage extends ConsumerWidget {
   }
 }
 
+// ignore: unreachable_from_main
 class _UserTile extends ConsumerWidget {
   const _UserTile();
   @override

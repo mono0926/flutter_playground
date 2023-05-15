@@ -11,6 +11,10 @@ analyzer:
     - lib/firebase_options.dart
   plugins:
     - custom_lint
+custom_lint:
+  rules:
+    avoid_public_notifier_properties: false
+    missing_provider_scope: false
 linter:
   rules:
     avoid_print: false

@@ -11,11 +11,16 @@ void main() => runApp(
 
 final navigatorKey = Provider((ref) => GlobalKey<NavigatorState>());
 
-class App extends ConsumerWidget {
+class App extends ConsumerStatefulWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<App> createState() => _AppState();
+}
+
+class _AppState extends ConsumerState<App> {
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       navigatorKey: ref.watch(navigatorKey),
       home: const HomePage(),
@@ -61,6 +66,7 @@ class CountRepository extends AsyncNotifier<int> {
   }
 
   @override
+  @protected
   set state(AsyncValue<int> value) {
     value.whenData(_history.add);
     super.state = value;

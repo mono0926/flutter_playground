@@ -25,6 +25,7 @@ void main() {
   );
 }
 
+// ignore: lines_longer_than_80_chars
 // Extend ConsumerWidget instead of StatelessWidget, which is exposed by Riverpod
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
@@ -45,11 +46,9 @@ class MyApp extends ConsumerWidget {
 }
 
 @riverpod
-Future<String> _monoProvider<T extends BaseClass>(
+Future<String> _monoProvider(
   _MonoProviderRef ref,
   String arg,
 ) {
   return Future.value('');
 }
-
-abstract class BaseClass {}

@@ -49,7 +49,7 @@ class App extends ConsumerWidget {
 
 final navigatorKey = Provider((ref) => GlobalKey<NavigatorState>());
 
-final router = Provider((ref) {
+final router = Provider<GoRouter>((ref) {
   final isMobile = ref.watch(
     responsiveModeProvider.select((mode) => mode == ResponsiveMode.mobile),
   );
@@ -77,7 +77,7 @@ final router = Provider((ref) {
                   GoRoute(
                     path: ':id',
                     builder: (context, state) {
-                      return DetailPage(id: state.params['id']!);
+                      return DetailPage(id: state.pathParameters['id']!);
                     },
                   ),
                 ],
@@ -88,7 +88,7 @@ final router = Provider((ref) {
               GoRoute(
                 path: '/items/:id',
                 builder: (context, state) {
-                  return ListDetailPage(id: state.params['id']!);
+                  return ListDetailPage(id: state.pathParameters['id']!);
                 },
               ),
             ]

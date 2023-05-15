@@ -68,8 +68,9 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class AppBarWrapper extends PreferredSize with ObstructingPreferredSizeWidget {
-  AppBarWrapper({
+class AppBarWrapper extends PreferredSize
+    implements ObstructingPreferredSizeWidget {
+  const AppBarWrapper({
     super.key,
     required super.child,
   }) : super(
