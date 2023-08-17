@@ -98,20 +98,6 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
 // RiverpodGenerator
 // **************************************************************************
 
-String _$monoHash() => r'63ff73573c14ddb318cca37fd09f302dfc2a49e1';
-
-/// See also [mono].
-@ProviderFor(mono)
-final monoProvider = AutoDisposeProvider<Mono>.internal(
-  mono,
-  name: r'monoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$monoHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef MonoRef = AutoDisposeProviderRef<Mono>;
 String _$usersRefHash() => r'8c6fc2c1918fbb72a79f9fd35ad188311fa559c1';
 
 /// See also [usersRef].

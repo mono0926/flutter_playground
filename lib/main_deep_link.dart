@@ -18,11 +18,6 @@ import 'firebase_options.dart';
 part 'main_deep_link.freezed.dart';
 part 'main_deep_link.g.dart';
 
-class Mono {}
-
-@riverpod
-Mono mono(MonoRef ref) => Mono();
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // `flutterfire configure`で自動生成されたコードで初期化(接続設定ファイル要らず)
