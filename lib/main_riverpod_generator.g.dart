@@ -22,7 +22,7 @@ final _helloWorldProvider = AutoDisposeProvider<String>.internal(
 );
 
 typedef _HelloWorldRef = AutoDisposeProviderRef<String>;
-String _$monoProviderHash() => r'ce687169279511a7fd843564a4f57a4f23b9fcf9';
+String _$monoProviderHash() => r'8c286691ce8a8b966b648b129835e7492f6738e9';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -125,4 +125,5 @@ class _MonoProviderProvider extends AutoDisposeFutureProvider<String> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

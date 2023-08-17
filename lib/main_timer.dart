@@ -38,7 +38,7 @@ class _HomePage extends StatelessWidget {
               ),
             ),
             child: const Text('NEXT PAGE'),
-          )
+          ),
         ],
       ),
     );

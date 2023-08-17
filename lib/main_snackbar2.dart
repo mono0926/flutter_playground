@@ -76,7 +76,7 @@ class _HomePage extends ConsumerWidget {
             IconButton(
               icon: const Icon(Icons.add),
               onPressed: () {},
-            )
+            ),
           ],
         ),
       ),

@@ -121,7 +121,7 @@ final routerProvider = Provider(
                     builder: (_, state) => ProviderScope(
                       overrides: [
                         userIdProvider
-                            .overrideWithValue(state.pathParameters['userId']!)
+                            .overrideWithValue(state.pathParameters['userId']!),
                       ],
                       child: const UserPage(),
                     ),
@@ -298,7 +298,7 @@ class UserPage extends ConsumerWidget {
                 );
               },
               child: const Text('Show Dialog'),
-            )
+            ),
           ],
         ),
       ),

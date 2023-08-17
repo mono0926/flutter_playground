@@ -54,11 +54,12 @@ final router = Provider<GoRouter>((ref) {
     responsiveModeProvider.select((mode) => mode == ResponsiveMode.mobile),
   );
   ref.listenSelf((previous, current) {
-    final previousLocation = previous?.location;
-    if (previousLocation != null) {
-      // TODO(mono): Check if the location exists in the new router
-      current.go(previousLocation);
-    }
+    // TODO(mono): 直す
+    // final previousLocation = previous?.location;
+    // if (previousLocation != null) {
+    //   // TODO(mono): Check if the location exists in the new router
+    //   current.go(previousLocation);
+    // }
   });
   return GoRouter(
     debugLogDiagnostics: true,
@@ -81,7 +82,7 @@ final router = Provider<GoRouter>((ref) {
                     },
                   ),
                 ],
-              )
+              ),
             ]
           : [
               GoRoute(path: '/items', redirect: (_, __) => '/items/0'),
@@ -91,7 +92,7 @@ final router = Provider<GoRouter>((ref) {
                   return ListDetailPage(id: state.pathParameters['id']!);
                 },
               ),
-            ]
+            ],
     ],
   );
 });

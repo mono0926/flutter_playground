@@ -100,7 +100,7 @@ class _SpreadsheetViewState extends State<SpreadsheetView> {
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }

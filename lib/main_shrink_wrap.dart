@@ -127,9 +127,9 @@ class _ConfirmationDialogState extends State<_ConfirmationDialog> {
                   child: Text(
                     MaterialLocalizations.of(context).okButtonLabel,
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

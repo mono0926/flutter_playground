@@ -9,7 +9,7 @@ import 'package:mono_kit/mono_kit.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 void main() {
-  setUrlStrategy(PathUrlStrategy());
+  setUrlStrategy(const PathUrlStrategy());
   runApp(const ProviderScope(child: App()));
 }
 
