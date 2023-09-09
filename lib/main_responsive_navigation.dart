@@ -57,7 +57,7 @@ final router = Provider<GoRouter>((ref) {
     // TODO(mono): 直す
     // final previousLocation = previous?.location;
     // if (previousLocation != null) {
-    //   // TODO(mono): Check if the location exists in the new router
+    // TODO(mono): Check if the location exists in the new router
     //   current.go(previousLocation);
     // }
   });

@@ -4,6 +4,8 @@ analyzer:
   errors:
     # https://github.com/rrousselGit/freezed/issues/488
     invalid_annotation_target: ignore
+    # riverpod_generatorの影響でg.dart末尾に不要な指定が付くので
+    duplicate_ignore: ignore
   exclude:
     - lib/*_original.dart
     - lib/generated_*.dart
@@ -19,3 +21,4 @@ linter:
   rules:
     avoid_print: false
     sort_pub_dependencies: false
+    unreachable_from_main: false

@@ -26,5 +26,5 @@ class Tile extends StatelessWidget {
 }
 
 class TileNotifier extends ValueNotifier<Data> {
-  TileNotifier(super.value);
+  TileNotifier(super._value);
 }
