@@ -45,8 +45,6 @@ class _SystemHash {
   }
 }
 
-typedef _MonoProviderRef = AutoDisposeFutureProviderRef<String>;
-
 /// See also [_monoProvider].
 @ProviderFor(_monoProvider)
 const _monoProviderProvider = _MonoProviderFamily();
@@ -93,10 +91,10 @@ class _MonoProviderFamily extends Family<AsyncValue<String>> {
 class _MonoProviderProvider extends AutoDisposeFutureProvider<String> {
   /// See also [_monoProvider].
   _MonoProviderProvider(
-    this.arg,
-  ) : super.internal(
+    String arg,
+  ) : this._internal(
           (ref) => _monoProvider(
-            ref,
+            ref as _MonoProviderRef,
             arg,
           ),
           from: _monoProviderProvider,
@@ -108,9 +106,43 @@ class _MonoProviderProvider extends AutoDisposeFutureProvider<String> {
           dependencies: _MonoProviderFamily._dependencies,
           allTransitiveDependencies:
               _MonoProviderFamily._allTransitiveDependencies,
+          arg: arg,
         );
 
+  _MonoProviderProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.arg,
+  }) : super.internal();
+
   final String arg;
+
+  @override
+  Override overrideWith(
+    FutureOr<String> Function(_MonoProviderRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: _MonoProviderProvider._internal(
+        (ref) => create(ref as _MonoProviderRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        arg: arg,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<String> createElement() {
+    return _MonoProviderProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -125,5 +157,18 @@ class _MonoProviderProvider extends AutoDisposeFutureProvider<String> {
     return _SystemHash.finish(hash);
   }
 }
+
+mixin _MonoProviderRef on AutoDisposeFutureProviderRef<String> {
+  /// The parameter `arg` of this provider.
+  String get arg;
+}
+
+class _MonoProviderProviderElement
+    extends AutoDisposeFutureProviderElement<String> with _MonoProviderRef {
+  _MonoProviderProviderElement(super.provider);
+
+  @override
+  String get arg => (origin as _MonoProviderProvider).arg;
+}
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

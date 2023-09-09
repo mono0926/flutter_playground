@@ -150,8 +150,6 @@ class _SystemHash {
   }
 }
 
-typedef UserFamilyRef = AutoDisposeStreamProviderRef<Document<User?>>;
-
 /// See also [userFamily].
 @ProviderFor(userFamily)
 const userFamilyProvider = UserFamilyFamily();
@@ -198,10 +196,10 @@ class UserFamilyFamily extends Family<AsyncValue<Document<User?>>> {
 class UserFamilyProvider extends AutoDisposeStreamProvider<Document<User?>> {
   /// See also [userFamily].
   UserFamilyProvider(
-    this.id,
-  ) : super.internal(
+    String id,
+  ) : this._internal(
           (ref) => userFamily(
-            ref,
+            ref as UserFamilyRef,
             id,
           ),
           from: userFamilyProvider,
@@ -213,9 +211,43 @@ class UserFamilyProvider extends AutoDisposeStreamProvider<Document<User?>> {
           dependencies: UserFamilyFamily._dependencies,
           allTransitiveDependencies:
               UserFamilyFamily._allTransitiveDependencies,
+          id: id,
         );
 
+  UserFamilyProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
   final String id;
+
+  @override
+  Override overrideWith(
+    Stream<Document<User?>> Function(UserFamilyRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: UserFamilyProvider._internal(
+        (ref) => create(ref as UserFamilyRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<Document<User?>> createElement() {
+    return _UserFamilyProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -229,6 +261,20 @@ class UserFamilyProvider extends AutoDisposeStreamProvider<Document<User?>> {
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin UserFamilyRef on AutoDisposeStreamProviderRef<Document<User?>> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _UserFamilyProviderElement
+    extends AutoDisposeStreamProviderElement<Document<User?>>
+    with UserFamilyRef {
+  _UserFamilyProviderElement(super.provider);
+
+  @override
+  String get id => (origin as UserFamilyProvider).id;
 }
 
 String _$userIdScopedHash() => r'e5a7ad86e0c0452da08cf4c9b4b618430d871407';
@@ -263,4 +309,4 @@ final routerProvider = AutoDisposeProvider<GoRouter>.internal(
 
 typedef RouterRef = AutoDisposeProviderRef<GoRouter>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
