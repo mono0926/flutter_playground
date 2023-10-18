@@ -1,7 +1,7 @@
 PODS:
   - appkit_ui_element_colors (1.0.0):
     - FlutterMacOS
-  - cloud_firestore (4.10.0):
+  - cloud_firestore (4.9.3):
     - Firebase/CoreOnly (~> 10.15.0)
     - Firebase/Firestore (~> 10.15.0)
     - firebase_core
@@ -21,12 +21,12 @@ PODS:
   - Firebase/Firestore (10.15.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.15.0)
-  - firebase_auth (4.11.0):
+  - firebase_auth (4.10.1):
     - Firebase/Auth (~> 10.15.0)
     - Firebase/CoreOnly (~> 10.15.0)
     - firebase_core
     - FlutterMacOS
-  - firebase_core (2.18.0):
+  - firebase_core (2.17.0):
     - Firebase/CoreOnly (~> 10.15.0)
     - FlutterMacOS
   - FirebaseAppCheckInterop (10.16.0)
@@ -147,13 +147,13 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   appkit_ui_element_colors: 39bb2d80be3f19b152ccf4c70d5bbe6cba43d74a
-  cloud_firestore: 55fea81326d1dc2f224f840066ab53837a9f62a4
+  cloud_firestore: 1b9b76cf711a765b9864195ca1ef834ed0082896
   desktop_webview_auth: 9bba53a29c9bc6a4ff621fd0ebfbb18856c4dada
   dynamic_color: 2eaa27267de1ca20d879fbd6e01259773fb1670f
   file_selector_macos: 468fb6b81fac7c0e88d71317f3eec34c3b008ff9
   Firebase: 66043bd4579e5b73811f96829c694c7af8d67435
-  firebase_auth: fe968ea4f0dbdbc59cdca5d4900dc62957ee1a55
-  firebase_core: 36389bff7418e2615eb0808a3c223183535ba762
+  firebase_auth: cc27deb838ef5f5dd99571b879f62cea79f290b4
+  firebase_core: 4d1711af1e10f9907f468e04f995c59f60bdc710
   FirebaseAppCheckInterop: 82358cff9f33452dd44259e88eea5e562500b1cb
   FirebaseAuth: a55ec5f7f8a5b1c2dd750235c1bb419bfb642445
   FirebaseCore: 2cec518b43635f96afe7ac3a9c513e47558abd2e

@@ -16,7 +16,8 @@ dependencies:
   desktop_webview_auth:
   extended_image:
   faker:
-  firebase_auth:
+  # https://github.com/firebase/flutterfire/issues/11720
+  firebase_auth: 4.10.1
   gap:
   go_router:
   google_sign_in:
@@ -52,19 +53,6 @@ dev_dependencies:
   json_serializable:
   riverpod_generator:
   riverpod_lint:
-dependency_overrides:
-  freezed_annotation:
-  freezed:
-  google_sign_in_ios:
-    git:
-      url: https://github.com/mono0926/plugins
-      ref: fix-flutterfire
-      path: packages/google_sign_in/google_sign_in_ios
-  # google_sign_in:
-  #   git:
-  #     url: https://github.com/mono0926/plugins
-  #     ref: fix-flutterfire
-  #     path: packages/google_sign_in/google_sign_in
 flutter:
   uses-material-design: true
   assets:
