@@ -77,10 +77,10 @@ class DialogButtons extends StatelessWidget {
                 OutlinedButton.styleFrom(
                   shape: const StadiumBorder(),
                 ).copyWith(
-                  side: MaterialStateProperty.resolveWith<BorderSide?>(
-                    (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.hovered) ||
-                          states.contains(MaterialState.focused)) {
+                  side: WidgetStateProperty.resolveWith<BorderSide?>(
+                    (Set<WidgetState> states) {
+                      if (states.contains(WidgetState.hovered) ||
+                          states.contains(WidgetState.focused)) {
                         return BorderSide(
                           width: 2,
                           color: Theme.of(context).colorScheme.primary,

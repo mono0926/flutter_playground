@@ -86,11 +86,12 @@ extension $UserRouteExtension on UserRoute {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_User _$$_UserFromJson(Map json) => _$_User(
+_$UserImpl _$$UserImplFromJson(Map json) => _$UserImpl(
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
     };
 
@@ -298,7 +299,7 @@ String _$routerHash() => r'a32adf7b20299c28242590f4a6554237b500e01b';
 
 /// See also [router].
 @ProviderFor(router)
-final routerProvider = AutoDisposeProvider<GoRouter>.internal(
+final routerProvider = AutoDisposeProvider<Raw<GoRouter>>.internal(
   router,
   name: r'routerProvider',
   debugGetCreateSourceHash:
@@ -307,6 +308,6 @@ final routerProvider = AutoDisposeProvider<GoRouter>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef RouterRef = AutoDisposeProviderRef<GoRouter>;
+typedef RouterRef = AutoDisposeProviderRef<Raw<GoRouter>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

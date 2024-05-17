@@ -12,7 +12,7 @@ part of 'main_state_notifier2.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$Counter1 {
@@ -56,21 +56,22 @@ class _$Counter1CopyWithImpl<$Res, $Val extends Counter1>
 }
 
 /// @nodoc
-abstract class _$$_Counter1CopyWith<$Res> implements $Counter1CopyWith<$Res> {
-  factory _$$_Counter1CopyWith(
-          _$_Counter1 value, $Res Function(_$_Counter1) then) =
-      __$$_Counter1CopyWithImpl<$Res>;
+abstract class _$$Counter1ImplCopyWith<$Res>
+    implements $Counter1CopyWith<$Res> {
+  factory _$$Counter1ImplCopyWith(
+          _$Counter1Impl value, $Res Function(_$Counter1Impl) then) =
+      __$$Counter1ImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int count});
 }
 
 /// @nodoc
-class __$$_Counter1CopyWithImpl<$Res>
-    extends _$Counter1CopyWithImpl<$Res, _$_Counter1>
-    implements _$$_Counter1CopyWith<$Res> {
-  __$$_Counter1CopyWithImpl(
-      _$_Counter1 _value, $Res Function(_$_Counter1) _then)
+class __$$Counter1ImplCopyWithImpl<$Res>
+    extends _$Counter1CopyWithImpl<$Res, _$Counter1Impl>
+    implements _$$Counter1ImplCopyWith<$Res> {
+  __$$Counter1ImplCopyWithImpl(
+      _$Counter1Impl _value, $Res Function(_$Counter1Impl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -78,7 +79,7 @@ class __$$_Counter1CopyWithImpl<$Res>
   $Res call({
     Object? count = null,
   }) {
-    return _then(_$_Counter1(
+    return _then(_$Counter1Impl(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -89,8 +90,8 @@ class __$$_Counter1CopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
-  const _$_Counter1({required this.count});
+class _$Counter1Impl with DiagnosticableTreeMixin implements _Counter1 {
+  const _$Counter1Impl({required this.count});
 
   @override
   final int count;
@@ -109,10 +110,10 @@ class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Counter1 &&
+            other is _$Counter1Impl &&
             (identical(other.count, count) || other.count == count));
   }
 
@@ -122,18 +123,18 @@ class _$_Counter1 with DiagnosticableTreeMixin implements _Counter1 {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Counter1CopyWith<_$_Counter1> get copyWith =>
-      __$$_Counter1CopyWithImpl<_$_Counter1>(this, _$identity);
+  _$$Counter1ImplCopyWith<_$Counter1Impl> get copyWith =>
+      __$$Counter1ImplCopyWithImpl<_$Counter1Impl>(this, _$identity);
 }
 
 abstract class _Counter1 implements Counter1 {
-  const factory _Counter1({required final int count}) = _$_Counter1;
+  const factory _Counter1({required final int count}) = _$Counter1Impl;
 
   @override
   int get count;
   @override
   @JsonKey(ignore: true)
-  _$$_Counter1CopyWith<_$_Counter1> get copyWith =>
+  _$$Counter1ImplCopyWith<_$Counter1Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -179,21 +180,22 @@ class _$Counter2CopyWithImpl<$Res, $Val extends Counter2>
 }
 
 /// @nodoc
-abstract class _$$_Counter2CopyWith<$Res> implements $Counter2CopyWith<$Res> {
-  factory _$$_Counter2CopyWith(
-          _$_Counter2 value, $Res Function(_$_Counter2) then) =
-      __$$_Counter2CopyWithImpl<$Res>;
+abstract class _$$Counter2ImplCopyWith<$Res>
+    implements $Counter2CopyWith<$Res> {
+  factory _$$Counter2ImplCopyWith(
+          _$Counter2Impl value, $Res Function(_$Counter2Impl) then) =
+      __$$Counter2ImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int count});
 }
 
 /// @nodoc
-class __$$_Counter2CopyWithImpl<$Res>
-    extends _$Counter2CopyWithImpl<$Res, _$_Counter2>
-    implements _$$_Counter2CopyWith<$Res> {
-  __$$_Counter2CopyWithImpl(
-      _$_Counter2 _value, $Res Function(_$_Counter2) _then)
+class __$$Counter2ImplCopyWithImpl<$Res>
+    extends _$Counter2CopyWithImpl<$Res, _$Counter2Impl>
+    implements _$$Counter2ImplCopyWith<$Res> {
+  __$$Counter2ImplCopyWithImpl(
+      _$Counter2Impl _value, $Res Function(_$Counter2Impl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -201,7 +203,7 @@ class __$$_Counter2CopyWithImpl<$Res>
   $Res call({
     Object? count = null,
   }) {
-    return _then(_$_Counter2(
+    return _then(_$Counter2Impl(
       count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -212,8 +214,8 @@ class __$$_Counter2CopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
-  const _$_Counter2({required this.count});
+class _$Counter2Impl with DiagnosticableTreeMixin implements _Counter2 {
+  const _$Counter2Impl({required this.count});
 
   @override
   final int count;
@@ -232,10 +234,10 @@ class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Counter2 &&
+            other is _$Counter2Impl &&
             (identical(other.count, count) || other.count == count));
   }
 
@@ -245,17 +247,17 @@ class _$_Counter2 with DiagnosticableTreeMixin implements _Counter2 {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_Counter2CopyWith<_$_Counter2> get copyWith =>
-      __$$_Counter2CopyWithImpl<_$_Counter2>(this, _$identity);
+  _$$Counter2ImplCopyWith<_$Counter2Impl> get copyWith =>
+      __$$Counter2ImplCopyWithImpl<_$Counter2Impl>(this, _$identity);
 }
 
 abstract class _Counter2 implements Counter2 {
-  const factory _Counter2({required final int count}) = _$_Counter2;
+  const factory _Counter2({required final int count}) = _$Counter2Impl;
 
   @override
   int get count;
   @override
   @JsonKey(ignore: true)
-  _$$_Counter2CopyWith<_$_Counter2> get copyWith =>
+  _$$Counter2ImplCopyWith<_$Counter2Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,7 +2,7 @@ name: flutter_playground
 description: A new Flutter application.
 version: 1.0.0+1
 environment:
-  sdk: ^3.1.0
+  sdk: ^3.4.0
 dependencies:
   adaptive_dialog:
   animations:
@@ -16,8 +16,7 @@ dependencies:
   desktop_webview_auth:
   extended_image:
   faker:
-  # https://github.com/firebase/flutterfire/issues/11720
-  firebase_auth: 4.10.1
+  firebase_auth:
   gap:
   go_router:
   google_sign_in:

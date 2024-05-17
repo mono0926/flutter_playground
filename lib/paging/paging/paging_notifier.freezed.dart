@@ -12,7 +12,7 @@ part of 'paging_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PagingState<T> {
@@ -64,22 +64,22 @@ class _$PagingStateCopyWithImpl<T, $Res, $Val extends PagingState<T>>
 }
 
 /// @nodoc
-abstract class _$$_PagingStateCopyWith<T, $Res>
+abstract class _$$PagingStateImplCopyWith<T, $Res>
     implements $PagingStateCopyWith<T, $Res> {
-  factory _$$_PagingStateCopyWith(
-          _$_PagingState<T> value, $Res Function(_$_PagingState<T>) then) =
-      __$$_PagingStateCopyWithImpl<T, $Res>;
+  factory _$$PagingStateImplCopyWith(_$PagingStateImpl<T> value,
+          $Res Function(_$PagingStateImpl<T>) then) =
+      __$$PagingStateImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({bool hasMore, List<QueryDocumentSnapshot<T>> snapshots});
 }
 
 /// @nodoc
-class __$$_PagingStateCopyWithImpl<T, $Res>
-    extends _$PagingStateCopyWithImpl<T, $Res, _$_PagingState<T>>
-    implements _$$_PagingStateCopyWith<T, $Res> {
-  __$$_PagingStateCopyWithImpl(
-      _$_PagingState<T> _value, $Res Function(_$_PagingState<T>) _then)
+class __$$PagingStateImplCopyWithImpl<T, $Res>
+    extends _$PagingStateCopyWithImpl<T, $Res, _$PagingStateImpl<T>>
+    implements _$$PagingStateImplCopyWith<T, $Res> {
+  __$$PagingStateImplCopyWithImpl(
+      _$PagingStateImpl<T> _value, $Res Function(_$PagingStateImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -88,7 +88,7 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
     Object? hasMore = null,
     Object? snapshots = null,
   }) {
-    return _then(_$_PagingState<T>(
+    return _then(_$PagingStateImpl<T>(
       hasMore: null == hasMore
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
@@ -103,8 +103,8 @@ class __$$_PagingStateCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_PagingState<T> extends _PagingState<T> {
-  _$_PagingState(
+class _$PagingStateImpl<T> extends _PagingState<T> {
+  _$PagingStateImpl(
       {required this.hasMore,
       required final List<QueryDocumentSnapshot<T>> snapshots})
       : _snapshots = snapshots,
@@ -126,10 +126,10 @@ class _$_PagingState<T> extends _PagingState<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PagingState<T> &&
+            other is _$PagingStateImpl<T> &&
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
             const DeepCollectionEquality()
                 .equals(other._snapshots, _snapshots));
@@ -142,15 +142,16 @@ class _$_PagingState<T> extends _PagingState<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PagingStateCopyWith<T, _$_PagingState<T>> get copyWith =>
-      __$$_PagingStateCopyWithImpl<T, _$_PagingState<T>>(this, _$identity);
+  _$$PagingStateImplCopyWith<T, _$PagingStateImpl<T>> get copyWith =>
+      __$$PagingStateImplCopyWithImpl<T, _$PagingStateImpl<T>>(
+          this, _$identity);
 }
 
 abstract class _PagingState<T> extends PagingState<T> {
   factory _PagingState(
           {required final bool hasMore,
           required final List<QueryDocumentSnapshot<T>> snapshots}) =
-      _$_PagingState<T>;
+      _$PagingStateImpl<T>;
   _PagingState._() : super._();
 
   @override
@@ -159,6 +160,6 @@ abstract class _PagingState<T> extends PagingState<T> {
   List<QueryDocumentSnapshot<T>> get snapshots;
   @override
   @JsonKey(ignore: true)
-  _$$_PagingStateCopyWith<T, _$_PagingState<T>> get copyWith =>
+  _$$PagingStateImplCopyWith<T, _$PagingStateImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

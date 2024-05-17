@@ -8,10 +8,11 @@ part of 'main_deep_link_plain.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_User _$$_UserFromJson(Map json) => _$_User(
+_$UserImpl _$$UserImplFromJson(Map json) => _$UserImpl(
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
+Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
+    <String, dynamic>{
       'name': instance.name,
     };

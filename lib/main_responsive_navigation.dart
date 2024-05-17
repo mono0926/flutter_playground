@@ -188,6 +188,5 @@ class ListDetailPage extends StatelessWidget {
 extension on ThemeData {
   ThemeData applyCommon() => copyWith(
         appBarTheme: appBarTheme.copyWith(elevation: 4),
-        useMaterial3: true,
       );
 }
