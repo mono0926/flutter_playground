@@ -1,8 +1,1 @@
-{
-  "hosting": [
-    {
-      "target": "platform",
-      "public": "build/web"
-    }
-  ]
-}
+{"hosting":[{"target":"platform","public":"build/web"}],"flutter":{"platforms":{"android":{"default":{"projectId":"mono-firebase","appId":"1:405166675189:android:30be9d2720600eae21a1bc","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"mono-firebase","appId":"1:405166675189:ios:7e464607ecdf977121a1bc","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"mono-firebase","appId":"1:405166675189:ios:594765df7731455621a1bc","uploadDebugSymbols":false,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"mono-firebase","configurations":{"android":"1:405166675189:android:30be9d2720600eae21a1bc","ios":"1:405166675189:ios:7e464607ecdf977121a1bc","macos":"1:405166675189:ios:594765df7731455621a1bc","web":"1:405166675189:web:3202f7016304165121a1bc","windows":"1:405166675189:web:b5487269ca8289ee21a1bc"}}}}}}
