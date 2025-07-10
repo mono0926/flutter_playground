@@ -2,7 +2,7 @@ name: flutter_playground
 description: A new Flutter application.
 version: 1.0.0+1
 environment:
-  sdk: ^3.4.0
+  sdk: ^3.8.0
 dependencies:
   adaptive_dialog:
   animations:
