@@ -8,77 +8,85 @@ part of 'main_deep_link.dart';
 // GoRouterGenerator
 // **************************************************************************
 
-List<RouteBase> get $appRoutes => [
-      $homeRoute,
-    ];
+List<RouteBase> get $appRoutes => [$homeRoute];
 
 RouteBase get $homeRoute => GoRouteData.$route(
-      path: '/',
-      factory: $HomeRouteExtension._fromState,
-      routes: [
-        GoRouteData.$route(
-          path: 'users',
-          factory: $UsersRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: ':userId',
-              factory: $UserRouteExtension._fromState,
-            ),
-          ],
-        ),
-      ],
-    );
+  path: '/',
 
-extension $HomeRouteExtension on HomeRoute {
+  factory: _$HomeRoute._fromState,
+  routes: [
+    GoRouteData.$route(
+      path: 'users',
+
+      factory: _$UsersRoute._fromState,
+      routes: [
+        GoRouteData.$route(path: ':userId', factory: _$UserRoute._fromState),
+      ],
+    ),
+  ],
+);
+
+mixin _$HomeRoute on GoRouteData {
   static HomeRoute _fromState(GoRouterState state) => const HomeRoute();
 
-  String get location => GoRouteData.$location(
-        '/',
-      );
+  @override
+  String get location => GoRouteData.$location('/');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
+  @override
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $UsersRouteExtension on UsersRoute {
+mixin _$UsersRoute on GoRouteData {
   static UsersRoute _fromState(GoRouterState state) => const UsersRoute();
 
-  String get location => GoRouteData.$location(
-        '/users',
-      );
+  @override
+  String get location => GoRouteData.$location('/users');
 
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
+  @override
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $UserRouteExtension on UserRoute {
-  static UserRoute _fromState(GoRouterState state) => UserRoute(
-        state.pathParameters['userId']!,
-      );
+mixin _$UserRoute on GoRouteData {
+  static UserRoute _fromState(GoRouterState state) =>
+      UserRoute(state.pathParameters['userId']!);
 
-  String get location => GoRouteData.$location(
-        '/users/${Uri.encodeComponent(userId)}',
-      );
+  UserRoute get _self => this as UserRoute;
 
+  @override
+  String get location =>
+      GoRouteData.$location('/users/${Uri.encodeComponent(_self.userId)}');
+
+  @override
   void go(BuildContext context) => context.go(location);
 
+  @override
   Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
+  @override
   void pushReplacement(BuildContext context) =>
       context.pushReplacement(location);
 
+  @override
   void replace(BuildContext context) => context.replace(location);
 }
 
@@ -86,14 +94,11 @@ extension $UserRouteExtension on UserRoute {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserImpl _$$UserImplFromJson(Map json) => _$UserImpl(
-      name: json['name'] as String,
-    );
+_User _$UserFromJson(Map json) => _User(name: json['name'] as String);
 
-Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
-    <String, dynamic>{
-      'name': instance.name,
-    };
+Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
+  'name': instance.name,
+};
 
 // **************************************************************************
 // RiverpodGenerator
@@ -105,14 +110,17 @@ String _$usersRefHash() => r'8c6fc2c1918fbb72a79f9fd35ad188311fa559c1';
 @ProviderFor(usersRef)
 final usersRefProvider =
     AutoDisposeProvider<CollectionReference<User>>.internal(
-  usersRef,
-  name: r'usersRefProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$usersRefHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      usersRef,
+      name: r'usersRefProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$usersRefHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UsersRefRef = AutoDisposeProviderRef<CollectionReference<User>>;
 String _$usersHash() => r'd55458484505edf2804923f9744f22a7b1233afa';
 
@@ -121,12 +129,15 @@ String _$usersHash() => r'd55458484505edf2804923f9744f22a7b1233afa';
 final usersProvider = AutoDisposeStreamProvider<List<Document<User>>>.internal(
   users,
   name: r'usersProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$usersHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$usersHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UsersRef = AutoDisposeStreamProviderRef<List<Document<User>>>;
 String _$userFamilyHash() => r'be4c541f016984965a3647aca8509fb79e6fc007';
 
@@ -161,21 +172,15 @@ class UserFamilyFamily extends Family<AsyncValue<Document<User?>>> {
   const UserFamilyFamily();
 
   /// See also [userFamily].
-  UserFamilyProvider call(
-    String id,
-  ) {
-    return UserFamilyProvider(
-      id,
-    );
+  UserFamilyProvider call(String id) {
+    return UserFamilyProvider(id);
   }
 
   @override
   UserFamilyProvider getProviderOverride(
     covariant UserFamilyProvider provider,
   ) {
-    return call(
-      provider.id,
-    );
+    return call(provider.id);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -196,24 +201,18 @@ class UserFamilyFamily extends Family<AsyncValue<Document<User?>>> {
 /// See also [userFamily].
 class UserFamilyProvider extends AutoDisposeStreamProvider<Document<User?>> {
   /// See also [userFamily].
-  UserFamilyProvider(
-    String id,
-  ) : this._internal(
-          (ref) => userFamily(
-            ref as UserFamilyRef,
-            id,
-          ),
-          from: userFamilyProvider,
-          name: r'userFamilyProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$userFamilyHash,
-          dependencies: UserFamilyFamily._dependencies,
-          allTransitiveDependencies:
-              UserFamilyFamily._allTransitiveDependencies,
-          id: id,
-        );
+  UserFamilyProvider(String id)
+    : this._internal(
+        (ref) => userFamily(ref as UserFamilyRef, id),
+        from: userFamilyProvider,
+        name: r'userFamilyProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$userFamilyHash,
+        dependencies: UserFamilyFamily._dependencies,
+        allTransitiveDependencies: UserFamilyFamily._allTransitiveDependencies,
+        id: id,
+      );
 
   UserFamilyProvider._internal(
     super._createNotifier, {
@@ -264,6 +263,8 @@ class UserFamilyProvider extends AutoDisposeStreamProvider<Document<User?>> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin UserFamilyRef on AutoDisposeStreamProviderRef<Document<User?>> {
   /// The parameter `id` of this provider.
   String get id;
@@ -288,26 +289,32 @@ final userIdScopedProvider = AutoDisposeProvider<String>.internal(
     'but was accessed without an override.',
   ),
   name: r'userIdScopedProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$userIdScopedHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$userIdScopedHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef UserIdScopedRef = AutoDisposeProviderRef<String>;
-String _$routerHash() => r'a32adf7b20299c28242590f4a6554237b500e01b';
+String _$routerHash() => r'4a5c6e3b09d60334fa869929ac271d8f9ef14729';
 
 /// See also [router].
 @ProviderFor(router)
 final routerProvider = AutoDisposeProvider<Raw<GoRouter>>.internal(
   router,
   name: r'routerProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$routerHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$routerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef RouterRef = AutoDisposeProviderRef<Raw<GoRouter>>;
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

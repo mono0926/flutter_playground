@@ -15,12 +15,15 @@ String _$helloWorldHash() => r'a45c9ef071dcfe251a00c73da58374aed6345624';
 final _helloWorldProvider = AutoDisposeProvider<String>.internal(
   _helloWorld,
   name: r'_helloWorldProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$helloWorldHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$helloWorldHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 typedef _HelloWorldRef = AutoDisposeProviderRef<String>;
 String _$monoProviderHash() => r'8c286691ce8a8b966b648b129835e7492f6738e9';
 
@@ -55,21 +58,15 @@ class _MonoProviderFamily extends Family<AsyncValue<String>> {
   const _MonoProviderFamily();
 
   /// See also [_monoProvider].
-  _MonoProviderProvider call(
-    String arg,
-  ) {
-    return _MonoProviderProvider(
-      arg,
-    );
+  _MonoProviderProvider call(String arg) {
+    return _MonoProviderProvider(arg);
   }
 
   @override
   _MonoProviderProvider getProviderOverride(
     covariant _MonoProviderProvider provider,
   ) {
-    return call(
-      provider.arg,
-    );
+    return call(provider.arg);
   }
 
   static const Iterable<ProviderOrFamily>? _dependencies = null;
@@ -90,24 +87,19 @@ class _MonoProviderFamily extends Family<AsyncValue<String>> {
 /// See also [_monoProvider].
 class _MonoProviderProvider extends AutoDisposeFutureProvider<String> {
   /// See also [_monoProvider].
-  _MonoProviderProvider(
-    String arg,
-  ) : this._internal(
-          (ref) => _monoProvider(
-            ref as _MonoProviderRef,
-            arg,
-          ),
-          from: _monoProviderProvider,
-          name: r'_monoProviderProvider',
-          debugGetCreateSourceHash:
-              const bool.fromEnvironment('dart.vm.product')
-                  ? null
-                  : _$monoProviderHash,
-          dependencies: _MonoProviderFamily._dependencies,
-          allTransitiveDependencies:
-              _MonoProviderFamily._allTransitiveDependencies,
-          arg: arg,
-        );
+  _MonoProviderProvider(String arg)
+    : this._internal(
+        (ref) => _monoProvider(ref as _MonoProviderRef, arg),
+        from: _monoProviderProvider,
+        name: r'_monoProviderProvider',
+        debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+            ? null
+            : _$monoProviderHash,
+        dependencies: _MonoProviderFamily._dependencies,
+        allTransitiveDependencies:
+            _MonoProviderFamily._allTransitiveDependencies,
+        arg: arg,
+      );
 
   _MonoProviderProvider._internal(
     super._createNotifier, {
@@ -158,17 +150,21 @@ class _MonoProviderProvider extends AutoDisposeFutureProvider<String> {
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin _MonoProviderRef on AutoDisposeFutureProviderRef<String> {
   /// The parameter `arg` of this provider.
   String get arg;
 }
 
 class _MonoProviderProviderElement
-    extends AutoDisposeFutureProviderElement<String> with _MonoProviderRef {
+    extends AutoDisposeFutureProviderElement<String>
+    with _MonoProviderRef {
   _MonoProviderProviderElement(super.provider);
 
   @override
   String get arg => (origin as _MonoProviderProvider).arg;
 }
+
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
